@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ToyExchange</string>
+    <string name="tutorial_next">다음</string>
+    <string name="tutorial_txt_1">이제 더 이상 새로운 장난감에 돈을 낭비하지 마세요</string>
+    <string name="tutorial_txt_2">원하는 장난감을 교환하세요</string>
+    <string name="tutorial_txt_3">아이들에게 새로운 장난감을 선물하세요</string>
+    <string name="tutorial_finish_login">카카오톡으로 시작하기</string>
+    <string name="navigation_item_search">검색</string>
+    <string name="navigation_item_product_registration">물건추가</string>
+    <string name="navigation_item_chatting">채팅</string>
+    <string name="navigation_item_mypage">내정보</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
