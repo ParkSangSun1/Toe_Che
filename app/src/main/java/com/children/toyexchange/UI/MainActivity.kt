@@ -1,9 +1,11 @@
 package com.children.toyexchange.UI
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.children.toyexchange.UI.Adapter.CategoryAdapter
 import com.children.toyexchange.UI.Adapter.CustomizedRecommendAdapter
 import com.children.toyexchange.databinding.ActivityMainBinding
 
@@ -16,12 +18,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+        //파란색 음명 표시 삭제
+        binding.mainScrollview.overScrollMode = View.OVER_SCROLL_NEVER
+        binding.customizedRecommendRecyclerview.overScrollMode = View.OVER_SCROLL_NEVER
+        binding.categoryRecyclerview.overScrollMode = View.OVER_SCROLL_NEVER
+
+
+        //맞춤 추천 장난감
         binding.customizedRecommendRecyclerview.layoutManager =
             LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-
         binding.customizedRecommendRecyclerview.adapter = CustomizedRecommendAdapter()
 
+
+        //카테고리
+        binding.categoryRecyclerview.layoutManager =
+            LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+        binding.categoryRecyclerview.adapter = CategoryAdapter()
         setContentView(binding.root)
+
     }
 
 //    private fun initRecycler() {

@@ -7,7 +7,9 @@
     tools:context=".UI.MainActivity">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_scrollview"
         android:layout_width="match_parent"
+        android:scrollbars="none"
         android:layout_height="match_parent"
         android:layout_centerInParent="true">
 
@@ -72,6 +74,21 @@
                 android:scrollbars="none" />
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:text="카테고리"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:scrollbars="none" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
 
-class CustomizedRecommendAdapter:RecyclerView.Adapter<MyViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+class CustomizedRecommendAdapter:RecyclerView.Adapter<CustomizedRecommendViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomizedRecommendViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val listItem = layoutInflater.inflate(R.layout.customized_recommend_recycler_item,parent,false)
 
-        return MyViewHolder(listItem)
+        return CustomizedRecommendViewHolder(listItem)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomizedRecommendViewHolder, position: Int) {
 
     }
 
@@ -23,5 +23,5 @@ class CustomizedRecommendAdapter:RecyclerView.Adapter<MyViewHolder>() {
     }
 }
 
-class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view){
+class CustomizedRecommendViewHolder(val view: View) : RecyclerView.ViewHolder(view){
 }
