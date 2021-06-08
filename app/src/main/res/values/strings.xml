@@ -11,5 +11,7 @@
     <string name="navigation_item_mypage">내정보</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_search_title">지금바로 교환 해보세요!</string>
+    <string name="fragment_search_edittext_hint">어떤 장난감을 원하시나요?</string>
 
 </resources>
