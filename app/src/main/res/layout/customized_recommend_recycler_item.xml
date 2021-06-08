@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="170dp"
+    android:layout_width="150dp"
     android:orientation="vertical"
-    android:layout_marginRight="5dp"
-    android:background="@drawable/search_btn_frame"
-    android:padding="20dp"
+    android:layout_marginRight="7dp"
+    android:background="@drawable/recycler_item_box_frame"
+    android:padding="12dp"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/mypage"
+        android:src="@drawable/test_toy_image"
         />
 
     <TextView
@@ -24,7 +24,7 @@
         android:maxLines="1"
         android:fontFamily="@font/notosanskr_bold"
         android:textColor="#302F2F"
-        android:text="불러오는 중"
+        android:text="미니언즈"
         />
     <TextView
         android:id="@+id/product_price"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:textSize="14dp"
         android:maxLines="1"
-        android:fontFamily="@font/notosanskr_bold"
+        android:fontFamily="@font/notosanskr_medium"
         android:textColor="#302F2F"
         android:text="10000원"
         />
