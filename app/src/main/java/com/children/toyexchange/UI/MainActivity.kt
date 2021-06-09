@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding.mainScrollview.overScrollMode = View.OVER_SCROLL_NEVER
         binding.customizedRecommendRecyclerview.overScrollMode = View.OVER_SCROLL_NEVER
         binding.categoryRecyclerview.overScrollMode = View.OVER_SCROLL_NEVER
+        binding.justCameUpRecyclerview.overScrollMode = View.OVER_SCROLL_NEVER
 
 
         //맞춤 추천 장난감
