@@ -38,12 +38,15 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="13dp"
                     android:layout_toStartOf="@id/search_btn"
+                    android:textSize="15sp"
                     android:background="@null"
+                    android:layout_marginLeft="15dp"
                     android:fontFamily="@font/notosanskr_medium"
+                    android:includeFontPadding="false"
                     android:hint="@string/fragment_search_edittext_hint" />
 
                 <ImageView
