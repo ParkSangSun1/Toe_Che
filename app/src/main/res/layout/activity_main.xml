@@ -6,17 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".UI.MainActivity">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/main_scrollview"
+
+
+    <LinearLayout
+        android:id="@+id/chat_and_profile_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="@dimen/imageview_btn_size"
+            android:layout_height="@dimen/imageview_btn_size"
+            android:padding="5dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/chat"
+            />
+        <ImageView
+            android:layout_width="@dimen/imageview_btn_size"
+            android:padding="5dp"
+            android:layout_height="@dimen/imageview_btn_size"
+            android:src="@drawable/profile"
+            />
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:scrollbars="none"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true">
+        android:layout_below="@+id/chat_and_profile_btn"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:orientation="vertical">
 
             <TextView
@@ -31,23 +60,22 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/search_btn_frame">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="17dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="13dp"
                     android:layout_marginBottom="13dp"
                     android:layout_toStartOf="@id/search_btn"
-                    android:textSize="15sp"
                     android:background="@null"
-                    android:layout_marginLeft="15dp"
                     android:fontFamily="@font/notosanskr_medium"
+                    android:hint="@string/fragment_search_edittext_hint"
                     android:includeFontPadding="false"
-                    android:hint="@string/fragment_search_edittext_hint" />
+                    android:textSize="15sp" />
 
                 <ImageView
                     android:id="@+id/search_btn"
@@ -60,39 +88,110 @@
 
             </RelativeLayout>
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="맞춤 추천 장난감"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/customized_recommend_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:scrollbars="none" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:text="카테고리"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/category_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:scrollbars="none" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D6D4D4"
+            />
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/recyclerview_title_txtview"
+                    android:layout_marginEnd="@dimen/recyclerview_title_txtview"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:text="맞춤 추천 장난감"
+                    android:layout_marginTop="20dp"
+                    android:includeFontPadding="false"
+
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/customized_recommend_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="@dimen/recyclerview_item_margin_start_and_end"
+                    android:scrollbars="none" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/recyclerview_title_txtview"
+                    android:layout_marginEnd="@dimen/recyclerview_title_txtview"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:layout_marginTop="20dp"
+                    android:includeFontPadding="false"
+                    android:text="카테고리"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/category_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="@dimen/recyclerview_item_margin_start_and_end"
+                    android:scrollbars="none" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/recyclerview_title_txtview"
+                    android:layout_marginEnd="@dimen/recyclerview_title_txtview"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:layout_marginTop="20dp"
+                    android:includeFontPadding="false"
+                    android:text="방금 올라온 장난감"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/just_came_up_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="100dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="@dimen/recyclerview_item_margin_start_and_end"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 장난감 올리기"
+        android:textSize="13dp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:drawableLeft="@drawable/add"
+        android:drawablePadding="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/my_toy_upload_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        />
 </RelativeLayout>

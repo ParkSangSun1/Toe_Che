@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/recyclerview_box_width"
-    android:layout_marginRight="10dp"
+    android:layout_marginStart="@dimen/recyclerview_item_margin_start_and_end"
     android:layout_height="150dp">
 
     <ImageView

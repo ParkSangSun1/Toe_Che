@@ -7,6 +7,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.children.toyexchange.UI.Adapter.CategoryAdapter
 import com.children.toyexchange.UI.Adapter.CustomizedRecommendAdapter
+import com.children.toyexchange.UI.Adapter.JustCameUpAdapter
 import com.children.toyexchange.databinding.ActivityMainBinding
 
 
@@ -36,6 +37,12 @@ class MainActivity : AppCompatActivity() {
         binding.categoryRecyclerview.adapter = CategoryAdapter()
         setContentView(binding.root)
 
+
+        //방금 올라온 장난감
+        binding.justCameUpRecyclerview.layoutManager =
+            LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+        binding.justCameUpRecyclerview.adapter = JustCameUpAdapter()
+        setContentView(binding.root)
     }
 
 //    private fun initRecycler() {

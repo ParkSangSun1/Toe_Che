@@ -29,7 +29,7 @@
         android:includeFontPadding="false"
         android:fontFamily="@font/notosanskr_bold"
         android:textColor="#302F2F"
-        android:text="미니언즈"
+        android:text="레고"
         />
     <TextView
         android:id="@+id/product_price"
@@ -41,7 +41,7 @@
         android:maxLines="1"
         android:fontFamily="@font/notosanskr_medium"
         android:textColor="#302F2F"
-        android:text="10000원"
+        android:text="30000원"
         />
 
 </LinearLayout>
