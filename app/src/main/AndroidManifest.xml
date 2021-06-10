@@ -9,10 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchange">
-        <activity android:name=".UI.SignUp.SignInActivity"></activity>
-        <activity android:name=".UI.Tutorial.TutorialActivity">
-
-        </activity>
+        <activity android:name=".UI.MyToyUpload.ToyUploadActivity"></activity>
+        <activity android:name=".UI.SignUp.SignInActivity" />
+        <activity android:name=".UI.Tutorial.TutorialActivity"></activity>
         <activity android:name=".UI.Splash.SplashActivity" />
         <activity android:name=".UI.MainActivity">
             <intent-filter>
@@ -21,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

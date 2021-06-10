@@ -93,7 +93,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#D6D4D4"
+            android:background="@color/view_line"
             />
         <androidx.core.widget.NestedScrollView
             android:id="@+id/main_scrollview"
@@ -178,6 +178,7 @@
 
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/toy_upload_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="내 장난감 올리기"

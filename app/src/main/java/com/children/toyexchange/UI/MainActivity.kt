@@ -1,5 +1,6 @@
 package com.children.toyexchange.UI
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.children.toyexchange.UI.Adapter.CategoryAdapter
 import com.children.toyexchange.UI.Adapter.CustomizedRecommendAdapter
 import com.children.toyexchange.UI.Adapter.JustCameUpAdapter
+import com.children.toyexchange.UI.MyToyUpload.ToyUploadActivity
 import com.children.toyexchange.databinding.ActivityMainBinding
 
 
@@ -43,7 +45,16 @@ class MainActivity : AppCompatActivity() {
         binding.justCameUpRecyclerview.layoutManager =
             LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
         binding.justCameUpRecyclerview.adapter = JustCameUpAdapter()
+
+        binding.toyUploadBtn.setOnClickListener {
+            val intent = Intent(this, ToyUploadActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
         setContentView(binding.root)
+
     }
 
 //    private fun initRecycler() {
