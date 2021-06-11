@@ -141,6 +141,8 @@
                         android:fontFamily="@font/notosanskr_medium"
                         android:hint="내 게시물이 돋보이게!"
                         android:includeFontPadding="false"
+                        android:textSize="15sp"
+
                         android:maxLines="1" />
                 </RelativeLayout>
 
@@ -154,7 +156,7 @@
                 android:layout_height="1dp"
                 android:background="@color/view_line" />
 
-            <!--            제목을 입력해 주세요-->
+            <!--            설명을 입력해 주세요-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -168,7 +170,7 @@
                     android:fontFamily="@font/notosanskr_bold"
                     android:gravity="left"
                     android:includeFontPadding="false"
-                    android:text="내용을 입력해 주세요"
+                    android:text="설명을 입력해 주세요"
                     android:textColor="@color/black"
                     android:textSize="@dimen/toy_upload_page_title_txt_size" />
 
@@ -186,8 +188,9 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@null"
+                        android:textSize="15sp"
                         android:fontFamily="@font/notosanskr_medium"
-                        android:hint="내용은 자세히!"
+                        android:hint="설명은 자세히!"
                         android:includeFontPadding="false" />
                 </RelativeLayout>
 
@@ -200,7 +203,7 @@
                 android:layout_height="1dp"
                 android:background="@color/view_line" />
 
-            <!--            제목을 입력해 주세요-->
+            <!--            카테고리를 추가해 주세요-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -233,11 +236,57 @@
                         android:layout_marginBottom="10dp"
                         android:background="@null"
                         android:fontFamily="@font/notosanskr_medium"
-                        android:hint="내 게시물이 돋보이게!"
+                        android:hint="좀더 정확히 알수 있는!"
+                        android:textSize="15sp"
                         android:includeFontPadding="false" />
                 </RelativeLayout>
+            </LinearLayout>
 
 
+            <View
+                android:id="@+id/category_txt_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/view_line" />
+
+            <!--            지역추가-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="100dp"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left"
+                    android:includeFontPadding="false"
+                    android:text="지역을 설정해 주세요"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/toy_upload_page_title_txt_size" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/toy_upload_letters_and_spacing"
+                    android:background="@drawable/my_toy_upload_edittext">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="15sp"
+                        android:background="@null"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:hint="사람들이 잘 아는곳으로!"
+                        android:includeFontPadding="false" />
+                </RelativeLayout>
             </LinearLayout>
 
 

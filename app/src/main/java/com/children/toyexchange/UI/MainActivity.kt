@@ -51,10 +51,8 @@ class MainActivity : AppCompatActivity() {
         binding.categoryRecyclerview.adapter = CategoryAdapter()
         setContentView(binding.root)
 
-
-
+        //스크롤 했을때
         binding.mainScrollview.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-
             Log.i(TAG, "scrolly : $scrollY");
 
             if (System.currentTimeMillis() - upDownWait >= 200) {
@@ -93,39 +91,6 @@ class MainActivity : AppCompatActivity() {
                     binding.toyUploadBtn.animation = anim
                     binding.toyUploadBtn.visibility = View.VISIBLE
                 }
-
-
-//                        binding.mainScrollview.setOnTouchListener { v, event ->
-//                            when(event.action) {
-//                                MotionEvent.ACTION_UP -> {
-//                                    if (scrollY ==0) {
-//                                        Log.i("리그", "때고나서 위");
-//                                        val anim =
-//                                            TranslateAnimation(binding.toyUploadBtn.width.toFloat() + 1000, 0f, 0f, 0f)
-//                                        anim.duration = 100
-//
-//                                        binding.toyUploadBtn.animation = anim
-//                                        binding.toyUploadBtn.visibility = View.VISIBLE
-//                                    }
-//                                }
-//                                MotionEvent.ACTION_MOVE ->{
-//                                    if (scrollY ==0) {
-//                                        Log.i("리그", "이동중 위");
-//                                        val anim =
-//                                            TranslateAnimation(binding.toyUploadBtn.width.toFloat() + 1000, 0f, 0f, 0f)
-//                                        anim.duration = 100
-//
-//                                        binding.toyUploadBtn.animation = anim
-//                                        binding.toyUploadBtn.visibility = View.VISIBLE
-//                                    }
-//
-//                                }
-//                            }
-//                            //리턴값은 return 없이 아래와 같이
-//                            false // or false
-//                        }
-
-
             }
         }
 
@@ -136,6 +101,11 @@ class MainActivity : AppCompatActivity() {
         binding.justCameUpRecyclerview.adapter = JustCameUpAdapter()
 
         binding.toyUploadBtn.setOnClickListener {
+            val intent = Intent(this, ToyUploadActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.toyUploadIconBtn.setOnClickListener {
             val intent = Intent(this, ToyUploadActivity::class.java)
             startActivity(intent)
         }
