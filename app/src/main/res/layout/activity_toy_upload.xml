@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-<!--            사진을 추가해 주세요-->
+            <!--            사진을 추가해 주세요-->
             <LinearLayout
                 android:id="@+id/select_picture_layout"
                 android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                     android:includeFontPadding="false"
                     android:text="사진을 추가해 주세요"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/toy_upload_page_title_txt_size" />
 
                 <RelativeLayout
                     android:layout_width="100dp"
@@ -106,7 +106,7 @@
                 android:layout_height="1dp"
                 android:background="@color/view_line" />
 
-<!--            제목을 입력해 주세요-->
+            <!--            제목을 입력해 주세요-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -121,27 +121,120 @@
                     android:includeFontPadding="false"
                     android:text="제목을 입력해 주세요"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/toy_upload_page_title_txt_size" />
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/toy_upload_letters_and_spacing"
-                    android:background="@drawable/my_toy_upload_edittext"
-                    >
+                    android:background="@drawable/my_toy_upload_edittext">
+
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="내 게시물이 돋보이게!"
-                        android:fontFamily="@font/notosanskr_medium"
-                        android:background="@null"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginStart="30dp"
+                        android:background="@null"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:hint="내 게시물이 돋보이게!"
                         android:includeFontPadding="false"
+                        android:maxLines="1" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/title_txt_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/view_line" />
+
+            <!--            제목을 입력해 주세요-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left"
+                    android:includeFontPadding="false"
+                    android:text="내용을 입력해 주세요"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/toy_upload_page_title_txt_size" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/toy_upload_letters_and_spacing"
+                    android:background="@drawable/my_toy_upload_edittext">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        />
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@null"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:hint="내용은 자세히!"
+                        android:includeFontPadding="false" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/contents_txt_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/view_line" />
+
+            <!--            제목을 입력해 주세요-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left"
+                    android:includeFontPadding="false"
+                    android:text="카테고리를 추가해 주세요"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/toy_upload_page_title_txt_size" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/toy_upload_letters_and_spacing"
+                    android:background="@drawable/my_toy_upload_edittext">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@null"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:hint="내 게시물이 돋보이게!"
+                        android:includeFontPadding="false" />
                 </RelativeLayout>
 
 
@@ -151,5 +244,18 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/upload_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/toy_post_upload_btn"
+        android:fontFamily="@font/notosanskr_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:padding="20dp"
+        android:text="등록하기"
+        android:textColor="@color/white"
+        android:textSize="17dp" />
 
 </RelativeLayout>

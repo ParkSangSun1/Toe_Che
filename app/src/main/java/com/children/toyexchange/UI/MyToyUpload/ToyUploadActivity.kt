@@ -15,6 +15,10 @@ class ToyUploadActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.uploadBtn.setOnClickListener {
+            finish()
+        }
+
         setContentView(binding.root)
     }
 }
