@@ -3,5 +3,5 @@
     <dimen name="recyclerview_box_width">150dp</dimen>
     <dimen name="recyclerview_title_txtview">20dp</dimen>
     <dimen name="recyclerview_item_margin_start_and_end">10dp</dimen>
-    <dimen name="imageview_btn_size">33dp</dimen>
+    <dimen name="imageview_btn_size">43dp</dimen>
 </resources>
