@@ -1,4 +1,4 @@
-package com.children.toyexchange.UI.Adapter
+package com.children.toyexchange.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

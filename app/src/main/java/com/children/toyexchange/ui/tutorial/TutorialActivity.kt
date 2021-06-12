@@ -1,10 +1,12 @@
-package com.children.toyexchange.UI.Tutorial
+package com.children.toyexchange.ui.tutorial
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
-import com.children.toyexchange.UI.Tutorial.Adapter.TutorialViewPagerAdapter
+import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityTutorialBinding
+import com.children.toyexchange.ui.tutorial.Adapter.TutorialViewPagerAdapter
 
 class TutorialActivity : AppCompatActivity() {
 
@@ -15,7 +17,7 @@ class TutorialActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTutorialBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTutorialBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_tutorial)
         setContentView(binding.root)
         binding.pager.adapter = TutorialViewPagerAdapter(bgColors)
         binding.pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL

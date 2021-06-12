@@ -1,4 +1,4 @@
-package com.children.toyexchange.UI.Inside.ProductRegistration
+package com.children.toyexchange.ui.inside.ProductRegistration
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

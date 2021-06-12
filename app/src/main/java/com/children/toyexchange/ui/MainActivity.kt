@@ -1,20 +1,23 @@
-package com.children.toyexchange.UI
+package com.children.toyexchange.ui
 
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.TranslateAnimation
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.children.toyexchange.UI.Adapter.CategoryAdapter
-import com.children.toyexchange.UI.Adapter.CustomizedRecommendAdapter
-import com.children.toyexchange.UI.Adapter.JustCameUpAdapter
-import com.children.toyexchange.UI.MyToyUpload.ToyUploadActivity
+import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityMainBinding
+import com.children.toyexchange.ui.adapter.CategoryAdapter
+import com.children.toyexchange.ui.adapter.CustomizedRecommendAdapter
+import com.children.toyexchange.ui.adapter.JustCameUpAdapter
+import com.children.toyexchange.ui.myToyUpload.ToyUploadActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,8 +28,8 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.activity=this
 
         //파란색 음영 표시 삭제
         shadowDelete(binding.mainScrollview, null)
@@ -52,21 +55,24 @@ class MainActivity : AppCompatActivity() {
 
         //스크롤 했을때
         binding.mainScrollview.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            scrollEvent( v, scrollX, scrollY, oldScrollX, oldScrollY)
+            scrollEvent(v, scrollX, scrollY, oldScrollX, oldScrollY)
         }
 
 
-        binding.toyUploadBtn.setOnClickListener {
-            goToyUploadActivity()
-        }
+//        binding.toyUploadBtn.setOnClickListener {
+//            goToyUploadActivity()
+//        }
+//
+//
+//        binding.toyUploadIconBtn.setOnClickListener {
+//        }
 
 
-        binding.toyUploadIconBtn.setOnClickListener {
-            goToyUploadActivity()
-        }
+    }
 
-
-        setContentView(binding.root)
+    fun uploadBtn(view : View) {
+        Log.i("눌림","1")
+        goToyUploadActivity()
     }
 
     private fun goToyUploadActivity() {

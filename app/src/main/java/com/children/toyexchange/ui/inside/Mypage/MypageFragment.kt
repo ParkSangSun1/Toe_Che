@@ -1,4 +1,4 @@
-package com.children.toyexchange.UI.Inside.Mypage
+package com.children.toyexchange.ui.inside.Mypage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

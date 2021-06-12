@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchange">
-        <activity android:name=".UI.MyToyUpload.ToyUploadActivity"></activity>
-        <activity android:name=".UI.SignUp.SignInActivity" />
-        <activity android:name=".UI.Tutorial.TutorialActivity"></activity>
-        <activity android:name=".UI.Splash.SplashActivity" />
-        <activity android:name=".UI.MainActivity">
+        <activity android:name=".ui.myToyUpload.ToyUploadActivity"></activity>
+        <activity android:name=".ui.signUp.SignInActivity" />
+        <activity android:name=".ui.tutorial.TutorialActivity"></activity>
+        <activity android:name=".ui.splash.SplashActivity" />
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
