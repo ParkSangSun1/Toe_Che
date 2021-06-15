@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.activity=this
+        binding.activity = this
 
         //파란색 음영 표시 삭제
         shadowDelete(binding.mainScrollview, null)
@@ -70,8 +70,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun uploadBtn(view : View) {
-        Log.i("눌림","1")
+    fun uploadBtn(view: View) {
+        Log.i("눌림", "1")
         goToyUploadActivity()
     }
 

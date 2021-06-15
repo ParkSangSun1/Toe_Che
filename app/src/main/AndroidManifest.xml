@@ -10,15 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchange">
         <activity android:name=".ui.myToyUpload.ToyUploadActivity"></activity>
-        <activity android:name=".ui.signUp.SignInActivity" />
+        <activity android:name=".UI.SignUp.SignInActivity"></activity>
         <activity android:name=".ui.tutorial.TutorialActivity"></activity>
-        <activity android:name=".ui.splash.SplashActivity" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.MainActivity">
+
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.children.toyexchange.ui.signUp
+package com.children.toyexchange.UI.SignUp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
