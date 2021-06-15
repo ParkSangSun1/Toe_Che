@@ -1,104 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".UI.SignUp.SignInActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.children.toyexchange.ui." />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.SignUp.SignInActivity">
 
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/camera" />
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/bluelogo" />
 
-    <LinearLayout
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/icon"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icon"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/notosanskr_black"
+                android:includeFontPadding="false"
+
+                android:text="TOECHE"
+                android:textColor="@color/login_main_color"
+                android:textSize="40sp" />
+
+            <!--        <TextView-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_below="@id/title"-->
+            <!--            android:layout_centerHorizontal="true"-->
+            <!--            android:fontFamily="@font/notosanskr_black"-->
+
+            <!--            android:includeFontPadding="false"-->
+            <!--            android:text="CHE"-->
+            <!--            android:textColor="@color/white"-->
+            <!--            android:textSize="40sp" />-->
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/notosanskr_black"
+            android:fontFamily="@font/notosanskr_bold"
             android:includeFontPadding="false"
-
-            android:text="TOECHE"
+            android:text="놀지 않는 아이는 없다"
             android:textColor="@color/login_main_color"
-            android:textSize="40sp" />
+            android:textSize="16sp" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/title"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:fontFamily="@font/notosanskr_black"-->
-
-<!--            android:includeFontPadding="false"-->
-<!--            android:text="CHE"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="40sp" />-->
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/notosanskr_bold"
-        android:includeFontPadding="false"
-        android:text="놀지 않는 아이는 없다"
-        android:textColor="@color/login_main_color"
-        android:textSize="16sp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
-        >
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:elevation="10dp"
-            android:background="@drawable/google_login_btn"
-            >
-            <TextView
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="구글로 시작하기"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:fontFamily="@font/notosanskr_black"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:onClick="@{activity::googleLoginBtn}"
+                android:elevation="10dp"
+                android:background="@drawable/google_login_btn">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="구글로 시작하기"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/notosanskr_black"
+                    android:includeFontPadding="false"
+                    android:padding="17dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="약관보기"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 android:includeFontPadding="false"
-                android:padding="17dp"
-                />
-        </RelativeLayout>
+                android:textColor="@color/login_main_color"
+                android:padding="10dp"
+                android:gravity="center"
+                android:fontFamily="@font/notosanskr_bold" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="약관보기"
-            android:layout_marginTop="10dp"
-            android:includeFontPadding="false"
-            android:textColor="@color/login_main_color"
-            android:padding="10dp"
-            android:gravity="center"
-            android:fontFamily="@font/notosanskr_bold"/>
-    </LinearLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
