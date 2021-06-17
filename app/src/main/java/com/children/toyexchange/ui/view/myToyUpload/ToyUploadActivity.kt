@@ -1,4 +1,4 @@
-package com.children.toyexchange.ui.myToyUpload
+package com.children.toyexchange.ui.view.myToyUpload
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

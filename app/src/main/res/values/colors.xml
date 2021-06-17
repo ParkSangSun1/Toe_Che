@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="view_line">#D6D4D4</color>
     <color name="login_main_color">#0080ff</color>
+    <color name="bottom_nav_ripple">#000000</color>
 </resources>

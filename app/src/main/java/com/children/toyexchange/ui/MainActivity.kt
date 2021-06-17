@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityMainBinding
-import com.children.toyexchange.ui.adapter.CategoryAdapter
-import com.children.toyexchange.ui.adapter.CustomizedRecommendAdapter
-import com.children.toyexchange.ui.adapter.JustCameUpAdapter
-import com.children.toyexchange.ui.myToyUpload.ToyUploadActivity
+import com.children.toyexchange.ui.view.adapter.CategoryAdapter
+import com.children.toyexchange.ui.view.adapter.CustomizedRecommendAdapter
+import com.children.toyexchange.ui.view.adapter.JustCameUpAdapter
+import com.children.toyexchange.ui.view.myToyUpload.ToyUploadActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.activity = this
+
 
         //파란색 음영 표시 삭제
         shadowDelete(binding.mainScrollview, null)

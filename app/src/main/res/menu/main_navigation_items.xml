@@ -8,7 +8,10 @@
         android:title="@string/navigation_item_product_registration"
         android:icon="@drawable/product_registration"
         />
-
+    <item android:id="@+id/shopping_basket"
+        android:title="@string/navigation_item_shopping_basket"
+        android:icon="@drawable/shopping_basket"
+        />
     <item android:id="@+id/chatting"
         android:title="@string/navigation_item_chatting"
         android:icon="@drawable/chatting"

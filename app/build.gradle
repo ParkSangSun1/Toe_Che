@@ -78,5 +78,6 @@ dependencies {
     //서클 이미지
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-
+    //toast 커스텀
+//    implementation 'com.github.meet30997:Quicktoast:1.0.0'
 }

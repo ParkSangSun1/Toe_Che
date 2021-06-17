@@ -1,4 +1,4 @@
-package com.children.toyexchange.ui.tutorial
+package com.children.toyexchange.ui.view.tutorial
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityTutorialBinding
-import com.children.toyexchange.ui.tutorial.Adapter.TutorialViewPagerAdapter
+import com.children.toyexchange.ui.view.tutorial.Adapter.TutorialViewPagerAdapter
 
 class TutorialActivity : AppCompatActivity() {
 
