@@ -9,19 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchange">
-        <activity android:name=".ui.myToyUpload.ToyUploadActivity"></activity>
-        <activity android:name=".ui.SignUp.SignInActivity"></activity>
-        <activity android:name=".ui.tutorial.TutorialActivity"></activity>
-        <activity android:name=".ui.splash.SplashActivity">
+        <activity android:name=".ui.signIn.PhoneAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.signIn.SignInActivity" >
 
         </activity>
+        <activity android:name=".ui.myToyUpload.ToyUploadActivity" />
+        <activity android:name=".ui.tutorial.TutorialActivity" />
+        <activity android:name=".ui.splash.SplashActivity">
+
+        </activity>
+        <activity android:name=".ui.MainActivity" />
     </application>
 
 </manifest>

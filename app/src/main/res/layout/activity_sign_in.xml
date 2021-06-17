@@ -6,14 +6,14 @@
     <data>
         <variable
             name="activity"
-            type="com.children.toyexchange.ui." />
+            type="com.children.toyexchange.ui.signIn.SignInActivity" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".ui.SignUp.SignInActivity">
+        tools:context=".ui.signIn.SignInActivity">
 
 
         <ImageView
@@ -90,6 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="구글로 시작하기"
+                    android:textSize="14sp"
+
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:fontFamily="@font/notosanskr_black"
@@ -103,6 +105,8 @@
                 android:text="약관보기"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:textSize="14sp"
+
                 android:includeFontPadding="false"
                 android:textColor="@color/login_main_color"
                 android:padding="10dp"

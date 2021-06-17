@@ -75,4 +75,8 @@ dependencies {
     // Also declare the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
+    //서클 이미지
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
 }
