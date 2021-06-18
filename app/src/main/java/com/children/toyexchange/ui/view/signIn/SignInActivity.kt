@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivitySignInBinding
+import com.children.toyexchange.ui.utils.MainObject
 import com.children.toyexchange.ui.view.BaseActivity
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -18,7 +19,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class SignInActivity : BaseActivity() {
     val binding by binding<ActivitySignInBinding>(R.layout.activity_sign_in)
-    var auth: FirebaseAuth? = null
     val GOOGLE_REQUEST_CODE = 1004
     val TAG = "googleLogin"
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -28,7 +28,7 @@ class SignInActivity : BaseActivity() {
         binding.activity = this
 
 
-        auth = FirebaseAuth.getInstance()
+
 
 //GoogleSignInClient 객체 초기화
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN) //기본 로그인 방식 사용
@@ -74,7 +74,7 @@ class SignInActivity : BaseActivity() {
         //구글로부터 로그인된 사용자의 정보(Credentail)을 얻어온다.
         val credential = GoogleAuthProvider.getCredential(account?.idToken!!, null)
         //그 정보를 사용하여 Firebase의 auth를 실행한다.
-        auth?.signInWithCredential(credential)
+        MainObject.auth?.signInWithCredential(credential)
             ?.addOnCompleteListener {  //통신 완료가 된 후 무슨일을 할지
                     task ->
                 if (task.isSuccessful) {
