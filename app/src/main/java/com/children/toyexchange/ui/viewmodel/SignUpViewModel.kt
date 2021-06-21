@@ -9,4 +9,7 @@ class SignUpViewModel : ViewModel() {
     fun setUserNickname(userNickname: String){
         this.userNickname = userNickname
     }
+    fun getUserNickname() : String? {
+        return this.userNickname
+    }
 }

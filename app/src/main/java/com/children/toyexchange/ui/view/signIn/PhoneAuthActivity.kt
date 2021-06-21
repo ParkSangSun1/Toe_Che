@@ -1,5 +1,6 @@
 package com.children.toyexchange.ui.view.signIn
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -9,66 +10,93 @@ import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
 import com.children.toyexchange.ui.utils.MainObject
+import com.children.toyexchange.ui.utils.MainObject.auth
 import com.children.toyexchange.ui.view.BaseActivity
+import com.children.toyexchange.ui.view.TestActivity
 import com.children.toyexchange.ui.viewmodel.SignUpViewModel
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import java.util.concurrent.TimeUnit
 
 
 class PhoneAuthActivity : BaseActivity() {
     val binding by binding<ActivityPhoneAuthBinding>(R.layout.activity_phone_auth)
-    private lateinit var viewModel: SignUpViewModel
+    var flag = 0
 
+
+    override fun onStart() {
+        super.onStart()
+        val transaction = supportFragmentManager.beginTransaction()
+        binding.checkPhoneNumber.text = "프로필 설정하기"
+        transaction.add(R.id.authFrameLayout, NickNameFragment())
+        flag = 1
+        transaction.commit()
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.activity = this
-        viewModel = ViewModelProvider(
+        MainObject.viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(SignUpViewModel::class.java)
+
+
     }
 
-    fun clickCheckNickName(view: View) {
-        if (TextUtils.isEmpty(binding.nickname.text)) {
-            Toast.makeText(this, "닉네임을 입력해 주세요", Toast.LENGTH_SHORT).show()
-        } else {
-//            MainObject.database.reference.child("usersNickName")
-//                .get().addOnSuccessListener {
-//                    it.child(binding.nickname.text.toString()) ->
-//                    Log.i("firebase", "Got value ${it.value}")
-//                }.addOnFailureListener {
-//                    Log.e("firebase", "Error getting data", it)
-//                }
+    fun clickNextBtn(view: View) {
+        switchFragment()
+    }
 
-            MainObject.database.reference.child("userNickName")
-                .child(binding.nickname.text.toString()).addListenerForSingleValueEvent(object :
-                    ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-//                        snapshot.getValue(
-//                            UserModel::class.java
-//                        )
-                        Log.d("firebase","get value ${snapshot.value}")
-                        if (snapshot.value == null){
-                            Toast.makeText(applicationContext, "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT).show()
-                            viewModel.setUserNickname(binding.nickname.text.toString())
-                        }else{
-                            Toast.makeText(applicationContext, "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT).show()
-                        }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
 
-                    }
-                })
+    override fun onBackPressed() {
+        super.onBackPressed()
+        --flag
+    }
 
+
+    private fun switchFragment() {
+        if (flag in 0..2) {
+            val transaction = supportFragmentManager.beginTransaction()
+
+            when (flag) {
+                0 -> {
+                    binding.checkPhoneNumber.text = "프로필 설정하기"
+                    transaction.add(R.id.authFrameLayout, NickNameFragment())
+                    flag = 1
+                }
+                1 -> {
+                    binding.checkPhoneNumber.text = "인증번호 받기"
+                    transaction.replace(R.id.authFrameLayout, PhoneNumberFragment())
+                    flag = 2
+                }
+                2 -> {
+                    binding.checkPhoneNumber.text = "인증하기"
+                    transaction.replace(R.id.authFrameLayout, PhoneNumberCodeFragment())
+                    flag = 3
+
+
+                }
+//            3 -> {
+//                transaction.replace(R.id.frameLayout, FragmentA())
+//                flag = 1
+//            }
+            }
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
+
+
     }
 
-    fun clickCheckPhoneNumber(view: View) {
-        if (TextUtils.isEmpty(binding.phoneNumber.text)) {
-            Toast.makeText(this, "전화번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
-        }
-    }
+
 }
