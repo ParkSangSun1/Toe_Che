@@ -38,16 +38,7 @@ class NickNameFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nick_name, container, false)
         binding.activity = this
-//        MainObject.viewModel = ViewModelProvider(
-//            this,
-//            ViewModelProvider.NewInstanceFactory()
-//        ).get(SignUpViewModel::class.java)
 
-//        binding.checkOverlap.setOnClickListener {
-//            Toast.makeText(activity, "닉네임을 입력해 주세요", Toast.LENGTH_SHORT).show()
-//            Log.d("로그","눌림")
-//            firebaseCheckNickName()
-//        }
 
         return binding.root
     }

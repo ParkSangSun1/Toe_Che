@@ -34,15 +34,6 @@ class PhoneAuthActivity : BaseActivity() {
     var flag = 0
 
 
-    override fun onStart() {
-        super.onStart()
-        val transaction = supportFragmentManager.beginTransaction()
-        binding.checkPhoneNumber.text = "프로필 설정하기"
-        transaction.add(R.id.authFrameLayout, NickNameFragment())
-        flag = 1
-        transaction.commit()
-
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +43,13 @@ class PhoneAuthActivity : BaseActivity() {
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(SignUpViewModel::class.java)
+
+        val transaction = supportFragmentManager.beginTransaction()
+        binding.checkPhoneNumber.text = "다음으로"
+        transaction.add(R.id.authFrameLayout, NickNameFragment())
+        flag = 1
+        transaction.commit()
+
 
         MainObject.viewModel.checkGoNext.observe(this, Observer {
             Log.d("로그", "라이브데이터 출력 $it")
@@ -96,22 +94,16 @@ class PhoneAuthActivity : BaseActivity() {
 
             when (flag) {
                 0 -> {
-                    binding.checkPhoneNumber.text = "프로필 설정하기"
+                    binding.checkPhoneNumber.text = "다음으로"
                     transaction.add(R.id.authFrameLayout, NickNameFragment())
                     flag = 1
                 }
                 1 -> {
-                    binding.checkPhoneNumber.text = "인증번호 받기"
+                    binding.checkPhoneNumber.text = "시작하기"
                     transaction.replace(R.id.authFrameLayout, PhoneNumberFragment())
                     flag = 2
                 }
-                2 -> {
-                    binding.checkPhoneNumber.text = "인증하기"
-                    transaction.replace(R.id.authFrameLayout, PhoneNumberCodeFragment())
-                    flag = 3
 
-
-                }
 //            3 -> {
 //                transaction.replace(R.id.frameLayout, FragmentA())
 //                flag = 1
@@ -120,8 +112,6 @@ class PhoneAuthActivity : BaseActivity() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
-
-
     }
 
 

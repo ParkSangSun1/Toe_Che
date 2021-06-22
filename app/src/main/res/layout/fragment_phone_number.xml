@@ -1,90 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ui.view.signIn.PhoneNumberFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/setting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
-        android:background="@color/white"
-        android:orientation="vertical">
+    <data>
+        <variable
+            name="activity"
+            type="com.children.toyexchange.ui.view.signIn.PhoneNumberFragment" />
+    </data>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="전화번호 인증"
-            android:fontFamily="@font/notosanskr_black"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:includeFontPadding="false"
-            android:padding="15dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#DADADA" />
-    </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/setting">
+        android:background="@color/white"
+        tools:context=".ui.view.signIn.PhoneNumberFragment">
 
         <LinearLayout
+            android:id="@+id/setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@+id/setting">
+            android:elevation="2dp"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/setting_btn_frame">
-
-                <EditText
-                    android:id="@+id/phoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginBottom="13dp"
-                    android:background="@null"
-                    android:maxLines="1"
-                    android:inputType="phone"
-                    android:fontFamily="@font/notosanskr_medium"
-                    android:hint="전화번호를 입력해 주세요!"
-                    android:includeFontPadding="false"
-                    android:textSize="15sp" />
-
-            </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="전화번호 인증"
+                android:fontFamily="@font/notosanskr_black"
+                android:textSize="20sp"
+                android:textColor="@color/black"
                 android:includeFontPadding="false"
-                android:text="전화번호 - 를 빼고 입력해 주세요"
-                android:fontFamily="@font/notosanskr_medium"
-                android:layout_marginStart="50dp"
-                android:textSize="13sp"
-                android:padding="5dp"
-                android:layout_marginEnd="50dp"
-                />
+                android:padding="15dp" />
 
-
-
-
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DADADA" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
-</RelativeLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/setting">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/setting">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    >
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/check_phoneNumber"
+                        android:background="@drawable/setting_btn_frame">
+
+                        <EditText
+                            android:id="@+id/phoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginBottom="13dp"
+                            android:background="@null"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:fontFamily="@font/notosanskr_medium"
+                            android:hint="전화번호를 입력해 주세요"
+                            android:includeFontPadding="false"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/check_phoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:onClick="@{activity::clickPhoneAuthCode}"
+                        android:text="인증하기"
+                        android:layout_marginStart="7dp"
+                        android:background="@drawable/setting_btn_frame"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/notosanskr_bold"
+                        android:includeFontPadding="false"
+                        android:textSize="12sp"
+                        />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="전화번호 - 를 빼고 입력해 주세요"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:layout_marginStart="50dp"
+                    android:textSize="13sp"
+                    android:padding="5dp"
+                    android:layout_marginEnd="50dp" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/setting_btn_frame">
+
+                    <EditText
+                        android:id="@+id/phoneNumberCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:hint="인증번호를 입력해 주세요"
+                        android:includeFontPadding="false"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/check_phoneNumberCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:padding="10dp"
+                    android:text="확인하기"
+                    android:onClick="@{activity::clickCheckPhoneAuthCode}"
+                    android:background="@drawable/setting_btn_frame"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:includeFontPadding="false"
+                    android:textSize="12sp"
+                    />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+</layout>
