@@ -1,11 +1,13 @@
 package com.children.toyexchange.ui.view.signIn
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import java.util.concurrent.TimeUnit
+import kotlin.math.log
 
 
 class PhoneAuthActivity : BaseActivity() {
@@ -41,6 +44,7 @@ class PhoneAuthActivity : BaseActivity() {
 
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.activity = this
@@ -49,13 +53,35 @@ class PhoneAuthActivity : BaseActivity() {
             ViewModelProvider.NewInstanceFactory()
         ).get(SignUpViewModel::class.java)
 
+        MainObject.viewModel.checkGoNext.observe(this, Observer {
+            Log.d("로그", "라이브데이터 출력 $it")
+            if (it == true) {
+                binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
+
+            } else {
+                binding.nextBtn.setBackgroundColor(Color.parseColor("#D6D4D4"))
+            }
+        })
+
+//        val checkObserver = Observer<Boolean> {
+//            if(it){
+//                binding.nextBtn.setBackgroundColor(Color.parseColor("#ffffff"))
+//            }else{
+//                binding.nextBtn.setBackgroundColor(Color.parseColor("#000000"))
+//
+//            }
+//        }
+
+//        MainObject.viewModel.checkGoNext.observe(this, checkObserver)
 
     }
 
     fun clickNextBtn(view: View) {
-        switchFragment()
+        if (MainObject.viewModel.checkGoNext.value == true) {
+            switchFragment()
+            MainObject.viewModel.setSignInGoNextFalse()
+        }
     }
-
 
 
     override fun onBackPressed() {

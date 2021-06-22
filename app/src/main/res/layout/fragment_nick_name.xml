@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="activity"
+            type="com.children.toyexchange.ui.view.signIn.NickNameFragment" />
     </data>
 
     <RelativeLayout
@@ -60,25 +62,60 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="50dp"
                     android:layout_marginEnd="50dp"
-                    android:background="@drawable/setting_btn_frame">
-
-                    <EditText
-                        android:id="@+id/nickname"
-                        android:layout_width="match_parent"
+                    >
+                    <RelativeLayout
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginBottom="13dp"
-                        android:background="@null"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:fontFamily="@font/notosanskr_medium"
-                        android:hint="닉네임을 설정해 주세요!"
-                        android:includeFontPadding="false"
-                        android:textSize="15sp" />
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/check_overlap"
+                        android:background="@drawable/setting_btn_frame">
 
+                        <EditText
+                            android:id="@+id/nickname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_marginTop="13dp"
+                            android:layout_marginBottom="13dp"
+                            android:background="@null"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:fontFamily="@font/notosanskr_medium"
+                            android:hint="닉네임을 설정해 주세요!"
+                            android:includeFontPadding="false"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/check_overlap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:onClick="@{activity::clickCheckNickName}"
+                        android:text="중복확인"
+                        android:layout_marginStart="7dp"
+                        android:background="@drawable/setting_btn_frame"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/notosanskr_bold"
+                        android:includeFontPadding="false"
+                        android:textSize="12sp"
+                        />
                 </RelativeLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="불건전한 닉네임과 사진은 제재 대상이 됩니다"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:layout_marginStart="50dp"
+                    android:textSize="13sp"
+                    android:padding="5dp"
+                    android:layout_marginEnd="50dp"
+                    />
 
 
 
