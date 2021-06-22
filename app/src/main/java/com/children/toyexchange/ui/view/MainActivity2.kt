@@ -3,8 +3,11 @@ package com.children.toyexchange.ui.view
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityMain2Binding
+import com.children.toyexchange.ui.view.adapter.CategoryAdapter
 import com.children.toyexchange.ui.view.base.BaseActivity
 import com.children.toyexchange.ui.view.mainfragment.*
 
@@ -12,9 +15,13 @@ class MainActivity2 : BaseActivity() {
     private val binding by binding<ActivityMain2Binding>(R.layout.activity_main2)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding.apply {
 
         }
+        replaceFragment(SearchFragment())
+
+
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -54,7 +61,6 @@ class MainActivity2 : BaseActivity() {
         }
     }
 
-//    fun clickBottomNav(view: View){
-//
-//    }
+
+
 }

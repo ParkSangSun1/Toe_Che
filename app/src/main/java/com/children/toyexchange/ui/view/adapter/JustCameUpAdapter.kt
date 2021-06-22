@@ -9,7 +9,7 @@ import com.children.toyexchange.R
 class JustCameUpAdapter : RecyclerView.Adapter<JustCameUpViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JustCameUpViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val listItem = layoutInflater.inflate(R.layout.justcameup_recycler_item,parent,false)
+        val listItem = layoutInflater.inflate(R.layout.justcameup_recycler_item, parent, false)
 
         return JustCameUpViewHolder(listItem)
     }
@@ -23,5 +23,5 @@ class JustCameUpAdapter : RecyclerView.Adapter<JustCameUpViewHolder>() {
     }
 }
 
-class JustCameUpViewHolder(val view: View) : RecyclerView.ViewHolder(view){
+class JustCameUpViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 }

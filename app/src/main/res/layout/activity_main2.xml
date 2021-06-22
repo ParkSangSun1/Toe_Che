@@ -9,17 +9,29 @@
             type="com.children.toyexchange.ui.view.MainActivity2" />
     </data>
 
-    <FrameLayout
-        android:id="@+id/frame"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EFEFEF"
         tools:context=".ui.view.MainActivity2">
 
+        <FrameLayout
+            android:id="@+id/frame"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/bottom_navigation"
+            />
+
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="bottom"
             app:itemIconTint="@drawable/menu_selector_color"
             app:itemTextColor="@drawable/menu_selector_color"
@@ -29,5 +41,5 @@
             />
 
 
-    </FrameLayout>
+    </RelativeLayout>
 </layout>
