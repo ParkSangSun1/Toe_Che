@@ -7,3 +7,4 @@
 - [ADD] 무언가가 추가 되었을때
 - [DELETE] 만들어진 것을 삭제 했을때
 - [REFACTORING] 코드를 리팩토링 했을때
+- [ERROR UPDATE] 오류를 확인하고 고쳤을때
