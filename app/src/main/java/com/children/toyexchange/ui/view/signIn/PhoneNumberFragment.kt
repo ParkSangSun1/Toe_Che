@@ -109,13 +109,11 @@ class PhoneNumberFragment : Fragment() {
     fun clickPhoneAuthCode(view: View) {
         Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
 
-//        var otp = binding.phoneNumber.text.toString().trim()
-//        if (otp.isNotEmpty())
-//        {
-//            verifyVerificationcode(otp)
+        val phoneNumber = binding.phoneNumber.text.substring(1)
+        Log.d("로그","핸드폰 번호 $phoneNumber")
         val options = MainObject.auth?.let {
             PhoneAuthOptions.newBuilder(it)
-                .setPhoneNumber(binding.phoneNumber.text.toString())
+                .setPhoneNumber("+82 $phoneNumber")
                 .setTimeout(60L, TimeUnit.SECONDS)
                 .setActivity(requireActivity())
                 .setCallbacks(callbacks)
@@ -124,8 +122,6 @@ class PhoneNumberFragment : Fragment() {
         if (options != null) {
             PhoneAuthProvider.verifyPhoneNumber(options)
         }
-
-//        }
 
     }
 
