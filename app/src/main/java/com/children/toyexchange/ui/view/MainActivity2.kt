@@ -1,12 +1,11 @@
 package com.children.toyexchange.ui.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityMain2Binding
+import com.children.toyexchange.ui.view.base.BaseActivity
 import com.children.toyexchange.ui.view.mainfragment.*
 
 class MainActivity2 : BaseActivity() {

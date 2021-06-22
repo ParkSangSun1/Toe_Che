@@ -8,13 +8,12 @@ import android.widget.Toast
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivitySignInBinding
 import com.children.toyexchange.ui.utils.MainObject
-import com.children.toyexchange.ui.view.BaseActivity
+import com.children.toyexchange.ui.view.base.BaseActivity
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class SignInActivity : BaseActivity() {
@@ -90,7 +89,6 @@ class SignInActivity : BaseActivity() {
         val intent = Intent(this, PhoneAuthActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.right_in, R.anim.left_out)
-
         finish()
     }
 }

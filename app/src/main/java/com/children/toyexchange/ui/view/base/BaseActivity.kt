@@ -1,5 +1,6 @@
-package com.children.toyexchange.ui.view
+package com.children.toyexchange.ui.view.base
 
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,4 +12,6 @@ open class BaseActivity  : AppCompatActivity() {
     protected inline fun <reified T : ViewDataBinding> binding(@LayoutRes resId: Int): Lazy<T> =
         lazy { DataBindingUtil.setContentView<T>(this, resId) }
     private lateinit var viewModel: SignUpViewModel
+
+
 }

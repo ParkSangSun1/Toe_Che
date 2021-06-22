@@ -3,36 +3,23 @@ package com.children.toyexchange.ui.view.signIn
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
+import com.children.toyexchange.ui.MainActivity
 import com.children.toyexchange.ui.utils.MainObject
-import com.children.toyexchange.ui.utils.MainObject.auth
-import com.children.toyexchange.ui.view.BaseActivity
-import com.children.toyexchange.ui.view.TestActivity
+import com.children.toyexchange.ui.view.MainActivity2
+import com.children.toyexchange.ui.view.base.BaseActivity
+import com.children.toyexchange.ui.view.base.SignInBaseActivity
 import com.children.toyexchange.ui.viewmodel.SignUpViewModel
-import com.google.firebase.FirebaseException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
-import java.util.concurrent.TimeUnit
-import kotlin.math.log
 
 
-class PhoneAuthActivity : BaseActivity() {
+class PhoneAuthActivity : SignInBaseActivity() {
     val binding by binding<ActivityPhoneAuthBinding>(R.layout.activity_phone_auth)
     var flag = 0
-
 
 
 
@@ -76,8 +63,16 @@ class PhoneAuthActivity : BaseActivity() {
 
     fun clickNextBtn(view: View) {
         if (MainObject.viewModel.checkGoNext.value == true) {
-            switchFragment()
-            MainObject.viewModel.setSignInGoNextFalse()
+            if (flag == 2){
+                val intent  = Intent(this, MainActivity2::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.right_in, R.anim.left_out)
+                finish()
+            }else{
+                switchFragment()
+                MainObject.viewModel.setSignInGoNextFalse()
+            }
+
         }
     }
 
