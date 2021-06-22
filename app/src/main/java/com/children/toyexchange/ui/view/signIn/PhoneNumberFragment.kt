@@ -1,6 +1,7 @@
 package com.children.toyexchange.ui.view.signIn
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class PhoneNumberFragment : Fragment() {
     lateinit var binding: FragmentPhoneNumberBinding
     lateinit var storedVerificationId: String
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private var checkFirstPhoneNumberAuth = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +62,7 @@ class PhoneNumberFragment : Fragment() {
                 storedVerificationId = verificationId
                 resendToken = token
                 Log.d("로그", "$storedVerificationId , $resendToken")
+                checkFirstPhoneNumberAuth = true
             }
         }
 
@@ -94,18 +97,31 @@ class PhoneNumberFragment : Fragment() {
             }
     }
 
+    //인증번호 확인 클릭
     fun clickCheckPhoneAuthCode(view: View) {
-        Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
-        var otp = binding.phoneNumberCode.text.toString().trim()
-        Log.d("로그", "clickheckphoneauthchode 안  -  $otp")
-        if (otp.isNotEmpty()) {
-            Log.d("로그", "clickheckphoneauthchode if안")
-            verifyVerificationcode(otp)
+        if (checkFirstPhoneNumberAuth){
+            if (TextUtils.isEmpty(binding.phoneNumberCode.text)) {
+                Toast.makeText(requireContext(), "인증번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
+
+            }else{
+                Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
+                var otp = binding.phoneNumberCode.text.toString().trim()
+                Log.d("로그", "clickheckphoneauthchode 안  -  $otp")
+                if (otp.isNotEmpty()) {
+                    Log.d("로그", "clickheckphoneauthchode if안")
+                    verifyVerificationcode(otp)
+                }
+            }
+
+        }else{
+            Toast.makeText(requireContext(), "먼저 휴대폰번호를 인증해 주세요", Toast.LENGTH_SHORT).show()
         }
+
 
     }
 
 
+    //핸드폰 번호 인증 클릭
     fun clickPhoneAuthCode(view: View) {
         Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
 

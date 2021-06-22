@@ -47,6 +47,7 @@ class NickNameFragment : Fragment() {
     //닉네임 edittext 체크
     fun clickCheckNickName(view: View) {
         Log.d("로그","눌림")
+        Toast.makeText(activity, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
 
         if (TextUtils.isEmpty(binding.nickname.text)) {
             Toast.makeText(activity, "닉네임을 입력해 주세요", Toast.LENGTH_SHORT).show()
