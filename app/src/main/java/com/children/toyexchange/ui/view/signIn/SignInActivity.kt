@@ -81,7 +81,6 @@ class SignInActivity : BaseActivity() {
                 } else {
                     Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
                 }
-//                progressBar.visibility = View.GONE
             }
     }
 

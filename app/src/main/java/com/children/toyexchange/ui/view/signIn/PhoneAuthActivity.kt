@@ -90,12 +90,12 @@ class PhoneAuthActivity : SignInBaseActivity() {
             when (flag) {
                 0 -> {
                     binding.checkPhoneNumber.text = "다음으로"
-                    transaction.add(R.id.authFrameLayout, NickNameFragment())
+                    transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out).add(R.id.authFrameLayout, NickNameFragment())
                     flag = 1
                 }
                 1 -> {
                     binding.checkPhoneNumber.text = "시작하기"
-                    transaction.replace(R.id.authFrameLayout, PhoneNumberFragment())
+                    transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out).replace(R.id.authFrameLayout, PhoneNumberFragment())
                     flag = 2
                 }
 

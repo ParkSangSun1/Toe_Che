@@ -1,11 +1,13 @@
 package com.children.toyexchange.ui.view.mainfragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.children.toyexchange.R
+import com.children.toyexchange.ui.view.myToyUpload.ToyUploadActivity
 
 class ProductRegistrationFragment : Fragment() {
 
@@ -13,6 +15,15 @@ class ProductRegistrationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val intent = Intent(requireContext(), ToyUploadActivity::class.java)
+
+        startActivity(intent)
+        requireActivity().overridePendingTransition(0, 0)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 
     override fun onCreateView(

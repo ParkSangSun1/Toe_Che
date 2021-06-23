@@ -53,6 +53,16 @@ class MainActivity2 : BaseActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        replaceFragment(SearchFragment())
+        binding.bottomNavigation.menu.getItem(0).isChecked = true
+//        supportFragmentManager.beginTransaction().replace(R.id.search,SearchFragment()).commitAllowingStateLoss()
+
+
+
+    }
+
     private fun replaceFragment(fragment: Fragment) {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.apply {
