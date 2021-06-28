@@ -3,16 +3,14 @@ package com.children.toyexchange.ui.view
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
-import com.children.toyexchange.databinding.ActivityMain2Binding
-import com.children.toyexchange.ui.view.adapter.CategoryAdapter
+import com.children.toyexchange.databinding.ActivityMainBinding
 import com.children.toyexchange.ui.view.base.BaseActivity
 import com.children.toyexchange.ui.view.mainfragment.*
+import com.children.toyexchange.ui.view.mainfragment.exchange.ExchangeFragment
 
-class MainActivity2 : BaseActivity() {
-    private val binding by binding<ActivityMain2Binding>(R.layout.activity_main2)
+class MainActivity : BaseActivity() {
+    private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,14 +27,14 @@ class MainActivity2 : BaseActivity() {
                     replaceFragment(SearchFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.product_registration -> {
-                    replaceFragment(ProductRegistrationFragment())
+                R.id.exchange -> {
+                    replaceFragment(ExchangeFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.shopping_basket -> {
-                    replaceFragment(ShoppingBasketFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
+//                R.id.shopping_basket -> {
+//                    replaceFragment(ShoppingBasketFragment())
+//                    return@setOnNavigationItemSelectedListener true
+//                }
                 R.id.chatting -> {
                     replaceFragment(ChattingFragment())
                     return@setOnNavigationItemSelectedListener true

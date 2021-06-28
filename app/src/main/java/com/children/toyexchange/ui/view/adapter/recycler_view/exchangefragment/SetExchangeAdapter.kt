@@ -1,4 +1,4 @@
-package com.children.toyexchange.ui.view.adapter
+package com.children.toyexchange.ui.view.adapter.recycler_view.exchangefragment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,16 +7,16 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
 
-class RecentPostsAdapter : RecyclerView.Adapter<RecentPostsViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentPostsViewHolder {
+class SetExchangeAdapter : RecyclerView.Adapter<SetExchangeViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SetExchangeViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val listItem =
-            layoutInflater.inflate(R.layout.search_fragment_recyclerview_item, parent, false)
+            layoutInflater.inflate(R.layout.exchange_set_fragment_recyclerview_item, parent, false)
 
-        return RecentPostsViewHolder(listItem)
+        return SetExchangeViewHolder(listItem)
     }
 
-    override fun onBindViewHolder(holder: RecentPostsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SetExchangeViewHolder, position: Int) {
         holder.view.findViewById<ImageView>(R.id.image)
             .setBackgroundResource(R.drawable.item_radius)
         holder.view.findViewById<ImageView>(R.id.image).clipToOutline = true
@@ -27,6 +27,6 @@ class RecentPostsAdapter : RecyclerView.Adapter<RecentPostsViewHolder>() {
     }
 }
 
-class RecentPostsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class SetExchangeViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
 }

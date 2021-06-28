@@ -1,7 +1,9 @@
 package com.children.toyexchange.ui.utils
 
+import android.content.Context
 import android.view.View
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.ui.viewmodel.SignUpViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -17,5 +19,12 @@ object MainObject {
     fun shadowDelete(sV: NestedScrollView?, rV: RecyclerView?) {
         sV?.overScrollMode = View.OVER_SCROLL_NEVER
         rV?.overScrollMode = View.OVER_SCROLL_NEVER
+    }
+
+
+    //리사이클러뷰
+    fun recyclerViewManager(v: RecyclerView, context: Context) {
+        v.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 }

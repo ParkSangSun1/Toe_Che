@@ -9,10 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
-import com.children.toyexchange.ui.MainActivity
 import com.children.toyexchange.ui.utils.MainObject
-import com.children.toyexchange.ui.view.MainActivity2
-import com.children.toyexchange.ui.view.base.BaseActivity
+import com.children.toyexchange.ui.view.MainActivity
 import com.children.toyexchange.ui.view.base.SignInBaseActivity
 import com.children.toyexchange.ui.viewmodel.SignUpViewModel
 
@@ -64,7 +62,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
     fun clickNextBtn(view: View) {
         if (MainObject.viewModel.checkGoNext.value == true) {
             if (flag == 2){
-                val intent  = Intent(this, MainActivity2::class.java)
+                val intent  = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.right_in, R.anim.left_out)
                 finish()

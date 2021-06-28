@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.view.mainfragment.exchange.ExchangeFragment">
+
+
+        <LinearLayout
+            android:id="@+id/setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="교환목록"
+                android:fontFamily="@font/notosanskr_black"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:includeFontPadding="false"
+                android:padding="15dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DADADA" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/exchange_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_below="@id/setting"
+            android:layout_centerHorizontal="true"
+
+
+            app:tabIndicatorColor="@color/black"
+            app:tabRippleColor="@color/tab_un_chose"
+
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/tab_un_chose"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@style/tab_text" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/exchange_view_pager"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/exchange_tab_layout"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+    </RelativeLayout>
+</layout>

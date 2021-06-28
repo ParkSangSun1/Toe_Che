@@ -1,4 +1,4 @@
-package com.children.toyexchange.ui.view.mainfragment
+package com.children.toyexchange.ui.view.mainfragment.exchange.viewpager
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.children.toyexchange.R
-import com.children.toyexchange.databinding.FragmentSearchBinding
+import com.children.toyexchange.databinding.FragmentSetExchangeListBinding
 import com.children.toyexchange.ui.utils.MainObject
+import com.children.toyexchange.ui.view.adapter.recycler_view.exchangefragment.SetExchangeAdapter
 import com.children.toyexchange.ui.view.adapter.recycler_view.searchfragment.RecentPostsAdapter
 
+//내가 신청한 신청 목록
+class SetExchangeListFragment : Fragment() {
 
-class SearchFragment : Fragment() {
-
-    lateinit var binding: FragmentSearchBinding
+    lateinit var binding: FragmentSetExchangeListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,14 +25,15 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_set_exchange_list, container, false)
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
-        MainObject.recyclerViewManager(binding.recentPostsRecyclerView,requireContext())
-        binding.recentPostsRecyclerView.adapter = RecentPostsAdapter()
 
-        MainObject.shadowDelete(null, binding.recentPostsRecyclerView)
+        MainObject.recyclerViewManager(binding.setRecyclerView,requireContext())
+        binding.setRecyclerView.adapter = SetExchangeAdapter()
 
         return binding.root
     }
+
 
 }
