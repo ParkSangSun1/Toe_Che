@@ -44,8 +44,9 @@ class SignInActivity : BaseActivity() {
 
     fun googleLoginBtn(view: View) {
 
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, GOOGLE_REQUEST_CODE)
+        loginSuccess()
+//        val signInIntent = googleSignInClient.signInIntent
+//        startActivityForResult(signInIntent, GOOGLE_REQUEST_CODE)
     }
 
     //startAcivityResult()로 인해 다른 앱/ 액티비티가 실행된 후.

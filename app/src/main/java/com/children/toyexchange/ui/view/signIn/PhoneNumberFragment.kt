@@ -85,6 +85,7 @@ class PhoneNumberFragment : Fragment() {
                     val user = task.result?.user
                     Toast.makeText(requireContext(), "전화번호 인증이 완료되었습니다", Toast.LENGTH_SHORT).show()
                     MainObject.viewModel.setSignInGoNextTrue()
+                    MainObject.viewModel.setUserPhoneNumber(binding.phoneNumber.text.toString().toInt())
 
                 } else {
                     Log.w("로그", "signInWithCredential:failure", task.exception)
@@ -106,9 +107,7 @@ class PhoneNumberFragment : Fragment() {
             }else{
                 Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
                 var otp = binding.phoneNumberCode.text.toString().trim()
-                Log.d("로그", "clickheckphoneauthchode 안  -  $otp")
                 if (otp.isNotEmpty()) {
-                    Log.d("로그", "clickheckphoneauthchode if안")
                     verifyVerificationcode(otp)
                 }
             }

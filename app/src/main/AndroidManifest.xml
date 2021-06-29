@@ -11,11 +11,7 @@
         android:theme="@style/Theme.ToyExchange">
         <activity android:name=".ui.view.TestActivity"></activity>
         <activity android:name=".ui.view.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.view.signIn.PhoneAuthActivity">
 
@@ -26,9 +22,13 @@
         <activity android:name=".ui.view.myToyUpload.ToyUploadActivity" />
         <activity android:name=".ui.view.tutorial.TutorialActivity" />
         <activity android:name=".ui.view.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" />
+
     </application>
 
 </manifest>
