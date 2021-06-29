@@ -17,7 +17,6 @@
             android:layout_height="100dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-
             android:scaleType="centerCrop"
             android:src="@drawable/test_toy_image" />
 
@@ -33,16 +32,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosanskr_bold"
-                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanskr_medium"
+                android:textStyle="bold"
                 android:text="최상급 미니언즈"
+                android:includeFontPadding="false"
                 android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textSize="@dimen/product_recycler_item_title" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="1dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -58,7 +58,7 @@
                         android:includeFontPadding="false"
                         android:text="남구 월산동"
                         android:textColor="#939393"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/product_recycler_item_location_and_time" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -68,18 +68,18 @@
                         android:includeFontPadding="false"
                         android:text="10분전"
                         android:textColor="#939393"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/product_recycler_item_location_and_time" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_bold"
+                    android:fontFamily="@font/notosanskr_medium"
                     android:includeFontPadding="false"
                     android:text="시세 50000원"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/product_recycler_item_price" />
 
             </LinearLayout>
         </LinearLayout>

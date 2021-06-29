@@ -31,10 +31,7 @@ class MainActivity : BaseActivity() {
                     replaceFragment(ExchangeFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
-//                R.id.shopping_basket -> {
-//                    replaceFragment(ShoppingBasketFragment())
-//                    return@setOnNavigationItemSelectedListener true
-//                }
+
                 R.id.chatting -> {
                     replaceFragment(ChattingFragment())
                     return@setOnNavigationItemSelectedListener true

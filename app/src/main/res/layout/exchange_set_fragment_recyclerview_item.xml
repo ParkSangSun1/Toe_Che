@@ -13,8 +13,8 @@
         >
         <ImageView
             android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
 
@@ -30,60 +30,51 @@
             android:layout_alignParentEnd="true"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/notosanskr_bold"
-                android:includeFontPadding="false"
-                android:text="최상급 미니언즈"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:orientation="vertical">
 
-                <LinearLayout
+
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
+                    >
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_medium"
+                        android:fontFamily="@font/notosanskr_bold"
                         android:includeFontPadding="false"
-                        android:text="남구 월산동"
-                        android:textColor="#939393"
-                        android:textSize="15sp" />
-
+                        android:text="최상급 미니언즈"
+                        android:textColor="@color/black"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:textSize="@dimen/product_recycler_item_title" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/notosanskr_medium"
                         android:includeFontPadding="false"
                         android:text="10분전"
                         android:textColor="#939393"
-                        android:textSize="15sp" />
-                </LinearLayout>
+                        android:textSize="@dimen/product_recycler_item_location_and_time" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                </RelativeLayout>
+
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:fontFamily="@font/notosanskr_medium"
-                    android:background="@drawable/setting_btn_frame"
-                    android:includeFontPadding="false"
-                    android:text="내가 신청한 물건보기"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:includeFontPadding="false"
+                    android:text="자세히 보려면 클릭하세요"
+                    android:textColor="#A1A1A1"
+                    android:textSize="14sp" />
+
 
             </LinearLayout>
-        </LinearLayout>
+
     </RelativeLayout>
 
     <View
