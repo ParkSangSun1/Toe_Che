@@ -99,16 +99,21 @@ class PhoneNumberFragment : Fragment() {
                         .addListenerForSingleValueEvent(object :
                             ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
-                                Log.d("로그", "snapshot : ${snapshot.child(MainObject.auth!!.uid.toString())}")
+                                Log.d(
+                                    "로그",
+                                    "snapshot : ${snapshot.child(MainObject.auth!!.uid.toString())}"
+                                )
 
                                 //신규사용자인지 기존에 정보가 있는 사용자인지 체크, 만약 null 이면 신규사용자
-                                if (snapshot.child(MainObject.auth!!.uid.toString()).value != null) {
+                                if (snapshot.child(MainObject.auth?.uid.toString()).value != null) {
                                     //기존사용자의 uid값에 있는 정보 불러오기
-                                    val userSignInModel = snapshot.child(MainObject.auth!!.uid.toString()).getValue(
-                                        UserSignIn::class.java
-                                    )
+                                    val userSignInModel =
+                                        snapshot.child(MainObject.auth?.uid.toString()).getValue(
+                                            UserSignIn::class.java
+                                        )
+                                    val userPhoto: String = userSignInModel!!.userPhoto.toString()
                                     //불러온 정보를 viewmodel에 저장
-                                    MainObject.signInViewModel.setUserPhoto(userSignInModel?.userPhoto)
+                                    MainObject.signInViewModel.setUserPhoto(userPhoto)
                                     userSignInModel?.userNickName?.let {
                                         MainObject.signInViewModel.setUserNickname(it)
                                     }

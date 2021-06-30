@@ -1,15 +1,13 @@
 package com.children.toyexchange.ui.viewmodel
 
 import android.net.Uri
-import android.provider.ContactsContract
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class SignInViewModel : ViewModel() {
-    private var userNickname : String? = null
-    private var userPhoneNumber : Int? = null
-    private var userPhoto : String? = null
+    private var userNickname: String? = null
+    private var userPhoneNumber: Int? = null
+    private var userPhoto: String? = null
 
     val checkGoNext get() = _checkGoNext
     private val _checkGoNext: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
@@ -18,11 +16,11 @@ class SignInViewModel : ViewModel() {
         _checkGoNext.value = false
     }
 
-    fun setSignInGoNextTrue(){
+    fun setSignInGoNextTrue() {
         _checkGoNext.value = true
     }
 
-    fun setSignInGoNextFalse(){
+    fun setSignInGoNextFalse() {
         _checkGoNext.value = false
     }
 //    fun getSignInNext():Boolean{
@@ -33,28 +31,31 @@ class SignInViewModel : ViewModel() {
 
 
     //닉네임 기억
-    fun setUserNickname(userNickname: String){
+    fun setUserNickname(userNickname: String) {
         this.userNickname = userNickname
     }
-    fun getUserNickname() : String? {
+
+    fun getUserNickname(): String? {
         return this.userNickname
     }
 
 
     //프로필 사진 기억
-    fun setUserPhoto(userPhoto: String?){
-        this.userPhoto = userPhoto
+    fun setUserPhoto(userPhoto: String?) {
+        this.userPhoto = userPhoto.toString()
     }
-    fun getUserPhoto() : String? {
+
+    fun getUserPhoto(): String? {
         return this.userPhoto
     }
 
 
     //핸드폰 번호 기억
-    fun setUserPhoneNumber(userPhoneNumber: Int?){
-        this.userPhoneNumber= userPhoneNumber
+    fun setUserPhoneNumber(userPhoneNumber: Int?) {
+        this.userPhoneNumber = userPhoneNumber
     }
-    fun getUserPhoneNumber() : Int? {
+
+    fun getUserPhoneNumber(): Int? {
         return this.userPhoneNumber
     }
 }

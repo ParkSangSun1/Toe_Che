@@ -81,4 +81,8 @@ dependencies {
 
     //toast 커스텀
 //    implementation 'com.github.meet30997:Quicktoast:1.0.0'
+
+    //이미지 자르기, 편집
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
 }

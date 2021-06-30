@@ -50,6 +50,8 @@
                 android:layout_below="@+id/setting">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile"
+                    android:onClick="@{activity::clickChoseProfileImage}"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
