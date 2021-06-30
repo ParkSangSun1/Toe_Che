@@ -7,15 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentNickNameBinding
 import com.children.toyexchange.ui.utils.MainObject
-import com.children.toyexchange.ui.viewmodel.SignUpViewModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -75,8 +71,8 @@ class NickNameFragment : Fragment() {
                         Toast.makeText(requireContext(), "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT)
                             .show()
                         Log.d("로그","사용가능한 닉네임 확인 완료")
-                        MainObject.viewModel.setUserNickname(binding.nickname.text.toString())
-                        MainObject.viewModel.setSignInGoNextTrue()
+                        MainObject.signInViewModel.setUserNickname(binding.nickname.text.toString())
+                        MainObject.signInViewModel.setSignInGoNextTrue()
 
                     } else {
                         Toast.makeText(requireContext(), "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)

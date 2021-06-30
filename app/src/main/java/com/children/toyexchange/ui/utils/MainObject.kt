@@ -5,14 +5,14 @@ import android.view.View
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.children.toyexchange.ui.viewmodel.SignUpViewModel
+import com.children.toyexchange.ui.viewmodel.SignInViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 object MainObject {
     var auth: FirebaseAuth? = FirebaseAuth.getInstance()
     var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    lateinit var viewModel: SignUpViewModel
+    lateinit var signInViewModel: SignInViewModel
 
 
     //스크롤뷰, 리사이클러뷰 음영 삭제

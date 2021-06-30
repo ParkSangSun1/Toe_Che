@@ -1,5 +1,6 @@
 package com.children.toyexchange.ui.view.signIn
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -11,13 +12,17 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentPhoneNumberBinding
+import com.children.toyexchange.ui.model.user_signin_model.UserSignIn
 import com.children.toyexchange.ui.utils.MainObject
+import com.children.toyexchange.ui.view.MainActivity
 import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import java.util.concurrent.TimeUnit
 
 class PhoneNumberFragment : Fragment() {
@@ -84,8 +89,42 @@ class PhoneNumberFragment : Fragment() {
                     Log.d("로그", "signInWithCredential:success")
                     val user = task.result?.user
                     Toast.makeText(requireContext(), "전화번호 인증이 완료되었습니다", Toast.LENGTH_SHORT).show()
-                    MainObject.viewModel.setSignInGoNextTrue()
-                    MainObject.viewModel.setUserPhoneNumber(binding.phoneNumber.text.toString().toInt())
+                    MainObject.signInViewModel.setSignInGoNextTrue()
+                    MainObject.signInViewModel.setUserPhoneNumber(
+                        binding.phoneNumber.text.toString().toInt()
+                    )
+
+                    Log.d("로그", "핸드폰 인증후 사용자 uid : ${MainObject.auth?.uid}")
+                    MainObject.database.reference.child("userAccountInfo")
+                        .addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                Log.d("로그", "snapshot : ${snapshot.child(MainObject.auth!!.uid.toString())}")
+
+                                //신규사용자인지 기존에 정보가 있는 사용자인지 체크, 만약 null 이면 신규사용자
+                                if (snapshot.child(MainObject.auth!!.uid.toString()).value != null) {
+                                    //기존사용자의 uid값에 있는 정보 불러오기
+                                    val userSignInModel = snapshot.child(MainObject.auth!!.uid.toString()).getValue(
+                                        UserSignIn::class.java
+                                    )
+                                    //불러온 정보를 viewmodel에 저장
+                                    MainObject.signInViewModel.setUserPhoto(userSignInModel?.userPhoto)
+                                    userSignInModel?.userNickName?.let {
+                                        MainObject.signInViewModel.setUserNickname(
+                                            it
+                                        )
+                                    }
+                                    MainObject.signInViewModel.setUserPhoneNumber(userSignInModel?.userPhoneNumber)
+
+                                    val intent = Intent(requireContext(), MainActivity::class.java)
+                                    startActivity(intent)
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+                        })
 
                 } else {
                     Log.w("로그", "signInWithCredential:failure", task.exception)
@@ -100,11 +139,11 @@ class PhoneNumberFragment : Fragment() {
 
     //인증번호 확인 클릭
     fun clickCheckPhoneAuthCode(view: View) {
-        if (checkFirstPhoneNumberAuth){
+        if (checkFirstPhoneNumberAuth) {
             if (TextUtils.isEmpty(binding.phoneNumberCode.text)) {
                 Toast.makeText(requireContext(), "인증번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
 
-            }else{
+            } else {
                 Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
                 var otp = binding.phoneNumberCode.text.toString().trim()
                 if (otp.isNotEmpty()) {
@@ -112,7 +151,7 @@ class PhoneNumberFragment : Fragment() {
                 }
             }
 
-        }else{
+        } else {
             Toast.makeText(requireContext(), "먼저 휴대폰번호를 인증해 주세요", Toast.LENGTH_SHORT).show()
         }
 
@@ -125,7 +164,7 @@ class PhoneNumberFragment : Fragment() {
         Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
 
         val phoneNumber = binding.phoneNumber.text.substring(1)
-        Log.d("로그","핸드폰 번호 $phoneNumber")
+        Log.d("로그", "핸드폰 번호 $phoneNumber")
         val options = MainObject.auth?.let {
             PhoneAuthOptions.newBuilder(it)
                 .setPhoneNumber("+82 $phoneNumber")

@@ -14,7 +14,7 @@ import com.children.toyexchange.ui.model.user_signin_model.UserSignIn
 import com.children.toyexchange.ui.utils.MainObject
 import com.children.toyexchange.ui.view.MainActivity
 import com.children.toyexchange.ui.view.base.SignInBaseActivity
-import com.children.toyexchange.ui.viewmodel.SignUpViewModel
+import com.children.toyexchange.ui.viewmodel.SignInViewModel
 
 
 class PhoneAuthActivity : SignInBaseActivity() {
@@ -25,20 +25,20 @@ class PhoneAuthActivity : SignInBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.activity = this
-        MainObject.viewModel = ViewModelProvider(
+        MainObject.signInViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(SignUpViewModel::class.java)
+        ).get(SignInViewModel::class.java)
 
         val transaction = supportFragmentManager.beginTransaction()
         binding.checkPhoneNumber.text = "다음으로"
-        transaction.add(R.id.authFrameLayout, NickNameFragment())
+        transaction.add(R.id.authFrameLayout, PhoneNumberFragment())
         flag = 1
         transaction.commit()
 
 
         //버튼 라이브데이터
-        MainObject.viewModel.checkGoNext.observe(this, Observer {
+        MainObject.signInViewModel.checkGoNext.observe(this, Observer {
             if (it == true) {
                 binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
 
@@ -62,15 +62,15 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
     fun clickNextBtn(view: View) {
         Log.d("로그","UID : ${MainObject.auth?.uid}")
-        if (MainObject.viewModel.checkGoNext.value == true) {
+        if (MainObject.signInViewModel.checkGoNext.value == true) {
             if (flag == 2) {
                 val userSignIn = UserSignIn(
-                    MainObject.viewModel.getUserPhoto(),
-                    MainObject.viewModel.getUserNickname(),
-                    MainObject.viewModel.getUserPhoneNumber()
+                    MainObject.signInViewModel.getUserPhoto(),
+                    MainObject.signInViewModel.getUserNickname(),
+                    MainObject.signInViewModel.getUserPhoneNumber()
                 )
                 Log.d(
-                    "로그", MainObject.viewModel.getUserPhoneNumber().toString()
+                    "로그", MainObject.signInViewModel.getUserPhoneNumber().toString()
                 )
 
                 //유저 정보 RealTimeDataBase 저장
@@ -79,7 +79,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
                     .addOnSuccessListener {
 
                         //유저 닉네임 RealTimeDataBase 저장
-                        MainObject.viewModel.getUserNickname()?.let {
+                        MainObject.signInViewModel.getUserNickname()?.let {
                             MainObject.database.reference.child("userNickName").child(
                                 it
                             ).setValue(MainObject.auth?.uid.toString())
@@ -101,7 +101,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
             } else {
                 switchFragment()
-                MainObject.viewModel.setSignInGoNextFalse()
+                MainObject.signInViewModel.setSignInGoNextFalse()
             }
 
         }
@@ -121,14 +121,15 @@ class PhoneAuthActivity : SignInBaseActivity() {
             when (flag) {
                 0 -> {
                     binding.checkPhoneNumber.text = "다음으로"
+
                     transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out)
-                        .add(R.id.authFrameLayout, NickNameFragment())
+                        .replace(R.id.authFrameLayout, PhoneNumberFragment())
                     flag = 1
                 }
                 1 -> {
                     binding.checkPhoneNumber.text = "시작하기"
                     transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out)
-                        .replace(R.id.authFrameLayout, PhoneNumberFragment())
+                        .add(R.id.authFrameLayout, NickNameFragment())
                     flag = 2
                 }
 

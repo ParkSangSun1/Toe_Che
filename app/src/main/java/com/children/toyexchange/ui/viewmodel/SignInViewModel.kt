@@ -6,10 +6,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SignUpViewModel : ViewModel() {
+class SignInViewModel : ViewModel() {
     private var userNickname : String? = null
     private var userPhoneNumber : Int? = null
-    private var userPhoto : Uri? = null
+    private var userPhoto : String? = null
 
     val checkGoNext get() = _checkGoNext
     private val _checkGoNext: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
@@ -42,10 +42,10 @@ class SignUpViewModel : ViewModel() {
 
 
     //프로필 사진 기억
-    fun setUserPhoto(userPhoto: Uri?){
+    fun setUserPhoto(userPhoto: String?){
         this.userPhoto = userPhoto
     }
-    fun getUserPhoto() : Uri? {
+    fun getUserPhoto() : String? {
         return this.userPhoto
     }
 

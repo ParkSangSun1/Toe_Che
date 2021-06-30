@@ -11,6 +11,6 @@ class TestActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.testtxt.text = MainObject.viewModel.getUserNickname()
+        binding.testtxt.text = MainObject.signInViewModel.getUserNickname()
     }
 }
