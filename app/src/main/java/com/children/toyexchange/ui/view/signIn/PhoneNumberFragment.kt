@@ -110,9 +110,7 @@ class PhoneNumberFragment : Fragment() {
                                     //불러온 정보를 viewmodel에 저장
                                     MainObject.signInViewModel.setUserPhoto(userSignInModel?.userPhoto)
                                     userSignInModel?.userNickName?.let {
-                                        MainObject.signInViewModel.setUserNickname(
-                                            it
-                                        )
+                                        MainObject.signInViewModel.setUserNickname(it)
                                     }
                                     MainObject.signInViewModel.setUserPhoneNumber(userSignInModel?.userPhoneNumber)
 
@@ -161,21 +159,28 @@ class PhoneNumberFragment : Fragment() {
 
     //핸드폰 번호 인증 클릭
     fun clickPhoneAuthCode(view: View) {
-        Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
 
-        val phoneNumber = binding.phoneNumber.text.substring(1)
-        Log.d("로그", "핸드폰 번호 $phoneNumber")
-        val options = MainObject.auth?.let {
-            PhoneAuthOptions.newBuilder(it)
-                .setPhoneNumber("+82 $phoneNumber")
-                .setTimeout(60L, TimeUnit.SECONDS)
-                .setActivity(requireActivity())
-                .setCallbacks(callbacks)
-                .build()
+        if (TextUtils.isEmpty(binding.phoneNumber.text)) {
+            Toast.makeText(activity, "전화번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(activity, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
+            val phoneNumber = binding.phoneNumber.text.substring(1)
+            Log.d("로그", "핸드폰 번호 $phoneNumber")
+            val options = MainObject.auth?.let {
+                PhoneAuthOptions.newBuilder(it)
+                    .setPhoneNumber("+82 $phoneNumber")
+                    .setTimeout(60L, TimeUnit.SECONDS)
+                    .setActivity(requireActivity())
+                    .setCallbacks(callbacks)
+                    .build()
+            }
+            if (options != null) {
+                PhoneAuthProvider.verifyPhoneNumber(options)
+            }
+
+
         }
-        if (options != null) {
-            PhoneAuthProvider.verifyPhoneNumber(options)
-        }
+
 
     }
 
