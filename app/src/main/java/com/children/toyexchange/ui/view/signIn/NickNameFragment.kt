@@ -1,6 +1,7 @@
 package com.children.toyexchange.ui.view.signIn
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -21,6 +22,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 
 
 class NickNameFragment : Fragment() {
@@ -67,6 +69,7 @@ class NickNameFragment : Fragment() {
                 proFileUri = data?.data!!
                 binding.profile.setImageURI(proFileUri)
                 MainObject.signInViewModel.setUserPhoto(proFileUri.toString())
+                uploadFile()
             }
             ImagePicker.RESULT_ERROR -> {
                 proFileUri = null
@@ -85,19 +88,21 @@ class NickNameFragment : Fragment() {
     fun clickCheckNickName(view: View) {
         Log.d("로그", "눌림")
 
-        if (TextUtils.isEmpty(binding.nickname.text)) {
-            Toast.makeText(activity, "닉네임을 입력해 주세요", Toast.LENGTH_SHORT).show()
+        if (proFileUri != null) {
+            if (TextUtils.isEmpty(binding.nickname.text)) {
+                Toast.makeText(activity, "닉네임을 입력해 주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(activity, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
+
+                firebaseCheckNickName()
+            }
         } else {
-            Toast.makeText(activity, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "먼저 프로필 사진을 설정해 주세요", Toast.LENGTH_SHORT).show()
 
-            firebaseCheckNickName()
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
 
     }
+
 
     //파베 rtdb 닉네임 중복 체크
     private fun firebaseCheckNickName() {
@@ -129,5 +134,36 @@ class NickNameFragment : Fragment() {
             })
     }
 
+    //firebase storage에 사진 업로드
+    private fun uploadFile() {
+        val progressDialog = ProgressDialog(requireContext())
+        progressDialog.setTitle("업로드중...")
+        progressDialog.show()
+
+        val storage = FirebaseStorage.getInstance()
+
+        val filename = MainObject.auth?.currentUser?.uid.toString() + ".png"
+        val storageRef = storage.getReferenceFromUrl("gs://toyexchange-90199.appspot.com")
+            .child("images/$filename")
+
+        proFileUri?.let {
+            storageRef.putFile(it)
+                .addOnSuccessListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(requireContext(), "업로드 완료!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(requireContext(), "업로드 실패!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnProgressListener { taskSnapshot ->
+                    val progress =
+                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
+                    progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
+                }
+        }
+
+
+    }
 
 }

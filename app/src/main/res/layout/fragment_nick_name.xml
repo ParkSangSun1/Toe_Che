@@ -55,13 +55,25 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/logo"
+                    android:src="@drawable/ic_profile_add"
                     android:layout_marginTop="20dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="사진을 클릭해 프로필 사진을 선택해 주세요"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:layout_marginStart="50dp"
+                    android:textSize="13sp"
+                    android:padding="5dp"
+                    android:layout_marginEnd="50dp"
+                    android:includeFontPadding="false"
+                    />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="50dp"
                     android:layout_marginEnd="50dp"
                     >
