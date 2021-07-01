@@ -18,6 +18,6 @@
 |![image](https://user-images.githubusercontent.com/67040465/124052258-0d004c80-da59-11eb-9433-05c495cdfe9e.png)|![image](https://user-images.githubusercontent.com/67040465/124052374-3faa4500-da59-11eb-8d30-9fc4fd035aa3.png)|
 |Splash화면|SignIn화면|
 |![image](https://user-images.githubusercontent.com/67040465/124053073-864c6f00-da5a-11eb-9d9c-640a46581163.png)|![image](https://user-images.githubusercontent.com/67040465/124053258-df1c0780-da5a-11eb-96bc-9743965a5fe9.png)|
-|안녕하세요|접니다.|
+|전화번호 인증 전|전화번호 인증 후|
 |![image](https://user-images.githubusercontent.com/67040465/124053285-ecd18d00-da5a-11eb-979b-10091a98e391.png)|![image](https://user-images.githubusercontent.com/67040465/124053412-24d8d000-da5b-11eb-9502-846b10c5f565.png)|
-|안녕하세요|접니다.|
+|프로필 설정 전|프로필 설정 후|
