@@ -89,7 +89,6 @@ class PhoneNumberFragment : Fragment() {
                     Log.d("로그", "signInWithCredential:success")
                     val user = task.result?.user
                     Toast.makeText(requireContext(), "전화번호 인증이 완료되었습니다", Toast.LENGTH_SHORT).show()
-                    MainObject.signInViewModel.setSignInGoNextTrue()
                     MainObject.signInViewModel.setUserPhoneNumber(
                         binding.phoneNumber.text.toString().toInt()
                     )
@@ -112,15 +111,18 @@ class PhoneNumberFragment : Fragment() {
                                             UserSignIn::class.java
                                         )
                                     val userPhoto: String = userSignInModel!!.userPhoto.toString()
+
                                     //불러온 정보를 viewmodel에 저장
                                     MainObject.signInViewModel.setUserPhoto(userPhoto)
-                                    userSignInModel?.userNickName?.let {
+                                    userSignInModel.userNickName?.let {
                                         MainObject.signInViewModel.setUserNickname(it)
                                     }
-                                    MainObject.signInViewModel.setUserPhoneNumber(userSignInModel?.userPhoneNumber)
+                                    MainObject.signInViewModel.setUserPhoneNumber(userSignInModel.userPhoneNumber)
 
-                                    val intent = Intent(requireContext(), MainActivity::class.java)
-                                    startActivity(intent)
+                                    //기존사용자인것을 확인하고 처리
+                                    MainObject.signInViewModel.noNewUserNickname = userSignInModel.userNickName
+                                    MainObject.signInViewModel.setSignInGoNextTrue()
+                                    MainObject.signInViewModel.noNewUser.value= false
                                 }
                             }
 

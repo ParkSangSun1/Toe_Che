@@ -47,21 +47,21 @@ class PhoneAuthActivity : SignInBaseActivity() {
             }
         })
 
-//        val checkObserver = Observer<Boolean> {
-//            if(it){
-//                binding.nextBtn.setBackgroundColor(Color.parseColor("#ffffff"))
-//            }else{
-//                binding.nextBtn.setBackgroundColor(Color.parseColor("#000000"))
-//
-//            }
-//        }
+        MainObject.signInViewModel.noNewUser.observe(this, Observer {
+            Log.d("로그","라이브데이터 noNewUser : $it")
+            if (it == false) {
+                binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
+                flag=3
+                Toast.makeText(this,"이미 가입된 계정이 존재합니다",Toast.LENGTH_SHORT).show()
+                binding.checkPhoneNumber.text = "${MainObject.signInViewModel.noNewUserNickname}으(로)시작하기"
 
-//        MainObject.viewModel.checkGoNext.observe(this, checkObserver)
+            }
+        })
 
     }
 
     fun clickNextBtn(view: View) {
-        Log.d("로그","UID : ${MainObject.auth?.uid}")
+        Log.d("로그", "UID : ${MainObject.auth?.uid}")
         if (MainObject.signInViewModel.checkGoNext.value == true) {
             if (flag == 2) {
                 val userSignIn = UserSignIn(
@@ -99,9 +99,12 @@ class PhoneAuthActivity : SignInBaseActivity() {
                     }
 
 
-            } else {
+            } else if(flag==1){
                 switchFragment()
                 MainObject.signInViewModel.setSignInGoNextFalse()
+            }else if(flag == 3){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
 
         }
@@ -133,10 +136,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
                     flag = 2
                 }
 
-//            3 -> {
-//                transaction.replace(R.id.frameLayout, FragmentA())
-//                flag = 1
-//            }
+
             }
             transaction.addToBackStack(null)
             transaction.commit()

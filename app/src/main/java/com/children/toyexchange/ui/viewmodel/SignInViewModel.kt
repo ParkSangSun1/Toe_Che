@@ -1,6 +1,6 @@
 package com.children.toyexchange.ui.viewmodel
 
-import android.net.Uri
+import android.text.BoringLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -9,13 +9,23 @@ class SignInViewModel : ViewModel() {
     private var userPhoneNumber: Int? = null
     private var userPhoto: String? = null
 
+    //새로 가입인지 기존 가입자인지 확인하기기 (true = 새로운 가입, false = 기존에 가입했던 사람)
+    val noNewUser get() = _noNewUser
+    private val _noNewUser : MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+    var noNewUserNickname : String? = null
+
     val checkGoNext get() = _checkGoNext
     private val _checkGoNext: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     init {
         _checkGoNext.value = false
+        _noNewUser.value = true
     }
 
+
+
+
+    //회원가입 다음 프래그먼트로 넘어갈지
     fun setSignInGoNextTrue() {
         _checkGoNext.value = true
     }
@@ -23,11 +33,6 @@ class SignInViewModel : ViewModel() {
     fun setSignInGoNextFalse() {
         _checkGoNext.value = false
     }
-//    fun getSignInNext():Boolean{
-//        signInGoNext = checkGoNext.value.toString().toBoolean()
-//        return signInGoNext
-//    }
-//
 
 
     //닉네임 기억
