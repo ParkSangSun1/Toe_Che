@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.mainfragment.exchange.viewpager.SetExchangeListFragment">
+        tools:context=".view.mainfragment.exchange.viewpager.SetExchangeListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/set_recycler_view"

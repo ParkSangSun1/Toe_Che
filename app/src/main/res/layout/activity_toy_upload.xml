@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.myToyUpload.ToyUploadActivity">
+        tools:context=".view.myToyUpload.ToyUploadActivity">
 
         <RelativeLayout
             android:id="@+id/title"
