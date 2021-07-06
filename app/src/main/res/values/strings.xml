@@ -8,7 +8,7 @@
     <string name="navigation_item_search">검색</string>
     <string name="navigation_item_exchange">교환목록</string>
     <string name="navigation_item_chatting">채팅</string>
-    <string name="navigation_item_mypage">내정보</string>
+    <string name="navigation_item_mypage">내 정보</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_search_title">지금바로 교환 해보세요!</string>

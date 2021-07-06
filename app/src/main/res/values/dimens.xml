@@ -7,5 +7,6 @@
     <dimen name="product_recycler_item_title">17sp</dimen>
     <dimen name="product_recycler_item_location_and_time">13sp</dimen>
     <dimen name="product_recycler_item_price">18sp</dimen>
+    <dimen name="mypage_btn_line">2dp</dimen>
 
 </resources>

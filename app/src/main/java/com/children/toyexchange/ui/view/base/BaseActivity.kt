@@ -10,7 +10,6 @@ open class BaseActivity  : AppCompatActivity() {
 
     protected inline fun <reified T : ViewDataBinding> binding(@LayoutRes resId: Int): Lazy<T> =
         lazy { DataBindingUtil.setContentView<T>(this, resId) }
-    private lateinit var viewModel: SignInViewModel
 
 
 }
