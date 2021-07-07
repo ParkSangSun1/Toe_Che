@@ -12,6 +12,9 @@
 ## 🧭 앱 기본 로직
 ### ![토체 로직](https://user-images.githubusercontent.com/67040465/124051750-0f15db80-da58-11eb-98c1-d5cc4ee82925.png)
 ### <hr>
+## 🧭 앱 포스터
+### ![토체-홍보-001](https://user-images.githubusercontent.com/67040465/124692672-f0608a80-df18-11eb-84dd-530ef44f7b07.png)
+### <hr>
 ## 📱 앱 기본 디자인
 |||
 |:--:|:--:|
