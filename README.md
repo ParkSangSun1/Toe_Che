@@ -9,10 +9,10 @@
 - [REFACTORING] 코드를 리팩토링 했을때
 - [ERROR UPDATE] 오류를 확인하고 고쳤을때
 ### <hr>
-## 🧭 앱의 기본 로직
+## 🧭 앱 기본 로직
 ### ![토체 로직](https://user-images.githubusercontent.com/67040465/124051750-0f15db80-da58-11eb-98c1-d5cc4ee82925.png)
 ### <hr>
-## 📱 앱의 기본 디자인
+## 📱 앱 기본 디자인
 |||
 |:--:|:--:|
 |![image](https://user-images.githubusercontent.com/67040465/124052258-0d004c80-da59-11eb-9433-05c495cdfe9e.png)|![image](https://user-images.githubusercontent.com/67040465/124052374-3faa4500-da59-11eb-8d30-9fc4fd035aa3.png)|
