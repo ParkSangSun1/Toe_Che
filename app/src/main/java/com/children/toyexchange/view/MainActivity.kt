@@ -10,6 +10,7 @@ import com.children.toyexchange.utils.MainObject
 import com.children.toyexchange.view.base.BaseActivity
 import com.children.toyexchange.view.mainfragment.*
 import com.children.toyexchange.view.mainfragment.exchange.ExchangeFragment
+import com.children.toyexchange.view.mainfragment.search.SearchFragment
 
 class MainActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)

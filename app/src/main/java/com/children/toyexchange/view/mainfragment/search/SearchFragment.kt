@@ -1,4 +1,4 @@
-package com.children.toyexchange.view.mainfragment
+package com.children.toyexchange.view.mainfragment.search
 
 import android.content.Intent
 import android.os.Bundle
@@ -29,7 +29,7 @@ class SearchFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
         binding.activity = this
-        MainObject.recyclerViewManager(binding.recentPostsRecyclerView,requireContext())
+        MainObject.recyclerViewManager(binding.recentPostsRecyclerView, requireContext())
         binding.recentPostsRecyclerView.adapter = RecentPostsAdapter()
         binding.addBtn.setOnClickListener {
             clickAddBtn()
@@ -40,8 +40,8 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
-    private fun clickAddBtn(){
-        val intent = Intent(requireContext(),ToyUploadActivity::class.java)
+    private fun clickAddBtn() {
+        val intent = Intent(requireContext(), ToyUploadActivity::class.java)
         startActivity(intent)
     }
 

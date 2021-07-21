@@ -118,16 +118,20 @@ class PhoneNumberFragment : Fragment() {
                                     MainObject.signInViewModel.setUserPhoneNumber(userSignInModel.userPhoneNumber)
 
                                     //기존사용자인것을 확인하고 처리
-                                    MainObject.signInViewModel.noNewUserNickname = userSignInModel.userNickName
+                                    MainObject.signInViewModel.noNewUserNickname =
+                                        userSignInModel.userNickName
                                     MainObject.signInViewModel.setSignInGoNextTrue()
-                                    MainObject.signInViewModel.noNewUser.value= false
+                                    MainObject.signInViewModel.noNewUser.value = false
+                                }else{
+                                    MainObject.signInViewModel.setSignInGoNextTrue()
                                 }
                             }
 
                             override fun onCancelled(error: DatabaseError) {
-
+                                Log.e("로그", "error : $error")
                             }
                         })
+
 
                 } else {
                     Log.w("로그", "signInWithCredential:failure", task.exception)

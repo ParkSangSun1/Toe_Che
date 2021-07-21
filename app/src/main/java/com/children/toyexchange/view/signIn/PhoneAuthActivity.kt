@@ -30,6 +30,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
             ViewModelProvider.NewInstanceFactory()
         ).get(SignInViewModel::class.java)
 
+
         val transaction = supportFragmentManager.beginTransaction()
         binding.checkPhoneNumber.text = "다음으로"
         transaction.add(R.id.authFrameLayout, PhoneNumberFragment())
@@ -142,6 +143,4 @@ class PhoneAuthActivity : SignInBaseActivity() {
             transaction.commit()
         }
     }
-
-
 }
