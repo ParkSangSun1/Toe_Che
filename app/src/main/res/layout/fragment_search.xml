@@ -37,12 +37,13 @@
                 android:src="@drawable/view_more" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/search_edittxt_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
+                android:onClick="@{activity::searchBtnClick}"
                 android:layout_toStartOf="@id/search_btn"
                 android:layout_toEndOf="@id/view_more"
                 android:background="@null"

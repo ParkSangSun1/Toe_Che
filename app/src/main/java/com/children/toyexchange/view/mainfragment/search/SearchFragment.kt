@@ -45,4 +45,8 @@ class SearchFragment : Fragment() {
         startActivity(intent)
     }
 
+    fun searchBtnClick(view: View){
+        val intent = Intent(requireContext(), SearchRecordActivity::class.java)
+        startActivity(intent)
+    }
 }

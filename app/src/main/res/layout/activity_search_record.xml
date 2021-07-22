@@ -1,70 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.mainfragment.search.SearchRecordActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.children.toyexchange.view.mainfragment.search.SearchRecordActivity" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/setting"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="2dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        tools:context=".view.mainfragment.search.SearchRecordActivity">
 
-        <ImageView
-            android:id="@+id/view_more"
-            android:layout_width="@dimen/search_page_setting_bar_btn"
-            android:layout_height="@dimen/search_page_setting_bar_btn"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:padding="10dp"
-            android:src="@drawable/back" />
-
-
-        <EditText
-            android:id="@+id/search_edittxt_btn"
+        <RelativeLayout
+            android:id="@+id/setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="5dp"
-            android:layout_toStartOf="@id/search_btn"
-            android:layout_toEndOf="@id/view_more"
-            android:background="@null"
-            android:fontFamily="@font/notosanskr_medium"
-            android:hint="무엇을 검색하고 싶으신가요?"
-            android:includeFontPadding="false"
-            android:inputType="text"
-            android:maxLength="25"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textSize="15sp" />
+            android:background="@color/white"
+            android:elevation="2dp"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/search_btn"
-            android:layout_width="@dimen/search_page_setting_bar_btn"
-            android:layout_height="@dimen/search_page_setting_bar_btn"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="5dp"
-            android:layout_toStartOf="@id/bell_btn"
-            android:padding="10dp"
-            android:src="@drawable/search_black" />
+            <ImageView
+                android:id="@+id/view_more"
+                android:layout_width="@dimen/search_page_setting_bar_btn"
+                android:layout_height="@dimen/search_page_setting_bar_btn"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:padding="10dp"
+                android:src="@drawable/back" />
 
-        <ImageView
-            android:id="@+id/bell_btn"
-            android:layout_width="@dimen/search_page_setting_bar_btn"
-            android:layout_height="@dimen/search_page_setting_bar_btn"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="6dp"
-            android:padding="10dp"
-            android:src="@drawable/bell" />
+
+            <EditText
+                android:id="@+id/search_edittxt_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_toStartOf="@id/search_btn"
+                android:layout_toEndOf="@id/view_more"
+                android:background="@null"
+                android:fontFamily="@font/notosanskr_medium"
+                android:hint="무엇을 검색하고 싶으신가요?"
+                android:includeFontPadding="false"
+                android:inputType="text"
+
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textSize="15sp" />
+
+
+            <ImageView
+                android:id="@+id/search_btn"
+                android:layout_width="@dimen/search_page_setting_bar_btn"
+                android:layout_height="@dimen/search_page_setting_bar_btn"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="6dp"
+                android:padding="10dp"
+                android:src="@drawable/search_black" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/setting"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="최근 검색어"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+            <!--        <RelativeLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="match_parent"-->
+            <!--            >-->
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="검색 기록 없음"-->
+            <!--                android:fontFamily="@font/notosanskr_medium"-->
+            <!--                android:textSize="15sp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:includeFontPadding="false"-->
+            <!--                android:layout_margin="10dp"/>-->
+            <!--        </RelativeLayout>-->
+        </LinearLayout>
+
     </RelativeLayout>
-
-</RelativeLayout>
+</layout>
