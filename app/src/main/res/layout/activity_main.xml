@@ -6,14 +6,14 @@
     <data>
         <variable
             name="activity"
-            type="com.children.toyexchange.view.MainActivity" />
+            type="com.children.toyexchange.views.MainActivity" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EFEFEF"
-        tools:context=".view.MainActivity">
+        tools:context=".views.MainActivity">
 
         <FrameLayout
             android:id="@+id/frame"

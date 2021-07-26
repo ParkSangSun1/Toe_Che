@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.children.toyexchange.view.signIn.SignInActivity" />
+            type="com.children.toyexchange.views.signIn.SignInActivity" />
     </data>
 
     <RelativeLayout

@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.children.toyexchange.view.mainfragment.search.SearchRecordActivity" />
+            type="com.children.toyexchange.views.mainfragment.search.SearchRecordActivity" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.mainfragment.search.SearchRecordActivity">
+        tools:context=".views.mainfragment.search.SearchRecordActivity">
 
         <RelativeLayout
             android:id="@+id/setting"
