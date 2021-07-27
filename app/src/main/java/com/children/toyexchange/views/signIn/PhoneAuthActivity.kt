@@ -12,6 +12,7 @@ import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
 import com.children.toyexchange.models.user_signin_model.UserSignIn
 import com.children.toyexchange.utils.MainObject
+import com.children.toyexchange.viewmodel.FireBaseViewModel
 import com.children.toyexchange.views.MainActivity
 import com.children.toyexchange.views.base.SignInBaseActivity
 import com.children.toyexchange.viewmodel.SignInViewModel
@@ -25,12 +26,21 @@ class PhoneAuthActivity : SignInBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.activity = this
+
+        //viewModel 선언
         MainObject.signInViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(SignInViewModel::class.java)
 
+        MainObject.fireBaseViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FireBaseViewModel::class.java)
 
+
+
+        //fragment
         val transaction = supportFragmentManager.beginTransaction()
         binding.checkPhoneNumber.text = "다음으로"
         transaction.add(R.id.authFrameLayout, PhoneNumberFragment())
