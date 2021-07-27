@@ -1,11 +1,19 @@
 package com.children.toyexchange.viewmodel
 
+import android.app.ProgressDialog
+import android.content.Context
+import android.net.Uri
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.children.toyexchange.models.user_signin_model.UserSignIn
 import com.children.toyexchange.utils.MainObject
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 
 class FireBaseViewModel : ViewModel() {
 
@@ -17,6 +25,7 @@ class FireBaseViewModel : ViewModel() {
     }
 
 
+    //전화번호 인증 성공 후
     fun phoneNumberCheck(snapshot: DataSnapshot){
         //신규사용자인지 기존에 정보가 있는 사용자인지 체크, 만약 null 이면 신규사용자
         if (snapshot.child(auth.uid.toString()).value != null) {
@@ -44,6 +53,70 @@ class FireBaseViewModel : ViewModel() {
         }
     }
 
+
+
+    //파베 rtdb 닉네임 중복 체크
+    fun firebaseCheckNickName(nickName : String, context : Context) {
+        Log.d("로그", "firebaseCheck 눌림")
+        MainObject.database.reference.child("userNickName")
+            .child(nickName).addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+//                        snapshot.getValue(
+//                            UserModel::class.java
+//                        )
+                    if (snapshot.value == null) {
+                        Toast.makeText(context, "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT)
+                            .show()
+                        Log.d("로그", "사용가능한 닉네임 확인 완료")
+                        MainObject.signInViewModel.setUserNickname(nickName)
+                        MainObject.signInViewModel.setSignInGoNextTrue()
+
+                    } else {
+                        Toast.makeText(context, "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(context, "예기치 못한 오류 $error", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+    }
+
+
+    //firebase storage에 사진 업로드
+    fun uploadFile(proFileUri: Uri?, context: Context) {
+        val progressDialog = ProgressDialog(context)
+        progressDialog.setTitle("업로드중...")
+        progressDialog.show()
+
+        val storage = FirebaseStorage.getInstance()
+
+        val filename = MainObject.auth?.currentUser?.uid.toString() + ".png"
+        val storageRef = storage.getReferenceFromUrl("gs://toyexchange-90199.appspot.com")
+            .child("images/$filename")
+
+        proFileUri?.let {
+            storageRef.putFile(it)
+                .addOnSuccessListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(context, "업로드 완료!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(context, "업로드 실패!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnProgressListener { taskSnapshot ->
+                    val progress =
+                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
+                    progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
+                }
+        }
+
+
+    }
 
 
 }

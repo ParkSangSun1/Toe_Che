@@ -69,7 +69,7 @@ class NickNameFragment : Fragment() {
                 proFileUri = data?.data!!
                 binding.profile.setImageURI(proFileUri)
                 MainObject.signInViewModel.setUserPhoto(proFileUri.toString())
-                uploadFile()
+                MainObject.fireBaseViewModel.uploadFile(proFileUri,requireContext())
             }
             ImagePicker.RESULT_ERROR -> {
                 proFileUri = null
@@ -94,75 +94,12 @@ class NickNameFragment : Fragment() {
             } else {
                 Toast.makeText(activity, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
 
-                firebaseCheckNickName()
+                MainObject.fireBaseViewModel.firebaseCheckNickName(binding.nickname.text.toString(),requireContext())
             }
         } else {
             Toast.makeText(activity, "먼저 프로필 사진을 설정해 주세요", Toast.LENGTH_SHORT).show()
 
         }
-
-    }
-
-
-    //파베 rtdb 닉네임 중복 체크
-    private fun firebaseCheckNickName() {
-        Log.d("로그", "firebaseCheck 눌림")
-        MainObject.database.reference.child("userNickName")
-            .child(binding.nickname.text.toString()).addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-//                        snapshot.getValue(
-//                            UserModel::class.java
-//                        )
-                    if (snapshot.value == null) {
-                        Toast.makeText(requireContext(), "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT)
-                            .show()
-                        Log.d("로그", "사용가능한 닉네임 확인 완료")
-                        MainObject.signInViewModel.setUserNickname(binding.nickname.text.toString())
-                        MainObject.signInViewModel.setSignInGoNextTrue()
-
-                    } else {
-                        Toast.makeText(requireContext(), "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), "예기치 못한 오류 $error", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            })
-    }
-
-    //firebase storage에 사진 업로드
-    private fun uploadFile() {
-        val progressDialog = ProgressDialog(requireContext())
-        progressDialog.setTitle("업로드중...")
-        progressDialog.show()
-
-        val storage = FirebaseStorage.getInstance()
-
-        val filename = MainObject.auth?.currentUser?.uid.toString() + ".png"
-        val storageRef = storage.getReferenceFromUrl("gs://toyexchange-90199.appspot.com")
-            .child("images/$filename")
-
-        proFileUri?.let {
-            storageRef.putFile(it)
-                .addOnSuccessListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(requireContext(), "업로드 완료!", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(requireContext(), "업로드 실패!", Toast.LENGTH_SHORT).show()
-                }
-                .addOnProgressListener { taskSnapshot ->
-                    val progress =
-                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
-                    progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
-                }
-        }
-
 
     }
 
