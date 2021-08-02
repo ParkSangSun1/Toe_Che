@@ -39,7 +39,6 @@ class PhoneAuthActivity : SignInBaseActivity() {
         ).get(FireBaseViewModel::class.java)
 
 
-
         //fragment
         val transaction = supportFragmentManager.beginTransaction()
         binding.checkPhoneNumber.text = "다음으로"
@@ -59,6 +58,29 @@ class PhoneAuthActivity : SignInBaseActivity() {
         })
 
 
+        //firebase에서 중복 닉네임 체크
+        MainObject.fireBaseViewModel.successCheckNickName.observe(this, Observer {
+            if (it == 1) {
+                Toast.makeText(this, "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT)
+                    .show()
+                Log.d("로그", "사용가능한 닉네임 확인 완료")
+                MainObject.signInViewModel.setUserNickname(MainObject.fireBaseViewModel.nickName.value.toString())
+                MainObject.signInViewModel.setSignInGoNextTrue()
+
+              /*  val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.right_in, R.anim.left_out)
+                finish()*/
+            } else if (it == 2) {
+                Toast.makeText(this, "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (it == 3) {
+                Toast.makeText(this, "예기치 못한 오류", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
+
         //회원가입 마지막 끝낸후 화면 전환
         MainObject.fireBaseViewModel.successRtdbSave.observe(this, Observer {
             if (it == 1) {
@@ -66,21 +88,22 @@ class PhoneAuthActivity : SignInBaseActivity() {
                 startActivity(intent)
                 overridePendingTransition(R.anim.right_in, R.anim.left_out)
                 finish()
-            }else if(it == 2){
+            } else if (it == 2) {
                 Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
-            }else if(it == 3){
+            } else if (it == 3) {
                 Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show()
             }
         })
 
 
         MainObject.signInViewModel.noNewUser.observe(this, Observer {
-            Log.d("로그","라이브데이터 noNewUser : $it")
+            Log.d("로그", "라이브데이터 noNewUser : $it")
             if (it == false) {
                 binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
-                flag=3
-                Toast.makeText(this,"이미 가입된 계정이 존재합니다",Toast.LENGTH_SHORT).show()
-                binding.checkPhoneNumber.text = "${MainObject.signInViewModel.noNewUserNickname}으(로)시작하기"
+                flag = 3
+                Toast.makeText(this, "이미 가입된 계정이 존재합니다", Toast.LENGTH_SHORT).show()
+                binding.checkPhoneNumber.text =
+                    "${MainObject.signInViewModel.noNewUserNickname}으(로)시작하기"
 
             }
         })
@@ -91,9 +114,9 @@ class PhoneAuthActivity : SignInBaseActivity() {
     fun clickNextBtn(view: View) {
         Log.d("로그", "UID : ${MainObject.auth?.uid}")
         if (MainObject.signInViewModel.checkGoNext.value == true) {
-            when(flag){
+            when (flag) {
                 //PhoneNumber -> NickName
-                1->{
+                1 -> {
                     Log.d(
                         "로그", "flag1"
                     )
@@ -101,7 +124,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
                     MainObject.signInViewModel.setSignInGoNextFalse()
                 }
                 //NickName -> RTDB에 성공적으로 저장후 MainActivity로 넘어가기
-                2->{
+                2 -> {
                     Log.d(
                         "로그", "flag2"
                     )
@@ -110,25 +133,20 @@ class PhoneAuthActivity : SignInBaseActivity() {
                         MainObject.signInViewModel.getUserNickname(),
                         MainObject.signInViewModel.getUserPhoneNumber()
                     )
-                    Log.d(
-                        "로그", MainObject.signInViewModel.getUserPhoneNumber().toString()
-                    )
 
                     //유저 정보 RealTimeDataBase 저장
                     MainObject.fireBaseViewModel.userInfoRTDBSave(userSignIn)
 
                 }
                 //계정이 있을경우
-                3->{
+                3 -> {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
-                else->{
-                    Toast.makeText(this,"예기치 못한 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
+                else -> {
+                    Toast.makeText(this, "예기치 못한 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
                 }
             }
-
-
         }
     }
 

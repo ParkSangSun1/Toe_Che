@@ -94,7 +94,7 @@ class NickNameFragment : Fragment() {
             } else {
                 Toast.makeText(activity, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
 
-                MainObject.fireBaseViewModel.firebaseCheckNickName(binding.nickname.text.toString(),requireContext())
+                MainObject.fireBaseViewModel.firebaseCheckNickName(binding.nickname.text.toString())
             }
         } else {
             Toast.makeText(activity, "먼저 프로필 사진을 설정해 주세요", Toast.LENGTH_SHORT).show()

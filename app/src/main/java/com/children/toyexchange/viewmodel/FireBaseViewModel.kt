@@ -20,19 +20,29 @@ class FireBaseViewModel : ViewModel() {
 
     lateinit var auth: FirebaseAuth
     lateinit var database: FirebaseDatabase
-    val successRtdbSave get() = _successRtdbSave
-    private val _successRtdbSave : MutableLiveData<Int> = MutableLiveData<Int>()
 
+    //RTDB 저장성공 여부
+    val successRtdbSave get() = _successRtdbSave
+    private val _successRtdbSave: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    //닉네임 중복체크 여부
+    val successCheckNickName get() = _successCheckNickName
+    private val _successCheckNickName: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    //nickName 저장
+    val nickName get() = _nickName
+    private val _nickName: MutableLiveData<String> = MutableLiveData<String>()
 
     init {
-        auth= FirebaseAuth.getInstance()
-        database= FirebaseDatabase.getInstance()
-        _successRtdbSave.value = 0
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+        _successCheckNickName.value = 0
+        _successCheckNickName.value = 0
     }
 
 
     //전화번호 인증 성공 후
-    fun phoneNumberCheck(snapshot: DataSnapshot){
+    fun phoneNumberCheck(snapshot: DataSnapshot) {
         //신규사용자인지 기존에 정보가 있는 사용자인지 체크, 만약 null 이면 신규사용자
         if (snapshot.child(auth.uid.toString()).value != null) {
             //기존사용자의 uid값에 있는 정보 불러오기
@@ -60,9 +70,8 @@ class FireBaseViewModel : ViewModel() {
     }
 
 
-
     //파베 rtdb 닉네임 중복 체크
-    fun firebaseCheckNickName(nickName : String, context : Context) {
+    fun firebaseCheckNickName(nickName: String) {
         Log.d("로그", "firebaseCheck 눌림")
         MainObject.database.reference.child("userNickName")
             .child(nickName).addListenerForSingleValueEvent(object :
@@ -71,22 +80,20 @@ class FireBaseViewModel : ViewModel() {
 //                        snapshot.getValue(
 //                            UserModel::class.java
 //                        )
+
+                    _nickName.value = nickName
                     if (snapshot.value == null) {
-                        Toast.makeText(context, "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT)
-                            .show()
-                        Log.d("로그", "사용가능한 닉네임 확인 완료")
-                        MainObject.signInViewModel.setUserNickname(nickName)
-                        MainObject.signInViewModel.setSignInGoNextTrue()
+                        _successCheckNickName.value = 1
 
                     } else {
-                        Toast.makeText(context, "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
-                            .show()
+                        _successCheckNickName.value = 2
+
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context, "예기치 못한 오류 $error", Toast.LENGTH_SHORT)
-                        .show()
+                    _successCheckNickName.value = 3
+
                 }
             })
     }
@@ -145,8 +152,6 @@ class FireBaseViewModel : ViewModel() {
             .addOnFailureListener {
                 _successRtdbSave.value = 3
             }
-
-
     }
 
 
