@@ -96,6 +96,20 @@ class PhoneAuthActivity : SignInBaseActivity() {
         })
 
 
+        //photo 사진 저장성공 여부
+   /*     MainObject.fireBaseViewModel.successCheckPhoto.observe(this, Observer {
+            if (it == 1) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.right_in, R.anim.left_out)
+                finish()
+            } else if (it == 2) {
+                Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
+            } else if (it == 3) {
+            }
+        })*/
+
+
         MainObject.signInViewModel.noNewUser.observe(this, Observer {
             Log.d("로그", "라이브데이터 noNewUser : $it")
             if (it == false) {
@@ -104,7 +118,6 @@ class PhoneAuthActivity : SignInBaseActivity() {
                 Toast.makeText(this, "이미 가입된 계정이 존재합니다", Toast.LENGTH_SHORT).show()
                 binding.checkPhoneNumber.text =
                     "${MainObject.signInViewModel.noNewUserNickname}으(로)시작하기"
-
             }
         })
 

@@ -9,12 +9,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.children.toyexchange.models.user_signin_model.UserSignIn
 import com.children.toyexchange.utils.MainObject
+import com.children.toyexchange.views.signIn.NickNameFragment.Companion.progressDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 
 class FireBaseViewModel : ViewModel() {
 
@@ -32,6 +34,10 @@ class FireBaseViewModel : ViewModel() {
     //nickName 저장
     val nickName get() = _nickName
     private val _nickName: MutableLiveData<String> = MutableLiveData<String>()
+
+    //photo 저장 성공여부
+    val successCheckPhoto get() = _successCheckPhoto
+    private val _successCheckPhoto: MutableLiveData<Int> = MutableLiveData<Int>()
 
     init {
         auth = FirebaseAuth.getInstance()
@@ -99,7 +105,7 @@ class FireBaseViewModel : ViewModel() {
     }
 
 
-    //firebase storage에 사진 업로드
+/*    //firebase storage에 사진 업로드
     fun uploadFile(proFileUri: Uri?, context: Context) {
         val progressDialog = ProgressDialog(context)
         progressDialog.setTitle("업로드중...")
@@ -122,6 +128,33 @@ class FireBaseViewModel : ViewModel() {
                     Toast.makeText(context, "업로드 실패!", Toast.LENGTH_SHORT).show()
                 }
                 .addOnProgressListener { taskSnapshot ->
+                    val progress =
+                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
+                    progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
+                }
+        }
+    }*/
+
+
+    //firebase storage에 사진 업로드
+    fun uploadFile(proFileUri: Uri?) {
+        val storage = FirebaseStorage.getInstance()
+
+        val filename = MainObject.auth?.currentUser?.uid.toString() + ".png"
+        val storageRef = storage.getReferenceFromUrl("gs://toyexchange-90199.appspot.com")
+            .child("images/$filename")
+
+        proFileUri?.let {
+            storageRef.putFile(it)
+                .addOnSuccessListener {
+                    _successCheckPhoto.value = 1
+                }
+                .addOnFailureListener {
+                    _successCheckPhoto.value = 2
+
+                }
+                .addOnProgressListener { taskSnapshot ->
+                    _successCheckPhoto.value = 3
                     val progress =
                         (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
                     progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
