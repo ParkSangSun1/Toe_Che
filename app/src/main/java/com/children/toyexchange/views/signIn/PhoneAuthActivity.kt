@@ -48,7 +48,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
         transaction.commit()
 
 
-        //버튼 라이브데이터
+        //원하는 조건이 만족 되면 활성화 되는 버튼
         MainObject.signInViewModel.checkGoNext.observe(this, Observer {
             if (it == true) {
                 binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
@@ -57,6 +57,22 @@ class PhoneAuthActivity : SignInBaseActivity() {
                 binding.nextBtn.setBackgroundColor(Color.parseColor("#D6D4D4"))
             }
         })
+
+
+        //회원가입 마지막 끝낸후 화면 전환
+        MainObject.fireBaseViewModel.successRtdbSave.observe(this, Observer {
+            if (it == 1) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.right_in, R.anim.left_out)
+                finish()
+            }else if(it == 2){
+                Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
+            }else if(it == 3){
+                Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show()
+            }
+        })
+
 
         MainObject.signInViewModel.noNewUser.observe(this, Observer {
             Log.d("로그","라이브데이터 noNewUser : $it")
@@ -71,52 +87,47 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
     }
 
+    //조건이 충족되 활성화된 버튼 클릭했을때
     fun clickNextBtn(view: View) {
         Log.d("로그", "UID : ${MainObject.auth?.uid}")
         if (MainObject.signInViewModel.checkGoNext.value == true) {
-            if (flag == 2) {
-                val userSignIn = UserSignIn(
-                    MainObject.signInViewModel.getUserPhoto(),
-                    MainObject.signInViewModel.getUserNickname(),
-                    MainObject.signInViewModel.getUserPhoneNumber()
-                )
-                Log.d(
-                    "로그", MainObject.signInViewModel.getUserPhoneNumber().toString()
-                )
+            when(flag){
+                //PhoneNumber -> NickName
+                1->{
+                    Log.d(
+                        "로그", "flag1"
+                    )
+                    switchFragment()
+                    MainObject.signInViewModel.setSignInGoNextFalse()
+                }
+                //NickName -> RTDB에 성공적으로 저장후 MainActivity로 넘어가기
+                2->{
+                    Log.d(
+                        "로그", "flag2"
+                    )
+                    val userSignIn = UserSignIn(
+                        MainObject.signInViewModel.getUserPhoto(),
+                        MainObject.signInViewModel.getUserNickname(),
+                        MainObject.signInViewModel.getUserPhoneNumber()
+                    )
+                    Log.d(
+                        "로그", MainObject.signInViewModel.getUserPhoneNumber().toString()
+                    )
 
-                //유저 정보 RealTimeDataBase 저장
-                MainObject.database.reference.child("userAccountInfo")
-                    .child(MainObject.auth?.uid.toString()).setValue(userSignIn)
-                    .addOnSuccessListener {
+                    //유저 정보 RealTimeDataBase 저장
+                    MainObject.fireBaseViewModel.userInfoRTDBSave(userSignIn)
 
-                        //유저 닉네임 RealTimeDataBase 저장
-                        MainObject.signInViewModel.getUserNickname()?.let {
-                            MainObject.database.reference.child("userNickName").child(
-                                it
-                            ).setValue(MainObject.auth?.uid.toString())
-                                .addOnSuccessListener {
-                                    val intent = Intent(this, MainActivity::class.java)
-                                    startActivity(intent)
-                                    overridePendingTransition(R.anim.right_in, R.anim.left_out)
-                                    finish()
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show()
-                                }
-                        }
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show()
-                    }
-
-
-            } else if(flag==1){
-                switchFragment()
-                MainObject.signInViewModel.setSignInGoNextFalse()
-            }else if(flag == 3){
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                }
+                //계정이 있을경우
+                3->{
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else->{
+                    Toast.makeText(this,"예기치 못한 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
+                }
             }
+
 
         }
     }

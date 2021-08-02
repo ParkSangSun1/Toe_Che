@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.children.toyexchange.models.user_signin_model.UserSignIn
 import com.children.toyexchange.utils.MainObject
@@ -19,9 +20,14 @@ class FireBaseViewModel : ViewModel() {
 
     lateinit var auth: FirebaseAuth
     lateinit var database: FirebaseDatabase
+    val successRtdbSave get() = _successRtdbSave
+    private val _successRtdbSave : MutableLiveData<Int> = MutableLiveData<Int>()
+
+
     init {
         auth= FirebaseAuth.getInstance()
         database= FirebaseDatabase.getInstance()
+        _successRtdbSave.value = 0
     }
 
 
@@ -114,6 +120,31 @@ class FireBaseViewModel : ViewModel() {
                     progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
                 }
         }
+    }
+
+
+    //유저 정보 RealTimeDataBase 저장
+    fun userInfoRTDBSave(userSignIn: UserSignIn) {
+        MainObject.database.reference.child("userAccountInfo")
+            .child(MainObject.auth?.uid.toString()).setValue(userSignIn)
+            .addOnSuccessListener {
+
+                //유저 닉네임 RealTimeDataBase 저장
+                MainObject.signInViewModel.getUserNickname()?.let {
+                    MainObject.database.reference.child("userNickName").child(
+                        it
+                    ).setValue(MainObject.auth?.uid.toString())
+                        .addOnSuccessListener {
+                            _successRtdbSave.value = 1
+                        }
+                        .addOnFailureListener {
+                            _successRtdbSave.value = 2
+                        }
+                }
+            }
+            .addOnFailureListener {
+                _successRtdbSave.value = 3
+            }
 
 
     }
