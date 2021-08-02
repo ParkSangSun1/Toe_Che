@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
@@ -47,6 +48,22 @@ class PhoneAuthActivity : SignInBaseActivity() {
         transaction.commit()
 
 
+        //photo 사진 저장성공 여부
+        MainObject.fireBaseViewModel.successCheckPhoto.observe(this, Observer {
+            if (it == 1) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.right_in, R.anim.left_out)
+                finish()
+            } else if (it == 2) {
+                Toast.makeText(this, "업로드 실패!", Toast.LENGTH_SHORT).show()
+            } else if (it == 3) {
+                Toast.makeText(this, "잠시만 기다려 주세요!", Toast.LENGTH_SHORT).show()
+
+            }
+        })
+
+
         //원하는 조건이 만족 되면 활성화 되는 버튼
         MainObject.signInViewModel.checkGoNext.observe(this, Observer {
             if (it == true) {
@@ -84,10 +101,11 @@ class PhoneAuthActivity : SignInBaseActivity() {
         //회원가입 마지막 끝낸후 화면 전환
         MainObject.fireBaseViewModel.successRtdbSave.observe(this, Observer {
             if (it == 1) {
-                val intent = Intent(this, MainActivity::class.java)
+                MainObject.fireBaseViewModel.uploadFile(MainObject.signInViewModel.getUserPhoto().toString().toUri())
+               /* val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.right_in, R.anim.left_out)
-                finish()
+                finish()*/
             } else if (it == 2) {
                 Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
             } else if (it == 3) {
@@ -96,20 +114,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
         })
 
 
-        //photo 사진 저장성공 여부
-   /*     MainObject.fireBaseViewModel.successCheckPhoto.observe(this, Observer {
-            if (it == 1) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(R.anim.right_in, R.anim.left_out)
-                finish()
-            } else if (it == 2) {
-                Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
-            } else if (it == 3) {
-            }
-        })*/
-
-
+        //만약 휴대폰 인증후 가입된 계정이 있을 경우
         MainObject.signInViewModel.noNewUser.observe(this, Observer {
             Log.d("로그", "라이브데이터 noNewUser : $it")
             if (it == false) {
@@ -149,6 +154,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
                     //유저 정보 RealTimeDataBase 저장
                     MainObject.fireBaseViewModel.userInfoRTDBSave(userSignIn)
+
 
                 }
                 //계정이 있을경우

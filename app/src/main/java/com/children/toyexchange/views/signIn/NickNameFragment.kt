@@ -54,19 +54,7 @@ class NickNameFragment : Fragment() {
 
 
         progressDialog = ProgressDialog(requireContext())
-        //photo 사진 저장성공 여부
-        MainObject.fireBaseViewModel.successCheckPhoto.observe(requireActivity(), Observer {
-            if (it == 1) {
-                progressDialog.dismiss()
-                Toast.makeText(requireContext(), "업로드 완료!", Toast.LENGTH_SHORT).show()
-            } else if (it == 2) {
-                progressDialog.dismiss()
-                Toast.makeText(requireContext(), "업로드 실패!", Toast.LENGTH_SHORT).show()
-            } else if (it == 3) {
 
-
-                       }
-        })
 
         return binding.root
     }
@@ -94,7 +82,7 @@ class NickNameFragment : Fragment() {
                 MainObject.signInViewModel.setUserPhoto(proFileUri.toString())
 
 
-                MainObject.fireBaseViewModel.uploadFile(proFileUri)
+                //MainObject.fireBaseViewModel.uploadFile(proFileUri)
             }
             ImagePicker.RESULT_ERROR -> {
                 proFileUri = null

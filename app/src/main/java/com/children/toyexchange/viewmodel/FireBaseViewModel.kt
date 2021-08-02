@@ -1,7 +1,6 @@
 package com.children.toyexchange.viewmodel
 
 import android.app.ProgressDialog
-import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -105,36 +104,6 @@ class FireBaseViewModel : ViewModel() {
     }
 
 
-/*    //firebase storage에 사진 업로드
-    fun uploadFile(proFileUri: Uri?, context: Context) {
-        val progressDialog = ProgressDialog(context)
-        progressDialog.setTitle("업로드중...")
-        progressDialog.show()
-
-        val storage = FirebaseStorage.getInstance()
-
-        val filename = MainObject.auth?.currentUser?.uid.toString() + ".png"
-        val storageRef = storage.getReferenceFromUrl("gs://toyexchange-90199.appspot.com")
-            .child("images/$filename")
-
-        proFileUri?.let {
-            storageRef.putFile(it)
-                .addOnSuccessListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(context, "업로드 완료!", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    progressDialog.dismiss()
-                    Toast.makeText(context, "업로드 실패!", Toast.LENGTH_SHORT).show()
-                }
-                .addOnProgressListener { taskSnapshot ->
-                    val progress =
-                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
-                    progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
-                }
-        }
-    }*/
-
 
     //firebase storage에 사진 업로드
     fun uploadFile(proFileUri: Uri?) {
@@ -155,9 +124,6 @@ class FireBaseViewModel : ViewModel() {
                 }
                 .addOnProgressListener { taskSnapshot ->
                     _successCheckPhoto.value = 3
-                    val progress =
-                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toDouble()
-                    progressDialog.setMessage("Uploaded " + progress.toInt() + "% ...")
                 }
         }
     }
