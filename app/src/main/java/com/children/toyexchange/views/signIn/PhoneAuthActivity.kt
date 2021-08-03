@@ -91,6 +91,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
             } else if (it == 2) {
                 Toast.makeText(this, "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
                     .show()
+                MainObject.signInViewModel.setSignInGoNextFalse()
             } else if (it == 3) {
                 Toast.makeText(this, "예기치 못한 오류", Toast.LENGTH_SHORT)
                     .show()
