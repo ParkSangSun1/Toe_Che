@@ -28,7 +28,7 @@ class GetExchangeListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_get_exchange_list, container, false)
 
 
-        MainObject.recyclerViewManager(binding.getRecyclerView,requireContext())
+        MainObject.recyclerViewVerticalManager(binding.getRecyclerView,requireContext())
         binding.getRecyclerView.adapter = GetExchangeAdapter()
 
         return binding.root

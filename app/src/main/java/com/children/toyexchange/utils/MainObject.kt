@@ -25,9 +25,16 @@ object MainObject {
     }
 
 
-    //리사이클러뷰
-    fun recyclerViewManager(v: RecyclerView, context: Context) {
+    //리사이클러뷰 세로
+    fun recyclerViewVerticalManager(v: RecyclerView, context: Context) {
         v.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    }
+
+
+    //리사이클러뷰 가로
+    fun recyclerViewHorizontalManager(v: RecyclerView, context: Context) {
+        v.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }
 }

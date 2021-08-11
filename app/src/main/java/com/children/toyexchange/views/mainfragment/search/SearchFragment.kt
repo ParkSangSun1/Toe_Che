@@ -11,7 +11,7 @@ import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentSearchBinding
 import com.children.toyexchange.utils.MainObject
 import com.children.toyexchange.views.adapter.recycler_view.searchfragment.RecentPostsAdapter
-import com.children.toyexchange.views.myToyUpload.ToyUploadActivity
+import com.children.toyexchange.views.mytoyupload.ToyUploadActivity
 
 
 class SearchFragment : Fragment() {
@@ -29,7 +29,7 @@ class SearchFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
         binding.activity = this
-        MainObject.recyclerViewManager(binding.recentPostsRecyclerView, requireContext())
+        MainObject.recyclerViewVerticalManager(binding.recentPostsRecyclerView, requireContext())
         binding.recentPostsRecyclerView.adapter = RecentPostsAdapter()
         binding.addBtn.setOnClickListener {
             clickAddBtn()

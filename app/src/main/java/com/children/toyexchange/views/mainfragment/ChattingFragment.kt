@@ -27,7 +27,7 @@ class ChattingFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chatting,container,false)
 
-        MainObject.recyclerViewManager(binding.chatRecyclerView,requireContext())
+        MainObject.recyclerViewVerticalManager(binding.chatRecyclerView,requireContext())
         binding.chatRecyclerView.adapter = ChattingRecyclerAdapter()
 
 
