@@ -160,6 +160,7 @@
                         android:background="@drawable/my_toy_upload_edittext">
 
                         <EditText
+                            android:id="@+id/post_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -168,7 +169,7 @@
                             android:layout_marginBottom="10dp"
                             android:background="@null"
                             android:fontFamily="@font/notosanskr_medium"
-                            android:hint="내 게시물이 돋보이게!"
+                            android:hint="장난감명을 입력해 주세요"
                             android:includeFontPadding="false"
                             android:maxLines="1"
 
@@ -210,6 +211,7 @@
                         android:background="@drawable/my_toy_upload_edittext">
 
                         <EditText
+                            android:id="@+id/post_contents"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -218,7 +220,7 @@
                             android:layout_marginBottom="10dp"
                             android:background="@null"
                             android:fontFamily="@font/notosanskr_medium"
-                            android:hint="설명은 자세히!"
+                            android:hint="설명을 입력해 주세요"
                             android:includeFontPadding="false"
                             android:textSize="15sp" />
                     </RelativeLayout>
@@ -245,7 +247,7 @@
                         android:fontFamily="@font/notosanskr_bold"
                         android:gravity="left"
                         android:includeFontPadding="false"
-                        android:text="카테고리를 추가해 주세요"
+                        android:text="카테고리를 선택해 주세요"
                         android:textColor="@color/black"
                         android:textSize="@dimen/toy_upload_page_title_txt_size" />
 

@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityToyUploadBinding
@@ -44,10 +43,19 @@ class ToyUploadActivity : BaseActivity() {
 
     }
 
+    override fun onStop() {
+        super.onStop()
+        toyUploadViewModel.setPostTitle(binding.postTitle.text.toString())
+        toyUploadViewModel.setPostContents(binding.postContents.text.toString())
+    }
+
     override fun onRestart() {
         super.onRestart()
         MainObject.recyclerViewHorizontalManager(binding.choicePhotoRecyclerView,this)
         binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter()
+
+        binding.postTitle.setText(toyUploadViewModel.postTitle.value.toString())
+        binding.postContents.setText(toyUploadViewModel.postContents.value.toString())
     }
 
     fun backBtnClick(view: View){
@@ -91,7 +99,7 @@ class ToyUploadActivity : BaseActivity() {
                 photoIndex++
 
                 //선택한 사진 list에 저장
-                toyUploadViewModel.savePhoto(choicePhotoUri!!)
+                toyUploadViewModel.setSaveChoicePhoto(choicePhotoUri!!)
 
                 //현재 사진 추가 장수 표시
                 binding.photoIndex.text = "$photoIndex/ 5"
