@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityToyUploadBinding
@@ -22,11 +24,24 @@ class ToyUploadActivity : BaseActivity() {
     val binding by binding<ActivityToyUploadBinding>(R.layout.activity_toy_upload)
     companion object{
         lateinit var toyUploadViewModel: ToyUploadViewModel
-        var photoIndex = 0
-
+         var photoIndex : Int = 0
     }
     private var choicePhotoUri: Uri? = null
 
+
+    override fun onStart() {
+        super.onStart()
+
+        toyUploadViewModel.photoIndex.observe(this, Observer {
+            //사진 삭제 버튼을 누를시 사진 삭제하는 방법
+            MainObject.recyclerViewHorizontalManager(binding.choicePhotoRecyclerView,this)
+            binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter()
+
+            photoIndex = it
+            binding.photoIndex.text = "$it/ 5"
+        })
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +56,15 @@ class ToyUploadActivity : BaseActivity() {
         ).get(ToyUploadViewModel::class.java)
 
 
+
     }
 
     override fun onStop() {
         super.onStop()
+        //화면이 멈출때 자동으로 값 저장
         toyUploadViewModel.setPostTitle(binding.postTitle.text.toString())
         toyUploadViewModel.setPostContents(binding.postContents.text.toString())
+
     }
 
     override fun onRestart() {
@@ -54,8 +72,11 @@ class ToyUploadActivity : BaseActivity() {
         MainObject.recyclerViewHorizontalManager(binding.choicePhotoRecyclerView,this)
         binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter()
 
+
+        //화면이 다시 시작할때 자동저장된 값 불러오기
         binding.postTitle.setText(toyUploadViewModel.postTitle.value.toString())
         binding.postContents.setText(toyUploadViewModel.postContents.value.toString())
+
     }
 
     fun backBtnClick(view: View){
@@ -96,13 +117,11 @@ class ToyUploadActivity : BaseActivity() {
                 choicePhotoUri = data?.data!!
 
                 //인덱스 값 플러스
-                photoIndex++
+                toyUploadViewModel.plusPhotoIndex()
 
                 //선택한 사진 list에 저장
                 toyUploadViewModel.setSaveChoicePhoto(choicePhotoUri!!)
 
-                //현재 사진 추가 장수 표시
-                binding.photoIndex.text = "$photoIndex/ 5"
 
             }
             ImagePicker.RESULT_ERROR -> {

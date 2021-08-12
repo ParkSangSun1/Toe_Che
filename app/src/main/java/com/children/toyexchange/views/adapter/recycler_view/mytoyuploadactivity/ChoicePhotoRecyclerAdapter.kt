@@ -1,6 +1,7 @@
 package com.children.toyexchange.views.mytoyupload.adapter
 
 import android.media.Image
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,14 @@ class ChoicePhotoRecyclerAdapter : RecyclerView.Adapter<ChoicePhotoRecyclerViewH
     override fun onBindViewHolder(holder: ChoicePhotoRecyclerViewHolder, position: Int) {
         if (photoIndex!=0){
             holder.view.findViewById<ImageView>(R.id.recycler_image).setImageURI(toyUploadViewModel.saveChoicePhoto.value?.get(position))
+        }
+
+        //사진 삭제 버튼 클릭시
+        holder.view.findViewById<ImageView>(R.id.del_btn).setOnClickListener {
+            Log.d("로그","인덱스 값 : $position, viewmodelsavephoto의 인덱스 값 ${toyUploadViewModel.saveChoicePhoto.value?.get(position)}")
+            toyUploadViewModel.deleteSaveChoicePhoto(position)
+            toyUploadViewModel.minusPhotoIndex()
+
         }
     }
 
