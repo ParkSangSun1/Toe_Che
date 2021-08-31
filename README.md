@@ -29,4 +29,3 @@
 ### CC-BY-NC-ND
 ### 저작자와 출처를 입력하면 사용할 수는 있지만, 상업적인 용도로는 불가능하고 또 변경을 해서도 안됩니다
 ### ![image](https://user-images.githubusercontent.com/67040465/124205946-4a2e1280-db1d-11eb-9200-eb6f6306531b.png)
-.
