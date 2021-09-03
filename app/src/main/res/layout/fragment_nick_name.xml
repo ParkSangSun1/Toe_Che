@@ -5,14 +5,14 @@
     <data>
         <variable
             name="activity"
-            type="com.children.toyexchange.views.signIn.NickNameFragment" />
+            type="com.children.toyexchange.presentation.view.signIn.NickNameFragment" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".views.signIn.NickNameFragment">
+        tools:context=".presentation.view.signIn.NickNameFragment">
 
         <LinearLayout
             android:id="@+id/setting"

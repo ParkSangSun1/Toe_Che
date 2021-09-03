@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.children.toyexchange.views.signIn.PhoneAuthActivity" />
+            type="com.children.toyexchange.presentation.view.signIn.PhoneAuthActivity" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.signIn.PhoneAuthActivity">
+        tools:context=".presentation.view.signIn.PhoneAuthActivity">
 
         <FrameLayout
             android:id="@+id/authFrameLayout"

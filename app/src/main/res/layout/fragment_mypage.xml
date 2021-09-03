@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
-    tools:context=".views.mainfragment.MypageFragment">
+    tools:context=".presentation.view.main.mainfragment.mypage.MypageFragment">
 
     <LinearLayout
         android:id="@+id/setting"

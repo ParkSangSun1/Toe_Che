@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.tutorial.TutorialActivity">
+        tools:context=".presentation.view.tutorial.TutorialActivity">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
