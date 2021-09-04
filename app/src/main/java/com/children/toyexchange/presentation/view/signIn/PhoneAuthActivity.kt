@@ -6,38 +6,32 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
 import com.children.toyexchange.data.models.user_signin_model.UserSignIn
 import com.children.toyexchange.presentation.widget.utils.MainObject
-import com.children.toyexchange.presentation.view.FireBaseViewModel
 import com.children.toyexchange.presentation.view.main.MainActivity
 import com.children.toyexchange.presentation.base.SignInBaseActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class PhoneAuthActivity : SignInBaseActivity() {
     val binding by binding<ActivityPhoneAuthBinding>(R.layout.activity_phone_auth)
     var flag = 0
-
+    private val signInViewModel by viewModels<SignInViewModel>()
+    private var auth: FirebaseAuth? = FirebaseAuth.getInstance()
+    private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.activity = this
-
-        //viewModel 선언
-        MainObject.signInViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(SignInViewModel::class.java)
-
-        MainObject.fireBaseViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(FireBaseViewModel::class.java)
-
+        observeViewModel()
 
         //fragment
         val transaction = supportFragmentManager.beginTransaction()
@@ -46,9 +40,74 @@ class PhoneAuthActivity : SignInBaseActivity() {
         flag = 1
         transaction.commit()
 
+    }
+
+
+    private fun observeViewModel() {
+        //만약 휴대폰 인증후 가입된 계정이 있을 경우
+        signInViewModel.newUser.observe(this, Observer {
+            Log.d("로그", "라이브데이터 noNewUser : $it")
+            if (it == false) {
+                binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
+                flag = 3
+                Toast.makeText(this, "이미 가입된 계정이 존재합니다", Toast.LENGTH_SHORT).show()
+                binding.checkPhoneNumber.text = "${signInViewModel.noNewUserNickname}으(로)시작하기"
+            }
+        })
+
+        //회원가입 마지막 끝낸후 화면 전환
+        signInViewModel.successRtdbSave.observe(this, Observer {
+            when (it) {
+                1 -> signInViewModel.uploadFile(signInViewModel.getUserPhoto().toString().toUri())
+                2 -> Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
+
+                3 -> Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show()
+
+            }
+            /*          if (it == 1) {
+                          MainObject.fireBaseViewModel.uploadFile(MainObject.signInViewModel.getUserPhoto().toString().toUri())
+                      } else if (it == 2) {
+                          Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
+                      } else if (it == 3) {
+                          Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show()
+                      }*/
+        })
+
+        //firebase에서 중복 닉네임 체크
+        signInViewModel.successCheckNickName.observe(this, Observer {
+            if (it == 1) {
+                Toast.makeText(this, "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT)
+                    .show()
+                Log.d("로그", "사용가능한 닉네임 확인 완료")
+                signInViewModel.setUserNickname(signInViewModel.nickName.value.toString())
+                signInViewModel.setSignInGoNextTrue()
+
+                /*  val intent = Intent(this, MainActivity::class.java)
+                  startActivity(intent)
+                  overridePendingTransition(R.anim.right_in, R.anim.left_out)
+                  finish()*/
+            } else if (it == 2) {
+                Toast.makeText(this, "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
+                    .show()
+                signInViewModel.setSignInGoNextFalse()
+            } else if (it == 3) {
+                Toast.makeText(this, "예기치 못한 오류", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
+        //원하는 조건이 만족 되면 활성화 되는 버튼
+        signInViewModel.checkGoNext.observe(this, Observer {
+            if (it == true) {
+                binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
+
+            } else {
+                binding.nextBtn.setBackgroundColor(Color.parseColor("#D6D4D4"))
+            }
+        })
 
         //photo 사진 저장성공 여부
-        MainObject.fireBaseViewModel.successCheckPhoto.observe(this, Observer {
+        signInViewModel.successCheckPhoto.observe(this, Observer {
             if (it == 1) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -61,77 +120,12 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
             }
         })
-
-
-        //원하는 조건이 만족 되면 활성화 되는 버튼
-        MainObject.signInViewModel.checkGoNext.observe(this, Observer {
-            if (it == true) {
-                binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
-
-            } else {
-                binding.nextBtn.setBackgroundColor(Color.parseColor("#D6D4D4"))
-            }
-        })
-
-
-        //firebase에서 중복 닉네임 체크
-        MainObject.fireBaseViewModel.successCheckNickName.observe(this, Observer {
-            if (it == 1) {
-                Toast.makeText(this, "사용가능한 닉네임 입니다", Toast.LENGTH_SHORT)
-                    .show()
-                Log.d("로그", "사용가능한 닉네임 확인 완료")
-                MainObject.signInViewModel.setUserNickname(MainObject.fireBaseViewModel.nickName.value.toString())
-                MainObject.signInViewModel.setSignInGoNextTrue()
-
-              /*  val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(R.anim.right_in, R.anim.left_out)
-                finish()*/
-            } else if (it == 2) {
-                Toast.makeText(this, "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
-                    .show()
-                MainObject.signInViewModel.setSignInGoNextFalse()
-            } else if (it == 3) {
-                Toast.makeText(this, "예기치 못한 오류", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
-
-
-        //회원가입 마지막 끝낸후 화면 전환
-        MainObject.fireBaseViewModel.successRtdbSave.observe(this, Observer {
-            if (it == 1) {
-                MainObject.fireBaseViewModel.uploadFile(MainObject.signInViewModel.getUserPhoto().toString().toUri())
-               /* val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(R.anim.right_in, R.anim.left_out)
-                finish()*/
-            } else if (it == 2) {
-                Toast.makeText(this, "회원정보 저장에 실패했습니다", Toast.LENGTH_SHORT).show()
-            } else if (it == 3) {
-                Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-
-        //만약 휴대폰 인증후 가입된 계정이 있을 경우
-        MainObject.signInViewModel.noNewUser.observe(this, Observer {
-            Log.d("로그", "라이브데이터 noNewUser : $it")
-            if (it == false) {
-                binding.nextBtn.setBackgroundColor(Color.parseColor("#0080ff"))
-                flag = 3
-                Toast.makeText(this, "이미 가입된 계정이 존재합니다", Toast.LENGTH_SHORT).show()
-                binding.checkPhoneNumber.text =
-                    "${MainObject.signInViewModel.noNewUserNickname}으(로)시작하기"
-            }
-        })
-
     }
 
     //조건이 충족되 활성화된 버튼 클릭했을때
     fun clickNextBtn(view: View) {
-        Log.d("로그", "UID : ${MainObject.auth?.uid}")
-        if (MainObject.signInViewModel.checkGoNext.value == true) {
+        Log.d("로그", "UID : ${auth?.uid}")
+        if (signInViewModel.checkGoNext.value == true) {
             when (flag) {
                 //PhoneNumber -> NickName
                 1 -> {
@@ -139,7 +133,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
                         "로그", "flag1"
                     )
                     switchFragment()
-                    MainObject.signInViewModel.setSignInGoNextFalse()
+                    signInViewModel.setSignInGoNextFalse()
                 }
                 //NickName -> RTDB에 성공적으로 저장후 MainActivity로 넘어가기
                 2 -> {
@@ -147,13 +141,13 @@ class PhoneAuthActivity : SignInBaseActivity() {
                         "로그", "flag2"
                     )
                     val userSignIn = UserSignIn(
-                        MainObject.signInViewModel.getUserPhoto(),
-                        MainObject.signInViewModel.getUserNickname(),
-                        MainObject.signInViewModel.getUserPhoneNumber()
+                        signInViewModel.getUserPhoto(),
+                        signInViewModel.getUserNickname(),
+                        signInViewModel.getUserPhoneNumber()
                     )
 
                     //유저 정보 RealTimeDataBase 저장
-                    MainObject.fireBaseViewModel.userInfoRTDBSave(userSignIn)
+                    signInViewModel.userInfoRTDBSave(userSignIn)
 
 
                 }

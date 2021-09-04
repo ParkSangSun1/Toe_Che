@@ -9,26 +9,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentPhoneNumberBinding
-import com.children.toyexchange.presentation.widget.utils.MainObject
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class PhoneNumberFragment : Fragment() {
-
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var binding: FragmentPhoneNumberBinding
     lateinit var storedVerificationId: String
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private var checkFirstPhoneNumberAuth = false
+    private val signInViewModel by activityViewModels<SignInViewModel>()
+    private var auth: FirebaseAuth? = FirebaseAuth.getInstance()
+    private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,29 +83,28 @@ class PhoneNumberFragment : Fragment() {
 
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        MainObject.auth?.signInWithCredential(credential)
+        auth?.signInWithCredential(credential)
             ?.addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Log.d("로그", "signInWithCredential:success")
                     val user = task.result?.user
                     Toast.makeText(requireContext(), "전화번호 인증이 완료되었습니다", Toast.LENGTH_SHORT).show()
-                    MainObject.signInViewModel.setUserPhoneNumber(
+                    signInViewModel.setUserPhoneNumber(
                         binding.phoneNumber.text.toString().toInt()
                     )
 
-                    Log.d("로그", "핸드폰 인증후 사용자 uid : ${MainObject.auth?.uid}")
-                    MainObject.database.reference.child("userAccountInfo")
+                    Log.d("로그", "핸드폰 인증후 사용자 uid : ${auth?.uid}")
+
+                    //전화번호 인증후 기존 사용자인지 체크
+                    signInViewModel.phoneNumberCheckNextCallUserInfo()
                         .addListenerForSingleValueEvent(object :
                             ValueEventListener {
-
-
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 Log.d(
                                     "로그",
-                                    "snapshot : ${snapshot.child(MainObject.auth!!.uid.toString())}"
+                                    "snapshot : ${snapshot.child(auth!!.uid.toString())}"
                                 )
-
-                                MainObject.fireBaseViewModel.phoneNumberCheck(snapshot)
+                                signInViewModel.phoneNumberCheck(snapshot)
 
                             }
 
@@ -112,7 +114,6 @@ class PhoneNumberFragment : Fragment() {
 
 
                         })
-
 
                 } else {
                     Log.w("로그", "signInWithCredential:failure", task.exception)
@@ -149,14 +150,13 @@ class PhoneNumberFragment : Fragment() {
 
     //핸드폰 번호 인증 클릭
     fun clickPhoneAuthCode(view: View) {
-
         if (TextUtils.isEmpty(binding.phoneNumber.text)) {
             Toast.makeText(activity, "전화번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(activity, "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
             val phoneNumber = binding.phoneNumber.text.substring(1)
             Log.d("로그", "핸드폰 번호 $phoneNumber")
-            val options = MainObject.auth?.let {
+            val options = auth?.let {
                 PhoneAuthOptions.newBuilder(it)
                     .setPhoneNumber("+82 $phoneNumber")
                     .setTimeout(60L, TimeUnit.SECONDS)
@@ -168,9 +168,5 @@ class PhoneNumberFragment : Fragment() {
                 PhoneAuthProvider.verifyPhoneNumber(options)
             }
         }
-
-
     }
-
-
 }

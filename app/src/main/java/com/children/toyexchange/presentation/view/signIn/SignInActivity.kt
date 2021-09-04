@@ -10,25 +10,15 @@ import com.children.toyexchange.presentation.base.BaseActivity
 class SignInActivity : BaseActivity() {
     val binding by binding<ActivitySignInBinding>(R.layout.activity_sign_in)
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.activity = this
 
-
-
-
     }
 
     fun loginBtn(view: View) {
-
         loginSuccess()
-
     }
-
-
-
-
 
     private fun loginSuccess() {
         val intent = Intent(this, PhoneAuthActivity::class.java)

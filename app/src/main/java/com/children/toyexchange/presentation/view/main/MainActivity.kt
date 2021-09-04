@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.d("로그","값이 잘 넘어 왔나? : ${MainObject.signInViewModel.getUserNickname()}")
+//        Log.d("로그","값이 잘 넘어 왔나? : ${MainObject.signInViewModel.getUserNickname()}")
         binding.apply {
 
         }
