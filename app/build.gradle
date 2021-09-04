@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -87,4 +88,11 @@ dependencies {
     //이미지 자르기, 편집
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
+    //by viewModel
+    implementation 'androidx.activity:activity-ktx:1.3.1'
+    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+
+    // dager hilt
+    implementation "com.google.dagger:hilt-android:2.35.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.35.1"
 }
