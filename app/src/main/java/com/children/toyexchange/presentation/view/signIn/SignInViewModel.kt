@@ -4,8 +4,9 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.children.toyexchange.data.FirebaseRepository
-import com.children.toyexchange.data.models.user_signin_model.UserSignIn
+import com.children.toyexchange.data.repository.FirebaseRepositoryImpl
+import com.children.toyexchange.data.models.UserSignIn
+import com.children.toyexchange.domain.usecase.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,7 +19,11 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
     private var auth: FirebaseAuth,
     private val database: FirebaseDatabase,
-    private val repository: FirebaseRepository
+    private val callUserInfoUseCase: CallUserInfoUseCase,
+    private val checkUserNickNameUseCase: CheckUserNickNameUseCase,
+    private val saveUserInfoUseCase: SaveUserInfoUseCase,
+    private val saveUserNickNameUseCase: SaveUserNickNameUseCase,
+    private val saveUserProfileUseCase: SaveUserProfileUseCase
 ) : ViewModel() {
 
     private var userNickname: String? = null
@@ -101,7 +106,7 @@ class SignInViewModel @Inject constructor(
 
 
     //전화번호 인증후 User 정보 가져오기(신규사용자인지 확인하기 위해)
-    fun phoneNumberCheckNextCallUserInfo() = repository.callUserInfo()
+    fun phoneNumberCheckNextCallUserInfo() = callUserInfoUseCase.execute()
 
 
     //전화번호 인중, User 정보를 가져온 후 신규사용자인지 확인
@@ -132,7 +137,7 @@ class SignInViewModel @Inject constructor(
 
     //파베 rtdb 닉네임 중복 체크
     fun firebaseCheckNickName(nickName: String) {
-        repository.checkUserNickName(nickName).addListenerForSingleValueEvent(object :
+        checkUserNickNameUseCase.execute(nickName).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 //                        snapshot.getValue(
@@ -161,7 +166,7 @@ class SignInViewModel @Inject constructor(
         val fileName = auth.currentUser?.uid.toString() + ".png"
 
         if (proFileUri != null) {
-            repository.saveUserProfile(proFileUri, fileName)
+            saveUserProfileUseCase.execute(proFileUri, fileName)
                 .addOnSuccessListener {
                     _successCheckPhoto.value = 1
                 }
@@ -178,11 +183,11 @@ class SignInViewModel @Inject constructor(
 
     //유저 정보 RealTimeDataBase 저장 (userAccountInfo)
     fun userInfoRTDBSave(userSignIn: UserSignIn) {
-        repository.saveUserInfo(userSignIn)
+        saveUserInfoUseCase.execute(userSignIn)
             .addOnSuccessListener {
                 //유저 닉네임 RealTimeDataBase 저장 (userNickName)
                 getUserNickname()?.let {
-                    repository.saveUserNickName(it)
+                    saveUserNickNameUseCase.execute(it)
                         .addOnSuccessListener {
                             _successRtdbSave.value = 1
                         }

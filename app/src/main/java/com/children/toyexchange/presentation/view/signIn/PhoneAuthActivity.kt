@@ -11,12 +11,11 @@ import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
-import com.children.toyexchange.data.models.user_signin_model.UserSignIn
+import com.children.toyexchange.data.models.UserSignIn
 import com.children.toyexchange.presentation.view.main.MainActivity
 import com.children.toyexchange.presentation.base.SignInBaseActivity
 import com.children.toyexchange.presentation.widget.extension.startActivityWithFinish
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 

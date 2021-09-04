@@ -1,13 +1,13 @@
-package com.children.toyexchange.data
+package com.children.toyexchange.data.repository.datasource
 
 import android.net.Uri
-import com.children.toyexchange.data.models.user_signin_model.UserSignIn
+import com.children.toyexchange.data.models.UserSignIn
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import javax.inject.Inject
 
-class FirebaseSource @Inject constructor(
+class RemoteFirebaseDataSource @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val firebaseRtdb: FirebaseDatabase,
     private val firebaseStorage: FirebaseStorage

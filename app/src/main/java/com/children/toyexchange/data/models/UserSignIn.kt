@@ -1,4 +1,4 @@
-package com.children.toyexchange.data.models.user_signin_model
+package com.children.toyexchange.data.models
 
 data class UserSignIn(
     var userPhoto : String?,
