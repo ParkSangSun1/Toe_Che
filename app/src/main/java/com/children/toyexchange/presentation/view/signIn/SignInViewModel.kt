@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.children.toyexchange.data.FirebaseRepository
 import com.children.toyexchange.data.models.user_signin_model.UserSignIn
-import com.children.toyexchange.presentation.widget.utils.MainObject
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -159,7 +158,7 @@ class SignInViewModel @Inject constructor(
 
     //firebase storage에 사진 업로드
     fun uploadFile(proFileUri: Uri?) {
-        val fileName = MainObject.auth?.currentUser?.uid.toString() + ".png"
+        val fileName = auth.currentUser?.uid.toString() + ".png"
 
         if (proFileUri != null) {
             repository.saveUserProfile(proFileUri, fileName)

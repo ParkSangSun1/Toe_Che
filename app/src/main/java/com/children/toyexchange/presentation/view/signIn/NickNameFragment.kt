@@ -13,17 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentNickNameBinding
-import com.children.toyexchange.presentation.widget.utils.MainObject
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -31,7 +28,7 @@ class NickNameFragment : Fragment() {
 
     lateinit var binding: FragmentNickNameBinding
     private var proFileUri: Uri? = null
-    private val signInViewModel by viewModels<SignInViewModel>()
+    private val signInViewModel by activityViewModels<SignInViewModel>()
 
     companion object {
         lateinit var progressDialog: ProgressDialog
@@ -78,10 +75,7 @@ class NickNameFragment : Fragment() {
             Activity.RESULT_OK -> {
                 proFileUri = data?.data!!
                 binding.profile.setImageURI(proFileUri)
-                MainObject.signInViewModel.setUserPhoto(proFileUri.toString())
-
-
-                //MainObject.fireBaseViewModel.uploadFile(proFileUri)
+                signInViewModel.setUserPhoto(proFileUri.toString())
             }
             ImagePicker.RESULT_ERROR -> {
                 proFileUri = null
@@ -115,7 +109,7 @@ class NickNameFragment : Fragment() {
 
     }
 
-    private fun observeViewModel() {
+/*    private fun observeViewModel() {
 
         //firebase에서 중복 닉네임 체크
         signInViewModel.successCheckNickName.observe(requireActivity(), Observer {
@@ -126,10 +120,10 @@ class NickNameFragment : Fragment() {
                 signInViewModel.setUserNickname(signInViewModel.nickName.value.toString())
                 signInViewModel.setSignInGoNextTrue()
 
-                /*  val intent = Intent(this, MainActivity::class.java)
+                *//*  val intent = Intent(this, MainActivity::class.java)
                   startActivity(intent)
                   overridePendingTransition(R.anim.right_in, R.anim.left_out)
-                  finish()*/
+                  finish()*//*
             } else if (it == 2) {
                 Toast.makeText(requireContext(), "이미 있는 닉네임 입니다", Toast.LENGTH_SHORT)
                     .show()
@@ -139,6 +133,6 @@ class NickNameFragment : Fragment() {
                     .show()
             }
         })
-    }
+    }*/
 
 }

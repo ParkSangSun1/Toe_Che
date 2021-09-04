@@ -2,7 +2,6 @@ package com.children.toyexchange.data
 
 import android.net.Uri
 import com.children.toyexchange.data.models.user_signin_model.UserSignIn
-import com.children.toyexchange.presentation.widget.utils.MainObject
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
