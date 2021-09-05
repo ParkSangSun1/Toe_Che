@@ -18,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private var auth: FirebaseAuth,
-    private val database: FirebaseDatabase,
     private val callUserInfoUseCase: CallUserInfoUseCase,
     private val checkUserNickNameUseCase: CheckUserNickNameUseCase,
     private val saveUserInfoUseCase: SaveUserInfoUseCase,
