@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,9 +21,9 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 class ToyUploadActivity : BaseActivity() {
     val binding by binding<ActivityToyUploadBinding>(R.layout.activity_toy_upload)
     companion object{
-        lateinit var toyUploadViewModel: ToyUploadViewModel
          var photoIndex : Int = 0
     }
+    private val toyUploadViewModel by viewModels<ToyUploadViewModel>()
     private var choicePhotoUri: Uri? = null
 
 
@@ -32,7 +33,7 @@ class ToyUploadActivity : BaseActivity() {
         toyUploadViewModel.photoIndex.observe(this, Observer {
             //사진 삭제 버튼을 누를시 사진 삭제하는 방법
             binding.choicePhotoRecyclerView.showHorizontal(this)
-            binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter()
+            binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
 
             photoIndex = it
             binding.photoIndex.text = "$it/ 5"
@@ -45,13 +46,7 @@ class ToyUploadActivity : BaseActivity() {
         binding.activity = this
 
         binding.choicePhotoRecyclerView.showHorizontal(this)
-        binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter()
-
-        toyUploadViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(ToyUploadViewModel::class.java)
-
+        binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
 
 
     }
@@ -67,7 +62,7 @@ class ToyUploadActivity : BaseActivity() {
     override fun onRestart() {
         super.onRestart()
         binding.choicePhotoRecyclerView.showHorizontal(this)
-        binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter()
+        binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
 
 
         //화면이 다시 시작할때 자동저장된 값 불러오기

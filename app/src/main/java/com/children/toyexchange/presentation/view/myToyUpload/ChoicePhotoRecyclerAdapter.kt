@@ -8,9 +8,8 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadActivity.Companion.photoIndex
-import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadActivity.Companion.toyUploadViewModel
 
-class ChoicePhotoRecyclerAdapter : RecyclerView.Adapter<ChoicePhotoRecyclerViewHolder>() {
+class ChoicePhotoRecyclerAdapter(private val viewModel : ToyUploadViewModel) : RecyclerView.Adapter<ChoicePhotoRecyclerViewHolder>() {
 
 
     override fun onCreateViewHolder(
@@ -26,14 +25,13 @@ class ChoicePhotoRecyclerAdapter : RecyclerView.Adapter<ChoicePhotoRecyclerViewH
 
     override fun onBindViewHolder(holder: ChoicePhotoRecyclerViewHolder, position: Int) {
         if (photoIndex!=0){
-            holder.view.findViewById<ImageView>(R.id.recycler_image).setImageURI(toyUploadViewModel.saveChoicePhoto.value?.get(position))
+            holder.view.findViewById<ImageView>(R.id.recycler_image).setImageURI(viewModel.saveChoicePhoto.value?.get(position))
         }
 
         //사진 삭제 버튼 클릭시
         holder.view.findViewById<ImageView>(R.id.del_btn).setOnClickListener {
-            Log.d("로그","인덱스 값 : $position, viewmodelsavephoto의 인덱스 값 ${toyUploadViewModel.saveChoicePhoto.value?.get(position)}")
-            toyUploadViewModel.deleteSaveChoicePhoto(position)
-            toyUploadViewModel.minusPhotoIndex()
+            viewModel.deleteSaveChoicePhoto(position)
+            viewModel.minusPhotoIndex()
 
         }
     }
