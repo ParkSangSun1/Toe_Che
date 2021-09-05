@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.children.toyexchange.data.repository.FirebaseRepositoryImpl
 import com.children.toyexchange.data.models.UserSignIn
 import com.children.toyexchange.domain.usecase.*
+import com.children.toyexchange.presentation.widget.utils.UserInfo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -117,12 +118,20 @@ class SignInViewModel @Inject constructor(
                 snapshot.child(auth.uid.toString()).getValue(UserSignIn::class.java)
             val userPhoto: String? = userSignInModel!!.userPhoto
 
+            //가져온 사용자의 전체 정보 저장
+            UserInfo.apply {
+                userNickName = userSignInModel.userNickName
+                userPhoneNumber = userSignInModel.userPhoneNumber.toString()
+                UserInfo.userPhoto = userSignInModel.userPhoto
+            }
+
             //불러온 정보를 viewmodel에 저장
             setUserPhoto(userPhoto)
             userSignInModel.userNickName?.let {
                 setUserNickname(it)
             }
             setUserPhoneNumber(userSignInModel.userPhoneNumber)
+
 
             //기존사용자인것을 확인하고 처리
             noNewUserNickname = userSignInModel.userNickName

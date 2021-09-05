@@ -18,6 +18,7 @@ import com.children.toyexchange.presentation.view.signIn.SignInViewModel
 import com.children.toyexchange.presentation.view.signIn.fragment.NickNameFragment
 import com.children.toyexchange.presentation.view.signIn.fragment.PhoneNumberFragment
 import com.children.toyexchange.presentation.widget.extension.startActivityWithFinish
+import com.children.toyexchange.presentation.widget.utils.UserInfo
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +29,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
     var flag = 0
     private val signInViewModel by viewModels<SignInViewModel>()
     private var auth: FirebaseAuth? = FirebaseAuth.getInstance()
-
+    lateinit var userSignIn : UserSignIn
     companion object {
 
     }
@@ -72,7 +73,15 @@ class PhoneAuthActivity : SignInBaseActivity() {
         //시작하기 버튼 누르고 RTDB에 사용자 정보 저장 후 photo 사진 저장성공 여부
         signInViewModel.successCheckPhoto.observe(this, Observer {
             when (it) {
-                1 -> this@PhoneAuthActivity.startActivityWithFinish(this, MainActivity::class.java)
+                1 -> {
+                    //가져온 사용자의 전체 정보 저장
+                    UserInfo.apply {
+                        userNickName = userSignIn.userNickName
+                        userPhoneNumber = userSignIn.userPhoneNumber.toString()
+                        userPhoto = userSignIn.userPhoto
+                    }
+                    this@PhoneAuthActivity.startActivityWithFinish(this, MainActivity::class.java)
+                }
                 //overridePendingTransition(R.anim.right_in, R.anim.left_out)
                 2 -> Toast.makeText(this, "업로드 실패!", Toast.LENGTH_SHORT).show()
                 3 -> Toast.makeText(this, "잠시만 기다려 주세요!", Toast.LENGTH_SHORT).show()
@@ -121,7 +130,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
                 //NickName -> RTDB에 성공적으로 저장후 MainActivity로 넘어가기
                 2 -> {
-                    val userSignIn = UserSignIn(
+                    userSignIn = UserSignIn(
                         signInViewModel.getUserPhoto(),
                         signInViewModel.getUserNickname(),
                         signInViewModel.getUserPhoneNumber()

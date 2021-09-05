@@ -1,6 +1,7 @@
 package com.children.toyexchange.presentation.view.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.children.toyexchange.R
@@ -10,6 +11,7 @@ import com.children.toyexchange.presentation.view.main.mainfragment.mypage.Mypag
 import com.children.toyexchange.presentation.base.BaseActivity
 import com.children.toyexchange.presentation.view.main.mainfragment.exchange.ExchangeFragment
 import com.children.toyexchange.presentation.view.main.mainfragment.search.SearchFragment
+import com.children.toyexchange.presentation.widget.utils.UserInfo
 
 class MainActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
@@ -17,7 +19,12 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       // Log.d("로그","값이 잘 넘어 왔나? : ${signInViewModel.getUserNickname()}")
+        UserInfo.apply {
+            Log.d("로그","로그인한 사용자의 기본 정보 \n userNickName : $userNickName \n" +
+                    " userPhoneNumber : $userPhoneNumber \n" +
+                    " userPhoto : $userPhoto")
+
+        }
         binding.apply {
 
         }
