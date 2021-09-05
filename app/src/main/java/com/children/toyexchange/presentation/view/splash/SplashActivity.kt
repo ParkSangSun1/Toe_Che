@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.children.toyexchange.R
-import com.children.toyexchange.presentation.view.signIn.SignInActivity
+import com.children.toyexchange.presentation.view.signIn.activity.SignInActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

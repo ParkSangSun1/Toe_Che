@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.signIn
+package com.children.toyexchange.presentation.view.signIn.fragment
 
 import android.app.Activity
 import android.app.ProgressDialog
@@ -16,9 +16,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentNickNameBinding
+import com.children.toyexchange.presentation.view.signIn.SignInViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 

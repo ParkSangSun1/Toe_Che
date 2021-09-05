@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.signIn
+package com.children.toyexchange.presentation.view.signIn.fragment
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentPhoneNumberBinding
+import com.children.toyexchange.presentation.view.signIn.SignInViewModel
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.database.DataSnapshot

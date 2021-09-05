@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.signIn
+package com.children.toyexchange.presentation.view.signIn.activity
 
 import android.content.Intent
 import android.graphics.Color
@@ -14,6 +14,9 @@ import com.children.toyexchange.databinding.ActivityPhoneAuthBinding
 import com.children.toyexchange.data.models.UserSignIn
 import com.children.toyexchange.presentation.view.main.MainActivity
 import com.children.toyexchange.presentation.base.SignInBaseActivity
+import com.children.toyexchange.presentation.view.signIn.SignInViewModel
+import com.children.toyexchange.presentation.view.signIn.fragment.NickNameFragment
+import com.children.toyexchange.presentation.view.signIn.fragment.PhoneNumberFragment
 import com.children.toyexchange.presentation.widget.extension.startActivityWithFinish
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint

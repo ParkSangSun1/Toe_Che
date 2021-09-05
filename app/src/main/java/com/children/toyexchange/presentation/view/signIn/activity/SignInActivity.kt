@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.signIn
+package com.children.toyexchange.presentation.view.signIn.activity
 
 import android.content.Intent
 import android.os.Bundle

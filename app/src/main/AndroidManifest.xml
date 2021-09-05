@@ -14,8 +14,8 @@
         <activity android:name=".presentation.view.main.MainActivity">
 
         </activity>
-        <activity android:name=".presentation.view.signIn.PhoneAuthActivity"></activity>
-        <activity android:name=".presentation.view.signIn.SignInActivity"></activity>
+        <activity android:name=".presentation.view.signIn.activity.PhoneAuthActivity"></activity>
+        <activity android:name=".presentation.view.signIn.activity.SignInActivity"></activity>
         <activity android:name=".presentation.view.myToyUpload.ToyUploadActivity" />
 
         <activity android:name=".presentation.view.splash.SplashActivity">
