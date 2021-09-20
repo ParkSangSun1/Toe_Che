@@ -9,6 +9,14 @@
 - [REFACTORING] 코드를 리팩토링 했을때
 - [ERROR UPDATE] 오류를 확인하고 고쳤을때
 ### <hr>
+## 🎯 Use Stack & Skill
+- Kotlin 100% 사용
+- Firebase 사용
+- Clean Architecture를 지향한 MVVM 디자인 패턴 사용
+- ACC 사용
+- Dagger Hilt 사용
+- DataBinding 사용
+## <hr>
 ## 🧭 App Logic
 ### ![토체 로직](https://user-images.githubusercontent.com/67040465/124051750-0f15db80-da58-11eb-98c1-d5cc4ee82925.png)
 ### <hr>
