@@ -1,6 +1,7 @@
 package com.children.toyexchange.domain.repository
 
 import android.net.Uri
+import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.data.models.UserSignIn
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
@@ -13,4 +14,5 @@ interface FirebaseRepository {
     fun saveUserInfo(userSignIn: UserSignIn) : Task<Void>
     fun saveUserNickName(userNickName : String) : Task<Void>
     fun getToyCategory() : DatabaseReference
+    fun toyUpload(uid : String, postName : String, data : ToyUpload) :Task<Void>
 }

@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import com.children.toyexchange.R
+import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.databinding.ActivityToyUploadBinding
 import com.children.toyexchange.presentation.base.BaseActivity
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
@@ -26,7 +27,7 @@ class ToyUploadActivity : BaseActivity() {
     }
     private val toyUploadViewModel by viewModels<ToyUploadViewModel>()
     private var choicePhotoUri: Uri? = null
-
+    lateinit var toyUploadDataClass : ToyUpload
 
     override fun onStart() {
         super.onStart()
@@ -78,7 +79,16 @@ class ToyUploadActivity : BaseActivity() {
     }
 
     fun uploadBtnClick(view: View){
-        finish()
+        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),"레고","광주",null)
+        toyUploadViewModel.toyUpload("-----userUid-----",binding.postTitle.text.toString(), toyUploadDataClass)
+            .addOnSuccessListener {
+                Log.d("로그","요기")
+            }
+            .addOnFailureListener {
+                Log.d("로그","요기2 $it")
+            }
+
+//        finish()
     }
 
     //이미지 선택 클릭
@@ -94,7 +104,6 @@ class ToyUploadActivity : BaseActivity() {
         }
 
     }
-
 
 
     //이미지 선택후 정보저장후 선택한 이미지 보여주기

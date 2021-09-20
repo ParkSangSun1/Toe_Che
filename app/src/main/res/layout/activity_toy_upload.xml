@@ -169,8 +169,8 @@
                             android:background="@null"
                             android:fontFamily="@font/notosanskr_medium"
                             android:hint="장난감명을 입력해 주세요"
-                            android:includeFontPadding="false"
 
+                            android:includeFontPadding="false"
                             android:maxLines="1"
                             android:textSize="15sp" />
                     </RelativeLayout>
