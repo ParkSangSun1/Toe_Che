@@ -1,27 +1,42 @@
 package com.children.toyexchange.presentation.view.myToyUpload
 
 import android.net.Uri
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.children.toyexchange.domain.usecase.GetToyCategoryUseCase
+import com.google.firebase.database.DatabaseReference
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ToyUploadViewModel : ViewModel() {
+@HiltViewModel
+class ToyUploadViewModel @Inject constructor(
+    private val getToyCategoryUseCase: GetToyCategoryUseCase
+) : ViewModel() {
+
 
     //선택한 사진들
-    val saveChoicePhoto get() = _saveChoicePhoto
-    private val _saveChoicePhoto: MutableLiveData<MutableList<Uri>> =
-        MutableLiveData<MutableList<Uri>>()
+    val saveChoicePhoto : LiveData<MutableList<Uri>> get() = _saveChoicePhoto
+    private val _saveChoicePhoto = MutableLiveData<MutableList<Uri>>()
 
     //사진 개수 (최대 5장)
-    val photoIndex get() = _photoIndex
-    private val _photoIndex: MutableLiveData<Int> = MutableLiveData<Int>()
+    val photoIndex : LiveData<Int> get() = _photoIndex
+    private val _photoIndex = MutableLiveData<Int>()
 
     //게시물 제목
-    val postTitle get() = _postTitle
-    private val _postTitle: MutableLiveData<String> = MutableLiveData<String>()
+    val postTitle : LiveData<String> get() = _postTitle
+    private val _postTitle = MutableLiveData<String>()
 
     //게시물 내용
-    val postContents get() = _postContents
-    private val _postContents: MutableLiveData<String> = MutableLiveData<String>()
+    val postContents : LiveData<String> get() = _postContents
+    private val _postContents = MutableLiveData<String>()
+
+    //카테고리 가져온 내용
+    val getCategory : LiveData<DatabaseReference> get() = _getCategory
+    private val _getCategory = MutableLiveData<DatabaseReference>()
+
 
     init {
         _saveChoicePhoto.value = mutableListOf()
@@ -53,4 +68,9 @@ class ToyUploadViewModel : ViewModel() {
     fun setPostContents(postContents: String) {
         _postContents.value = postContents
     }
+
+    fun getToyCategory() {
+        _getCategory.value = getToyCategoryUseCase.execute()
+    }
+
 }

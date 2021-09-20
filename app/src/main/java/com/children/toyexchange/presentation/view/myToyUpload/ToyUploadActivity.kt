@@ -11,13 +11,14 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivityToyUploadBinding
 import com.children.toyexchange.presentation.base.BaseActivity
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.github.dhaval2404.imagepicker.ImagePicker
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ToyUploadActivity : BaseActivity() {
     val binding by binding<ActivityToyUploadBinding>(R.layout.activity_toy_upload)
     companion object{
@@ -29,27 +30,30 @@ class ToyUploadActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-
+        toyUploadViewModel.getToyCategory()
         toyUploadViewModel.photoIndex.observe(this, Observer {
             //사진 삭제 버튼을 누를시 사진 삭제하는 방법
-            binding.choicePhotoRecyclerView.showHorizontal(this)
-            binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
+            initChoicePhotoRecyclerView()
 
             photoIndex = it
             binding.photoIndex.text = "$it/ 5"
         })
+
+
 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.activity = this
+        initChoicePhotoRecyclerView()
+    }
 
+    private fun initChoicePhotoRecyclerView(){
         binding.choicePhotoRecyclerView.showHorizontal(this)
         binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
-
-
     }
+
 
     override fun onStop() {
         super.onStop()
@@ -61,9 +65,7 @@ class ToyUploadActivity : BaseActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        binding.choicePhotoRecyclerView.showHorizontal(this)
-        binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
-
+        initChoicePhotoRecyclerView()
 
         //화면이 다시 시작할때 자동저장된 값 불러오기
         binding.postTitle.setText(toyUploadViewModel.postTitle.value.toString())
@@ -73,12 +75,10 @@ class ToyUploadActivity : BaseActivity() {
 
     fun backBtnClick(view: View){
         finish()
-
     }
 
     fun uploadBtnClick(view: View){
         finish()
-
     }
 
     //이미지 선택 클릭

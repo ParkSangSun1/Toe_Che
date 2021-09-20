@@ -22,4 +22,6 @@ class RemoteFirebaseDataSource @Inject constructor(
     fun saveUserInfo(userSignIn: UserSignIn) = firebaseRtdb.reference.child("userAccountInfo").child(firebaseAuth.uid.toString()).setValue(userSignIn)
 
     fun saveUserNickName(userNickName : String) = firebaseRtdb.reference.child("userNickName").child(userNickName).setValue(firebaseAuth.uid.toString())
+
+    fun getToyCategory() = firebaseRtdb.reference.child("toyCategory")
 }

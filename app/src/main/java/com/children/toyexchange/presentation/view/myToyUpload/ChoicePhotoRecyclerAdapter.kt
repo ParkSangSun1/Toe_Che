@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadActivity.Companion.photoIndex
 
-class ChoicePhotoRecyclerAdapter(private val viewModel : ToyUploadViewModel) : RecyclerView.Adapter<ChoicePhotoRecyclerViewHolder>() {
+class ChoicePhotoRecyclerAdapter(private val viewModel : ToyUploadViewModel) : RecyclerView.Adapter<ChoicePhotoRecyclerAdapter.ChoicePhotoRecyclerViewHolder>() {
 
 
     override fun onCreateViewHolder(
@@ -39,8 +39,8 @@ class ChoicePhotoRecyclerAdapter(private val viewModel : ToyUploadViewModel) : R
     override fun getItemCount(): Int {
         return photoIndex
     }
-}
 
-class ChoicePhotoRecyclerViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ChoicePhotoRecyclerViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
+    }
 }

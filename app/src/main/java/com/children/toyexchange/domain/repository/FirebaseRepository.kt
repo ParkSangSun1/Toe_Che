@@ -12,4 +12,5 @@ interface FirebaseRepository {
     fun callUserInfo() : DatabaseReference
     fun saveUserInfo(userSignIn: UserSignIn) : Task<Void>
     fun saveUserNickName(userNickName : String) : Task<Void>
+    fun getToyCategory() : DatabaseReference
 }

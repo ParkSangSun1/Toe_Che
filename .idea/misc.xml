@@ -3,14 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/drawable/my_toy_upload_edittext.xml" value="0.1921875" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/drawable/toy_upload_recyclerview_item.xml" value="0.275" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_main.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_phone_auth.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_search_record.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_sign_in.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_splash.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_test.xml" value="0.14766970618034447" />
-        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_toy_upload.xml" value="0.20471014492753623" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_toy_upload.xml" value="0.136" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_tutorial.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/chat_recycler_view_item.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/choice_photo_recycler_view_item.xml" value="0.536" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_chatting.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_exchange.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_get_exchange_list.xml" value="0.14855072463768115" />
@@ -20,6 +24,7 @@
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_search.xml" value="0.14766970618034447" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_set_exchange_list.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_shopping_basket.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/toy_upload_category_recyclerview_item.xml" value="0.6" />
       </map>
     </option>
   </component>

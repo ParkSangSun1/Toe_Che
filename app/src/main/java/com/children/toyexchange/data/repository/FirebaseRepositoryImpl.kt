@@ -4,6 +4,7 @@ import android.net.Uri
 import com.children.toyexchange.data.models.UserSignIn
 import com.children.toyexchange.data.repository.datasource.RemoteFirebaseDataSource
 import com.children.toyexchange.domain.repository.FirebaseRepository
+import com.google.firebase.database.DatabaseReference
 import javax.inject.Inject
 
 class FirebaseRepositoryImpl @Inject constructor(
@@ -18,4 +19,6 @@ class FirebaseRepositoryImpl @Inject constructor(
     override fun saveUserInfo(userSignIn: UserSignIn) = fireBaseSource.saveUserInfo(userSignIn)
 
     override fun saveUserNickName(userNickName: String) = fireBaseSource.saveUserNickName(userNickName)
+
+    override fun getToyCategory(): DatabaseReference = fireBaseSource.getToyCategory()
 }

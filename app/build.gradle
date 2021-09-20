@@ -22,7 +22,7 @@ android {
     }
 
     buildFeatures {
-        dataBinding= true
+        dataBinding true
     }
     buildTypes {
         release {
@@ -100,5 +100,7 @@ dependencies {
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
+    //tag 라이브러리
+    //implementation 'com.github.anonymous-ME:TagsEditText:0.5.0'
 
 }

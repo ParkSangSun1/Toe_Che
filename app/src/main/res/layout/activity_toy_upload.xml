@@ -251,13 +251,15 @@
                         android:textSize="@dimen/toy_upload_page_title_txt_size" />
 
 
+
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/toy_upload_letters_and_spacing"
                         android:background="@drawable/my_toy_upload_edittext">
 
-                        <EditText
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
@@ -266,9 +268,17 @@
                             android:layout_marginBottom="10dp"
                             android:background="@null"
                             android:fontFamily="@font/notosanskr_medium"
-                            android:hint="좀더 정확히 알수 있는!"
+                            android:hint="카테고리 선택하기"
                             android:includeFontPadding="false"
                             android:textSize="15sp" />
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/toy_upload_category_arrow_bold"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
+                            />
                     </RelativeLayout>
                 </LinearLayout>
 
