@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainToyUploadFragment">
+
+
+    <fragment
+        android:id="@+id/mainToyUploadFragment"
+        android:name="com.children.toyexchange.presentation.view.myToyUpload.MainToyUploadFragment"
+        android:label="fragment_choice_category"
+        tools:layout="@layout/fragment_main_toy_upload" />
+</navigation>

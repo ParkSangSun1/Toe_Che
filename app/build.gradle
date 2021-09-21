@@ -107,4 +107,15 @@ dependencies {
 
     //firestore 오류에 대한 해결방법
     implementation "io.grpc:grpc-okhttp:1.32.2"
+
+
+    def nav_version = "2.3.5"
+    // Kotlin
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    // Feature module Support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+
+
 }
