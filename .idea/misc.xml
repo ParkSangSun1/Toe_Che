@@ -16,6 +16,7 @@
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/chat_recycler_view_item.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/choice_photo_recycler_view_item.xml" value="0.536" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_chatting.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_choice_category.xml" value="0.26132246376811596" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_exchange.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_get_exchange_list.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_mypage.xml" value="0.14855072463768115" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_search.xml" value="0.14766970618034447" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_set_exchange_list.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_shopping_basket.xml" value="0.14855072463768115" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_toy_upload_main.xml" value="0.152" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/toy_upload_category_recyclerview_item.xml" value="0.6" />
       </map>
     </option>

@@ -6,28 +6,36 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.data.models.ToyUpload
-import com.children.toyexchange.presentation.base.BaseActivity
+import com.children.toyexchange.databinding.FragmentMainToyUploadBinding
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class ToyUploadActivity : AppCompatActivity() {
-/*    companion object{
-         var photoIndex : Int = 0
+class MainToyUploadFragment : Fragment() {
+
+    private lateinit var binding : FragmentMainToyUploadBinding
+
+
+    companion object{
+        var photoIndex : Int = 0
     }
     private val toyUploadViewModel by viewModels<ToyUploadViewModel>()
     private var choicePhotoUri: Uri? = null
     lateinit var toyUploadDataClass : ToyUpload
+
 
     override fun onStart() {
         super.onStart()
@@ -42,15 +50,27 @@ class ToyUploadActivity : AppCompatActivity() {
 
 
 
-    }*/
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_toy_upload)
+
     }
-/*
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_main_toy_upload,container,false)
+
+        binding.fragment = this
+        initChoicePhotoRecyclerView()
+        return binding.root
+    }
+
     private fun initChoicePhotoRecyclerView(){
-        binding.choicePhotoRecyclerView.showHorizontal(this)
+        binding.choicePhotoRecyclerView.showHorizontal(requireContext())
         binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
     }
 
@@ -63,18 +83,8 @@ class ToyUploadActivity : AppCompatActivity() {
 
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        initChoicePhotoRecyclerView()
-
-        //화면이 다시 시작할때 자동저장된 값 불러오기
-        binding.postTitle.setText(toyUploadViewModel.postTitle.value.toString())
-        binding.postContents.setText(toyUploadViewModel.postContents.value.toString())
-
-    }
-
     fun backBtnClick(view: View){
-        finish()
+
     }
 
     fun uploadBtnClick(view: View){
@@ -93,7 +103,7 @@ class ToyUploadActivity : AppCompatActivity() {
     //이미지 선택 클릭
     fun clickChoseProfileImage(view: View) {
         if (photoIndex >= 5){
-            Toast.makeText(this,"사진을 더 이상 추가 할수 없습니다",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),"사진을 더 이상 추가 할수 없습니다",Toast.LENGTH_SHORT).show()
         }else{
             //이미지를 선택
             val intent = Intent()
@@ -126,15 +136,13 @@ class ToyUploadActivity : AppCompatActivity() {
             }
             ImagePicker.RESULT_ERROR -> {
                 choicePhotoUri = null
-                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT)
                     .show()
             }
             else -> {
                 choicePhotoUri = null
-                Toast.makeText(this, "작업 취소됨", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "작업 취소됨", Toast.LENGTH_SHORT).show()
             }
         }
-    }*/
-
- */
+    }
 }
