@@ -1,14 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.view.myToyUpload.fragment.CategoryChoiceFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="fragment"
+            type="com.children.toyexchange.presentation.view.myToyUpload.fragment.CategoryChoiceFragment" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        tools:context=".presentation.view.myToyUpload.fragment.CategoryChoiceFragment">
 
-</FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/notosanskr_black"
+                android:includeFontPadding="false"
+                android:text="카테고리 선택"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </RelativeLayout>
+        <View
+            android:id="@+id/title_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/title"
+            android:background="@color/view_line" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:background="#F1F1F1"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="신생아/ 유아"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="액션"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="RC조종"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="자동차"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="교육"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="피규어"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="프라모델"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="BB탄"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="스포츠"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="기타"
+                        android:fontFamily="@font/notosanskr_medium"
+                        android:includeFontPadding="false"
+                        android:textSize="@dimen/toy_upload_category_choice_item_txt_size"
+                        android:layout_margin="@dimen/toy_upload_category_choice_item_in_margin"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

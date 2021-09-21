@@ -10,5 +10,14 @@
         android:id="@+id/mainToyUploadFragment"
         android:name="com.children.toyexchange.presentation.view.myToyUpload.fragment.MainToyUploadFragment"
         android:label="fragment_choice_category"
-        tools:layout="@layout/fragment_main_toy_upload" />
+        tools:layout="@layout/fragment_main_toy_upload" >
+        <action
+            android:id="@+id/action_mainToyUploadFragment_to_categoryChoiceFragment"
+            app:destination="@id/categoryChoiceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryChoiceFragment"
+        android:name="com.children.toyexchange.presentation.view.myToyUpload.fragment.CategoryChoiceFragment"
+        android:label="CategoryChoiceFragment"
+        tools:layout="@layout/fragment_category_choice"/>
 </navigation>

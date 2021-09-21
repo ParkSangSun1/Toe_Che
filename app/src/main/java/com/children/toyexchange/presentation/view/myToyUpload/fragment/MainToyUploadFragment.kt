@@ -15,6 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.children.toyexchange.R
 import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.databinding.FragmentMainToyUploadBinding
@@ -51,6 +52,10 @@ class MainToyUploadFragment : Fragment() {
 
 
 
+    }
+
+    fun categoryChoiceBtnClick(view: View){
+        view.findNavController().navigate(R.id.action_mainToyUploadFragment_to_categoryChoiceFragment)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

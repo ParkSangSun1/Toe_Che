@@ -8,5 +8,8 @@
     <dimen name="product_recycler_item_location_and_time">13sp</dimen>
     <dimen name="product_recycler_item_price">18sp</dimen>
     <dimen name="mypage_btn_line">2dp</dimen>
+    <dimen name="toy_upload_category_choice_item_in_margin">15dp</dimen>
+    <dimen name="toy_upload_category_choice_item_bottom_margin">5dp</dimen>
+    <dimen name="toy_upload_category_choice_item_txt_size">16sp</dimen>
 
 </resources>
