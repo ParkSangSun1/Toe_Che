@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.myToyUpload
+package com.children.toyexchange.presentation.view.myToyUpload.fragment
 
 import android.app.Activity
 import android.content.Intent
@@ -13,12 +13,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.databinding.FragmentMainToyUploadBinding
+import com.children.toyexchange.presentation.view.myToyUpload.ChoicePhotoRecyclerAdapter
+import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
