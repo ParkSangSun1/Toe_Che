@@ -262,6 +262,7 @@
                             android:background="@drawable/my_toy_upload_edittext">
 
                             <TextView
+                                android:id="@+id/user_choice_category"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"

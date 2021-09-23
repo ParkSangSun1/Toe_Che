@@ -40,6 +40,10 @@ class ToyUploadViewModel @Inject constructor(
     val getCategory: LiveData<DatabaseReference> get() = _getCategory
     private val _getCategory = MutableLiveData<DatabaseReference>()
 
+    //사용자가 선택한 카테고리
+    val userChoiceCategory: LiveData<String> get() = _userChoiceCategory
+    private val _userChoiceCategory = MutableLiveData<String>()
+
 
     init {
         _saveChoicePhoto.value = mutableListOf()
@@ -75,6 +79,10 @@ class ToyUploadViewModel @Inject constructor(
     //저장된 카테고리 불러오기
     fun getToyCategory() {
         _getCategory.value = getToyCategoryUseCase.execute()
+    }
+
+    fun setUserChoiceCategory(choice : String){
+        _userChoiceCategory.value = choice
     }
 
     //게시물 올리기

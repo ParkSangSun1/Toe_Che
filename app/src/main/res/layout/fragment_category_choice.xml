@@ -60,6 +60,8 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/category_1"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_width="match_parent"
                     android:background="@color/white"
                     android:layout_height="wrap_content"
@@ -79,8 +81,10 @@
 
 
                 <LinearLayout
+                    android:id="@+id/category_2"
                     android:layout_width="match_parent"
                     android:background="@color/white"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
                     android:orientation="vertical">
@@ -98,8 +102,10 @@
 
 
                 <LinearLayout
+                    android:id="@+id/category_3"
                     android:layout_width="match_parent"
                     android:background="@color/white"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
                     android:orientation="vertical">
@@ -117,6 +123,8 @@
 
 
                 <LinearLayout
+                    android:id="@+id/category_4"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_width="match_parent"
                     android:background="@color/white"
                     android:layout_height="wrap_content"
@@ -135,7 +143,9 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/category_5"
                     android:layout_width="match_parent"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:background="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
@@ -154,9 +164,11 @@
 
 
                 <LinearLayout
+                    android:id="@+id/category_6"
                     android:layout_width="match_parent"
                     android:background="@color/white"
                     android:layout_height="wrap_content"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
                     android:orientation="vertical">
                     <TextView
@@ -172,8 +184,10 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/category_7"
                     android:layout_width="match_parent"
                     android:background="@color/white"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
                     android:orientation="vertical">
@@ -191,8 +205,10 @@
 
 
                 <LinearLayout
+                    android:id="@+id/category_8"
                     android:layout_width="match_parent"
                     android:background="@color/white"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
                     android:orientation="vertical">
@@ -209,7 +225,9 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/category_9"
                     android:layout_width="match_parent"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:background="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
@@ -228,8 +246,10 @@
 
 
                 <LinearLayout
+                    android:id="@+id/category_10"
                     android:layout_width="match_parent"
                     android:background="@color/white"
+                    android:onClick="@{fragment::categoryItemClick}"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/toy_upload_category_choice_item_bottom_margin"
                     android:orientation="vertical">

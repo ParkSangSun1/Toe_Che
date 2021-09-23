@@ -19,5 +19,7 @@
         android:id="@+id/categoryChoiceFragment"
         android:name="com.children.toyexchange.presentation.view.myToyUpload.fragment.CategoryChoiceFragment"
         android:label="CategoryChoiceFragment"
-        tools:layout="@layout/fragment_category_choice"/>
+        tools:layout="@layout/fragment_category_choice">
+
+    </fragment>
 </navigation>

@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -29,15 +30,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainToyUploadFragment : Fragment() {
 
     private lateinit var binding : FragmentMainToyUploadBinding
-
+    private val toyUploadViewModel by activityViewModels<ToyUploadViewModel>()
+    private var choicePhotoUri: Uri? = null
+    lateinit var toyUploadDataClass : ToyUpload
 
     companion object{
         var photoIndex : Int = 0
     }
-    private val toyUploadViewModel by viewModels<ToyUploadViewModel>()
-    private var choicePhotoUri: Uri? = null
-    lateinit var toyUploadDataClass : ToyUpload
-
 
     override fun onStart() {
         super.onStart()
@@ -69,9 +68,9 @@ class MainToyUploadFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_main_toy_upload,container,false)
-
         binding.fragment = this
         initChoicePhotoRecyclerView()
+        observeViewModel()
         return binding.root
     }
 
@@ -87,6 +86,12 @@ class MainToyUploadFragment : Fragment() {
         toyUploadViewModel.setPostTitle(binding.postTitle.text.toString())
         toyUploadViewModel.setPostContents(binding.postContents.text.toString())
 
+    }
+
+    private fun observeViewModel(){
+        toyUploadViewModel.userChoiceCategory.observe(requireActivity(), Observer {
+            binding.userChoiceCategory.text = it
+        })
     }
 
     fun backBtnClick(view: View){
