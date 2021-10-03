@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.myToyUpload
+package com.children.toyexchange.presentation.view.myToyUpload.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.children.toyexchange.R
+import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.view.myToyUpload.fragment.MainToyUploadFragment.Companion.photoIndex
 
 class ChoicePhotoRecyclerAdapter(private val viewModel : ToyUploadViewModel) : RecyclerView.Adapter<ChoicePhotoRecyclerAdapter.ChoicePhotoRecyclerViewHolder>() {

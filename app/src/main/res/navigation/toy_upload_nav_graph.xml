@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_mainToyUploadFragment_to_categoryChoiceFragment"
             app:destination="@id/categoryChoiceFragment" />
+        <action
+            android:id="@+id/action_mainToyUploadFragment_to_settingAddressFragment"
+            app:destination="@id/settingAddressFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryChoiceFragment"
@@ -22,4 +25,9 @@
         tools:layout="@layout/fragment_category_choice">
 
     </fragment>
+    <fragment
+        android:id="@+id/settingAddressFragment"
+        android:name="com.children.toyexchange.presentation.view.myToyUpload.fragment.SettingAddressFragment"
+        android:label="fragment_setting_address"
+        tools:layout="@layout/fragment_setting_address" />
 </navigation>

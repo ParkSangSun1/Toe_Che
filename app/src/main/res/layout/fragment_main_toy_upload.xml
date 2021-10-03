@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="fragment"
             type="com.children.toyexchange.presentation.view.myToyUpload.fragment.MainToyUploadFragment" />
@@ -94,7 +95,7 @@
                                 android:onClick="@{fragment::clickChoseProfileImage}">
 
 
-                            <LinearLayout
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
@@ -123,8 +124,8 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/choice_photo_recycler_view"
                                 android:layout_width="match_parent"
-                                android:layout_marginStart="10dp"
                                 android:layout_height="match_parent"
+                                android:layout_marginStart="10dp"
                                 android:layout_marginTop="@dimen/toy_upload_letters_and_spacing" />
                         </LinearLayout>
 
@@ -258,8 +259,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/toy_upload_letters_and_spacing"
-                            android:onClick="@{fragment::categoryChoiceBtnClick}"
-                            android:background="@drawable/my_toy_upload_edittext">
+                            android:background="@drawable/my_toy_upload_edittext"
+                            android:onClick="@{fragment::categoryChoiceBtnClick}">
 
                             <TextView
                                 android:id="@+id/user_choice_category"
@@ -278,10 +279,10 @@
                             <ImageView
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
-                                android:src="@drawable/toy_upload_category_arrow_bold"
-                                android:layout_centerVertical="true"
                                 android:layout_alignParentEnd="true"
-                                android:layout_marginEnd="10dp" />
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/toy_upload_category_arrow_bold" />
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -306,7 +307,7 @@
                             android:fontFamily="@font/notosanskr_bold"
                             android:gravity="left"
                             android:includeFontPadding="false"
-                            android:text="지역을 설정해 주세요"
+                            android:text="위치를 설정해 주세요"
                             android:textColor="@color/black"
                             android:textSize="@dimen/toy_upload_page_title_txt_size" />
 
@@ -314,10 +315,12 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:onClick="@{fragment::settingAddressBtnClick}"
                             android:layout_marginTop="@dimen/toy_upload_letters_and_spacing"
                             android:background="@drawable/my_toy_upload_edittext">
 
-                            <EditText
+                            <TextView
+                                android:id="@+id/setting_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
@@ -326,9 +329,18 @@
                                 android:layout_marginBottom="10dp"
                                 android:background="@null"
                                 android:fontFamily="@font/notosanskr_medium"
-                                android:hint="사람들이 잘 아는곳으로!"
+                                android:hint="위치 설정하기"
                                 android:includeFontPadding="false"
                                 android:textSize="15sp" />
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/toy_upload_category_arrow_bold" />
+
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -345,8 +357,8 @@
                 android:fontFamily="@font/notosanskr_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
-                android:padding="20dp"
                 android:onClick="@{fragment::uploadBtnClick}"
+                android:padding="20dp"
                 android:text="등록하기"
                 android:textColor="@color/white"
                 android:textSize="17dp" />

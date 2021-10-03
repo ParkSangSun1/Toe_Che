@@ -14,13 +14,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.children.toyexchange.R
 import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.databinding.FragmentMainToyUploadBinding
-import com.children.toyexchange.presentation.view.myToyUpload.ChoicePhotoRecyclerAdapter
+import com.children.toyexchange.presentation.view.myToyUpload.adapter.ChoicePhotoRecyclerAdapter
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -51,6 +50,10 @@ class MainToyUploadFragment : Fragment() {
 
 
 
+    }
+
+    fun settingAddressBtnClick(view: View){
+        view.findNavController().navigate(R.id.action_mainToyUploadFragment_to_settingAddressFragment)
     }
 
     fun categoryChoiceBtnClick(view: View){
