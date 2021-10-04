@@ -1,12 +1,14 @@
 package com.children.toyexchange.presentation.view.myToyUpload
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.domain.usecase.GetToyCategoryUseCase
+import com.children.toyexchange.domain.usecase.SearchAddressUseCase
 import com.children.toyexchange.domain.usecase.ToyUploadUseCase
 import com.google.firebase.database.DatabaseReference
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ToyUploadViewModel @Inject constructor(
     private val getToyCategoryUseCase: GetToyCategoryUseCase,
-    private val toyUploadUseCase: ToyUploadUseCase
+    private val toyUploadUseCase: ToyUploadUseCase,
+    private val searchAddressUseCase: SearchAddressUseCase
 ) : ViewModel() {
 
 
@@ -89,4 +92,12 @@ class ToyUploadViewModel @Inject constructor(
     fun toyUpload(uid: String, postName: String, data: ToyUpload) =
         toyUploadUseCase.execute(uid, postName, data)
 
+
+    fun searchAddress(Authorization : String, analyze_type: String, page: Int, size:Int, query : String)= viewModelScope.launch {
+        searchAddressUseCase.execute(Authorization = Authorization, analyze_type = analyze_type, page = page, size = size,query= query).let { response ->
+            if (response.isSuccessful){
+                Log.d("로그","주소 검색 성공 : ${response.body()}")
+            }
+        }
+    }
 }
