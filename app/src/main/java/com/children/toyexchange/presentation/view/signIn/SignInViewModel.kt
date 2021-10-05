@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -111,6 +112,7 @@ class SignInViewModel @Inject constructor(
 
     //전화번호 인중, User 정보를 가져온 후 신규사용자인지 확인
     fun phoneNumberCheck(snapshot: DataSnapshot) {
+
         //신규사용자인지 기존에 정보가 있는 사용자인지 체크, 만약 null 이면 신규사용자
         if (snapshot.child(auth.uid.toString()).value != null) {
             //기존사용자의 uid값에 있는 정보 불러오기
@@ -140,6 +142,7 @@ class SignInViewModel @Inject constructor(
         } else {
             setSignInGoNextTrue()
         }
+
     }
 
 

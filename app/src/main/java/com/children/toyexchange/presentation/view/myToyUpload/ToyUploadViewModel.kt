@@ -84,7 +84,7 @@ class ToyUploadViewModel @Inject constructor(
         _getCategory.value = getToyCategoryUseCase.execute()
     }
 
-    fun setUserChoiceCategory(choice : String){
+    fun setUserChoiceCategory(choice: String) {
         _userChoiceCategory.value = choice
     }
 
@@ -93,11 +93,27 @@ class ToyUploadViewModel @Inject constructor(
         toyUploadUseCase.execute(uid, postName, data)
 
 
-    fun searchAddress(Authorization : String, analyze_type: String, page: Int, size:Int, query : String)= viewModelScope.launch {
-        searchAddressUseCase.execute(Authorization = Authorization, analyze_type = analyze_type, page = page, size = size,query= query).let { response ->
-            if (response.isSuccessful){
-                Log.d("로그","주소 검색 성공 : ${response.body()}")
+    fun searchAddress(
+        Authorization: String,
+        analyze_type: String,
+        page: Int,
+        size: Int,
+        query: String
+    ) = viewModelScope.launch {
+        try {
+            searchAddressUseCase.execute(
+                Authorization = Authorization,
+                analyze_type = analyze_type,
+                page = page,
+                size = size,
+                query = query
+            ).let { response ->
+                if (response.isSuccessful) {
+                    Log.d("로그", "주소 검색 성공 : ${response.body()}")
+                }
             }
+        } catch (e: Exception) {
+
         }
     }
 }
