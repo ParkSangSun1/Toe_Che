@@ -41,38 +41,70 @@
                 android:textSize="20sp" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/query"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#F6F6F6"
+>
+            <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/query"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@id/search"
+                    android:background="@null"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:hint="주소를 입력하세요"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/login_main_color"
+                    android:layout_below="@id/query"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_centerVertical="true"
+                    android:onClick="@{fragment::searchAddressBtnClick}"
+                    android:src="@drawable/search" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/notosanskr_medium"
-                android:hint="주소를 입력하세요"
-                android:layout_toStartOf="@id/search"
-                android:layout_marginEnd="10dp"
                 android:includeFontPadding="false"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:text="주소를 입력시 자동으로 동/ 리 까지만 표시됩니다"
+                android:textColor="#616161"
+                android:textSize="15sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/address_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-            <ImageView
-                android:id="@+id/search"
-                android:layout_width="30dp"
-                android:onClick="@{fragment::searchAddressBtnClick}"
-                android:layout_height="30dp"
-                android:src="@drawable/search"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/address_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        </LinearLayout>
 
     </LinearLayout>
 </layout>
