@@ -167,13 +167,13 @@ class PhoneAuthActivity : SignInBaseActivity() {
                 0 -> {
                     binding.checkPhoneNumber.text = "다음으로"
 
-                    transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out)
+                    transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_left)
                         .replace(R.id.authFrameLayout, PhoneNumberFragment())
                     flag = 1
                 }
                 1 -> {
                     binding.checkPhoneNumber.text = "시작하기"
-                    transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out)
+                    transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_in_left)
                         .add(R.id.authFrameLayout, NickNameFragment())
                     flag = 2
                 }
