@@ -1,6 +1,6 @@
 package com.children.toyexchange.data.models.searchaddress
 
-data class Address(
+data class AddressItem(
     val address_name: String,
     val b_code: String,
     val h_code: String,

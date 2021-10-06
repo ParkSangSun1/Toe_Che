@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/drawable/btn_radius.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/drawable/my_toy_upload_edittext.xml" value="0.1921875" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/drawable/toy_upload_recyclerview_item.xml" value="0.275" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/activity_main.xml" value="0.14855072463768115" />
@@ -26,9 +27,10 @@
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_phone_number.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_search.xml" value="0.14766970618034447" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_set_exchange_list.xml" value="0.14855072463768115" />
-        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_setting_address.xml" value="0.264" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_setting_address.xml" value="0.4" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_shopping_basket.xml" value="0.14855072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/fragment_toy_upload_main.xml" value="0.152" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/setting_address_recycler_view_item.xml" value="0.13109756097560976" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ToyExchange/app/src/main/res/layout/toy_upload_category_recyclerview_item.xml" value="0.6" />
       </map>
     </option>

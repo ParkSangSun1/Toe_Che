@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentSettingAddressBinding
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
@@ -34,16 +35,29 @@ class SettingAddressFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting_address,container,false)
         binding.fragment = this
-        initRecyclerView()
-
+        observeViewModel()
         return binding.root
+    }
+
+    private fun observeViewModel(){
+        toyUploadViewModel.searchAddressResponse.observe(requireActivity(), Observer {
+            Log.d("로그","searchAddressResponse : ${it.body()?.documents?.size}")
+            if (it.body()?.documents?.size != 0){
+                initRecyclerView()
+            }
+        })
     }
 
     fun searchAddressBtnClick(view: View){
         toyUploadViewModel.searchAddress(KEY,"similar",1,10,binding.query.text.toString())
     }
+
     private fun initRecyclerView(){
         binding.addressRecyclerView.showVertical(requireContext())
-        binding.addressRecyclerView.adapter = SettingAddressRecyclerAdapter(toyUploadViewModel)
+        binding.addressRecyclerView.adapter = toyUploadViewModel.searchAddressResponse.value?.let {
+            SettingAddressRecyclerAdapter(
+                it
+            )
+        }
     }
 }

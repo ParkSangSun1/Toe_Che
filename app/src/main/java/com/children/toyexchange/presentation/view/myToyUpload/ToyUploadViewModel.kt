@@ -7,12 +7,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.children.toyexchange.data.models.ToyUpload
+import com.children.toyexchange.data.models.searchaddress.SearchAddress
 import com.children.toyexchange.domain.usecase.GetToyCategoryUseCase
 import com.children.toyexchange.domain.usecase.SearchAddressUseCase
 import com.children.toyexchange.domain.usecase.ToyUploadUseCase
 import com.google.firebase.database.DatabaseReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
@@ -47,6 +49,9 @@ class ToyUploadViewModel @Inject constructor(
     val userChoiceCategory: LiveData<String> get() = _userChoiceCategory
     private val _userChoiceCategory = MutableLiveData<String>()
 
+    //주소검색 api response
+    val searchAddressResponse: LiveData<Response<SearchAddress>> get() = _searchAddressResponse
+    private val _searchAddressResponse = MutableLiveData< Response<SearchAddress>>()
 
     init {
         _saveChoicePhoto.value = mutableListOf()
@@ -109,7 +114,7 @@ class ToyUploadViewModel @Inject constructor(
                 query = query
             ).let { response ->
                 if (response.isSuccessful) {
-                    Log.d("로그", "주소 검색 성공 : ${response.body()}")
+                    _searchAddressResponse.value = response
                 }
             }
         } catch (e: Exception) {
