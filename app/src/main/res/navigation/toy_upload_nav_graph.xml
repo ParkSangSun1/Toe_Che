@@ -13,10 +13,18 @@
         tools:layout="@layout/fragment_main_toy_upload" >
         <action
             android:id="@+id/action_mainToyUploadFragment_to_categoryChoiceFragment"
-            app:destination="@id/categoryChoiceFragment" />
+            app:destination="@id/categoryChoiceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_mainToyUploadFragment_to_settingAddressFragment"
-            app:destination="@id/settingAddressFragment" />
+            app:destination="@id/settingAddressFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/categoryChoiceFragment"
