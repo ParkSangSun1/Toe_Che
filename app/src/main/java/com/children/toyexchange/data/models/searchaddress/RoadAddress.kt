@@ -5,5 +5,6 @@ data class RoadAddress(
     val zone_no : String?,
     val region_1depth_name : String?,
     val region_2depth_name : String?,
-    val region_3depth_name : String?
+    val region_3depth_name : String?,
+    val region_3depth_h_name :String?
 )

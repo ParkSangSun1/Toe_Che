@@ -65,7 +65,7 @@
                     android:layout_toStartOf="@id/search"
                     android:background="@null"
                     android:fontFamily="@font/notosanskr_medium"
-                    android:hint="주소를 입력하세요"
+                    android:hint="도로명 주소를 입력하세요"
                     android:includeFontPadding="false"
                     android:textColor="@color/black"
                     android:textSize="17sp" />

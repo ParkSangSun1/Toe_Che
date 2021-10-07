@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentSettingAddressBinding
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
@@ -21,8 +22,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingAddressFragment : Fragment() {
-    private lateinit var binding : FragmentSettingAddressBinding
+    private lateinit var binding: FragmentSettingAddressBinding
     private val toyUploadViewModel by activityViewModels<ToyUploadViewModel>()
+    private var checkBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,31 +35,38 @@ class SettingAddressFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting_address,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_setting_address, container, false)
         binding.fragment = this
         observeViewModel()
         return binding.root
     }
 
-    private fun observeViewModel(){
+    private fun observeViewModel() {
         toyUploadViewModel.searchAddressResponse.observe(requireActivity(), Observer {
-            Log.d("로그","searchAddressResponse : ${it.body()?.documents?.size}")
-            if (it.body()?.documents?.size != 0){
+            Log.d("로그", "searchAddressResponse : ${it?.body()?.documents?.size}")
+            if (it?.body()?.documents?.size != 0 && it != null) {
                 initRecyclerView()
+            }
+        })
+
+        toyUploadViewModel.postAddress.observe(requireActivity(), Observer {
+            if (it != null){
+                if (!checkBack){
+                    checkBack = true
+                    this.findNavController().popBackStack()
+                    toyUploadViewModel.setSearchAddressNull()
+                }
             }
         })
     }
 
-    fun searchAddressBtnClick(view: View){
-        toyUploadViewModel.searchAddress(KEY,"similar",1,10,binding.query.text.toString())
+    fun searchAddressBtnClick(view: View) {
+        toyUploadViewModel.searchAddress(KEY, "similar", 1, 10, "남구 월산동")
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerView() {
         binding.addressRecyclerView.showVertical(requireContext())
-        binding.addressRecyclerView.adapter = toyUploadViewModel.searchAddressResponse.value?.let {
-            SettingAddressRecyclerAdapter(
-                it
-            )
-        }
+        binding.addressRecyclerView.adapter = SettingAddressRecyclerAdapter(toyUploadViewModel)
     }
 }

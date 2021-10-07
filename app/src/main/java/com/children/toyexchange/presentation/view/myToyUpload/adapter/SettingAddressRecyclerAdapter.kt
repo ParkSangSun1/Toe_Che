@@ -14,9 +14,9 @@ import com.children.toyexchange.presentation.view.myToyUpload.fragment.MainToyUp
 import retrofit2.Response
 
 class SettingAddressRecyclerAdapter(
-    private val response : Response<SearchAddress>
+    private val viewModel: ToyUploadViewModel
 ) : RecyclerView.Adapter<SettingAddressRecyclerAdapter.SettingAddressRecyclerViewHolder>() {
-
+    private val response: Response<SearchAddress> = viewModel.searchAddressResponse.value!!
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -42,17 +42,32 @@ class SettingAddressRecyclerAdapter(
                 it
             )
         }*/
-        Log.d("로그","onBindViewHolder : ${response.body()!!.documents[position]}")
+        Log.d("로그", "onBindViewHolder : ${response.body()!!.documents[position]}")
         holder.bind(response.body()!!.documents[position])
+        holder.binding.item.setOnClickListener {
+            Log.d(
+                "로그",
+                "road_address, address null 확인 : ${response.body()!!.documents[position].road_address}, ${response.body()!!.documents[position].address}"
+            )
+            if (response.body()!!.documents[position].road_address == null) {
+                if (response.body()!!.documents[position].road_address?.region_3depth_name == null)
+                    viewModel.setPostAddress("${response.body()!!.documents[position].address?.region_1depth_name} ${response.body()!!.documents[position].address?.region_2depth_name} ${response.body()!!.documents[position].address?.region_3depth_h_name}")
+                else viewModel.setPostAddress("${response.body()!!.documents[position].address?.region_1depth_name} ${response.body()!!.documents[position].address?.region_2depth_name} ${response.body()!!.documents[position].address?.region_3depth_name}")
+            } else if (response.body()!!.documents[position].address == null)
+                if (response.body()!!.documents[position].road_address?.region_3depth_name == null)
+                    viewModel.setPostAddress("${response.body()!!.documents[position].road_address?.region_1depth_name} ${response.body()!!.documents[position].road_address?.region_2depth_name} ${response.body()!!.documents[position].road_address?.region_3depth_h_name}")
+                else viewModel.setPostAddress("${response.body()!!.documents[position].road_address?.region_1depth_name} ${response.body()!!.documents[position].road_address?.region_2depth_name} ${response.body()!!.documents[position].road_address?.region_3depth_name}")
+        }
     }
 
     override fun getItemCount(): Int {
         return response.body()!!.documents.size
     }
 
-     class SettingAddressRecyclerViewHolder(val binding: SettingAddressRecyclerViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class SettingAddressRecyclerViewHolder(val binding: SettingAddressRecyclerViewItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Document) {
-            Log.d("로그","SettingAddressRecyclerViewHolder bind data : $data")
+            Log.d("로그", "SettingAddressRecyclerViewHolder bind data : $data")
             binding.data = data
             binding.executePendingBindings()
         }

@@ -53,6 +53,7 @@ class MainToyUploadFragment : Fragment() {
     }
 
     fun settingAddressBtnClick(view: View){
+        toyUploadViewModel.setPostAddress(null)
         view.findNavController().navigate(R.id.action_mainToyUploadFragment_to_settingAddressFragment)
     }
 
@@ -94,6 +95,10 @@ class MainToyUploadFragment : Fragment() {
     private fun observeViewModel(){
         toyUploadViewModel.userChoiceCategory.observe(requireActivity(), Observer {
             binding.userChoiceCategory.text = it
+        })
+
+        toyUploadViewModel.postAddress.observe(requireActivity(), Observer {
+            binding.settingAddress.text = it
         })
     }
 

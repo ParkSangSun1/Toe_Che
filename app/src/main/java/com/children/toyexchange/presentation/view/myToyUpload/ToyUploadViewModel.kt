@@ -50,8 +50,12 @@ class ToyUploadViewModel @Inject constructor(
     private val _userChoiceCategory = MutableLiveData<String>()
 
     //주소검색 api response
-    val searchAddressResponse: LiveData<Response<SearchAddress>> get() = _searchAddressResponse
-    private val _searchAddressResponse = MutableLiveData< Response<SearchAddress>>()
+    val searchAddressResponse: LiveData<Response<SearchAddress>?> get() = _searchAddressResponse
+    private val _searchAddressResponse = MutableLiveData<Response<SearchAddress>?>()
+
+    //사용자가 선택한 주소
+    val postAddress: LiveData<String?> get() = _postAddress
+    private val _postAddress = MutableLiveData<String?>()
 
     init {
         _saveChoicePhoto.value = mutableListOf()
@@ -78,6 +82,13 @@ class ToyUploadViewModel @Inject constructor(
 
     fun setPostTitle(postTitle: String) {
         _postTitle.value = postTitle
+    }
+
+    fun setSearchAddressNull(){
+        _searchAddressResponse.value = null
+    }
+    fun setPostAddress(postAddress: String?) {
+        _postAddress.value = postAddress
     }
 
     fun setPostContents(postContents: String) {
