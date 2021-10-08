@@ -62,7 +62,7 @@ class SettingAddressFragment : Fragment() {
     }
 
     fun searchAddressBtnClick(view: View) {
-        toyUploadViewModel.searchAddress(KEY, "similar", 1, 10, "남구 월산동")
+        toyUploadViewModel.searchAddress(KEY, "similar", 1, 10, binding.query.text.toString())
     }
 
     private fun initRecyclerView() {

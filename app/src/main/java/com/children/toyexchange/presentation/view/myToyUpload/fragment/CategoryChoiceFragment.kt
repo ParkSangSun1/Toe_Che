@@ -37,17 +37,17 @@ class CategoryChoiceFragment : Fragment() {
         Log.d("로그", "뷰가 어떻게 들어오나? : ${view.id}")
 
         //카테고리 차례대로
-        when (view.id) {
-            2131296803 -> toyUploadViewModel.setUserChoiceCategory("신생아/ 유아")
-            2131296805 -> toyUploadViewModel.setUserChoiceCategory("액션")
-            2131296806 -> toyUploadViewModel.setUserChoiceCategory("RC조종")
-            2131296807 -> toyUploadViewModel.setUserChoiceCategory("자동차")
-            2131296808 -> toyUploadViewModel.setUserChoiceCategory("교육")
-            2131296809 -> toyUploadViewModel.setUserChoiceCategory("피규어")
-            2131296810 -> toyUploadViewModel.setUserChoiceCategory("프라모델")
-            2131296811 ->toyUploadViewModel.setUserChoiceCategory("BB탄")
-            2131296812 -> toyUploadViewModel.setUserChoiceCategory("스포츠")
-            2131296804 -> toyUploadViewModel.setUserChoiceCategory("기타")
+        when (view) {
+            binding.category1 -> toyUploadViewModel.setUserChoiceCategory("신생아/ 유아")
+            binding.category2 -> toyUploadViewModel.setUserChoiceCategory("액션")
+            binding.category3 -> toyUploadViewModel.setUserChoiceCategory("RC조종")
+            binding.category4 -> toyUploadViewModel.setUserChoiceCategory("자동차")
+            binding.category5 -> toyUploadViewModel.setUserChoiceCategory("교육")
+            binding.category6 -> toyUploadViewModel.setUserChoiceCategory("피규어")
+            binding.category7 -> toyUploadViewModel.setUserChoiceCategory("프라모델")
+            binding.category8 -> toyUploadViewModel.setUserChoiceCategory("BB탄")
+            binding.category9 -> toyUploadViewModel.setUserChoiceCategory("스포츠")
+            binding.category10 -> toyUploadViewModel.setUserChoiceCategory("기타")
         }
         view.findNavController().popBackStack()
     }
