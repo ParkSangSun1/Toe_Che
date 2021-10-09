@@ -24,6 +24,9 @@ import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainToyUploadFragment : Fragment() {
@@ -43,13 +46,10 @@ class MainToyUploadFragment : Fragment() {
         toyUploadViewModel.photoIndex.observe(this, Observer {
             //사진 삭제 버튼을 누를시 사진 삭제하는 방법
             initChoicePhotoRecyclerView()
-
+            toyUploadViewModel.setSearchAddressNull()
             photoIndex = it
             binding.photoIndex.text = "$it/ 5"
         })
-
-
-
     }
 
     fun settingAddressBtnClick(view: View){
@@ -107,7 +107,20 @@ class MainToyUploadFragment : Fragment() {
     }
 
     fun uploadBtnClick(view: View){
-        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),"레고","광주",null)
+        CoroutineScope(IO).launch {
+            saveFireStorage()
+            saveFirebaseFireStore()
+        }
+    }
+
+    private suspend fun saveFireStorage(){
+        for (index in 0..10){
+
+        }
+    }
+
+    private suspend fun saveFirebaseFireStore(){
+        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.searchAddressResponse.value.toString(),null)
         toyUploadViewModel.toyUpload("-----userUid-----",binding.postTitle.text.toString(), toyUploadDataClass)
             .addOnSuccessListener {
                 Log.d("로그","요기")
@@ -115,8 +128,6 @@ class MainToyUploadFragment : Fragment() {
             .addOnFailureListener {
                 Log.d("로그","요기2 $it")
             }
-
-//        finish()
     }
 
     //이미지 선택 클릭

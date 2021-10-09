@@ -4,9 +4,11 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.children.toyexchange.data.repository.FirebaseRepositoryImpl
 import com.children.toyexchange.data.models.UserSignIn
 import com.children.toyexchange.domain.usecase.*
+import com.children.toyexchange.presentation.di.DataStoreModule
 import com.children.toyexchange.presentation.widget.utils.UserInfo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -14,6 +16,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -24,7 +28,8 @@ class SignInViewModel @Inject constructor(
     private val checkUserNickNameUseCase: CheckUserNickNameUseCase,
     private val saveUserInfoUseCase: SaveUserInfoUseCase,
     private val saveUserNickNameUseCase: SaveUserNickNameUseCase,
-    private val saveUserProfileUseCase: SaveUserProfileUseCase
+    private val saveUserProfileUseCase: SaveUserProfileUseCase,
+    private val dataStore: DataStoreModule
 ) : ViewModel() {
 
     private var userNickname: String? = null
@@ -210,6 +215,10 @@ class SignInViewModel @Inject constructor(
             .addOnFailureListener {
                 _successRtdbSave.value = 3
             }
+    }
+
+    fun setUserUid(uid : String) = viewModelScope.launch(Dispatchers.IO) {
+        dataStore.setUid(uid)
     }
 
 }

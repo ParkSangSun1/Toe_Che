@@ -15,8 +15,9 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
 
+private val Context.dataStore by preferencesDataStore(com.children.toyexchange.presentation.widget.utils.DataStore.PREFERENCE_NAME)
+
 class DataStoreModule @Inject constructor(@ApplicationContext private val context: Context){
-    private val Context.dataStore by preferencesDataStore(com.children.toyexchange.presentation.widget.utils.DataStore.PREFERENCE_NAME)
 
     private object PreferencesKeys {
         val dataStoreUid = stringPreferencesKey(com.children.toyexchange.presentation.widget.utils.DataStore.PREFERENCES_UID)

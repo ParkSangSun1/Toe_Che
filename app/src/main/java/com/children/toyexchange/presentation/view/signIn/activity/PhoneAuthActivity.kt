@@ -49,6 +49,9 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
     }
 
+    private fun saveUidInDataStore(){
+        auth?.uid?.let { signInViewModel.setUserUid(it) }
+    }
 
     private fun observeViewModel() {
         //만약 휴대폰 인증후 가입된 계정이 있을 경우
@@ -135,6 +138,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
                         signInViewModel.getUserNickname(),
                         signInViewModel.getUserPhoneNumber()
                     )
+                    saveUidInDataStore()
                     //유저 정보 RealTimeDataBase 저장
                     signInViewModel.userInfoRTDBSave(userSignIn)
                 }
@@ -143,6 +147,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
                 3 -> {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    saveUidInDataStore()
                     this@PhoneAuthActivity.startActivityWithFinish(this, MainActivity::class.java)
                 }
                 else -> {
