@@ -23,6 +23,7 @@ import com.children.toyexchange.presentation.view.myToyUpload.adapter.ChoicePhot
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -35,6 +36,7 @@ class MainToyUploadFragment : Fragment() {
     private val toyUploadViewModel by activityViewModels<ToyUploadViewModel>()
     private var choicePhotoUri: Uri? = null
     lateinit var toyUploadDataClass : ToyUpload
+    private val auth = FirebaseAuth.getInstance()
 
     companion object{
         var photoIndex : Int = 0
@@ -107,21 +109,14 @@ class MainToyUploadFragment : Fragment() {
     }
 
     fun uploadBtnClick(view: View){
-        CoroutineScope(IO).launch {
-            saveFireStorage()
+            toyUploadViewModel.uploadPhotoStorage(auth.uid.toString())
             saveFirebaseFireStore()
-        }
     }
 
-    private suspend fun saveFireStorage(){
-        for (index in 0..10){
 
-        }
-    }
-
-    private suspend fun saveFirebaseFireStore(){
+    private fun saveFirebaseFireStore(){
         toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.searchAddressResponse.value.toString(),null)
-        toyUploadViewModel.toyUpload("-----userUid-----",binding.postTitle.text.toString(), toyUploadDataClass)
+        toyUploadViewModel.toyUpload(auth.uid.toString(),binding.postTitle.text.toString(), toyUploadDataClass)
             .addOnSuccessListener {
                 Log.d("로그","요기")
             }

@@ -18,7 +18,7 @@ class RemoteFirebaseDataSource @Inject constructor(
     ) {
     fun checkUserNickName(nickName : String) = firebaseRtdb.reference.child("userNickName").child(nickName)
 
-    fun saveUserProfile(profile : Uri, fileName : String) = firebaseStorage.getReferenceFromUrl(FirebaseStorageUrl).child("images/$fileName").putFile(profile)
+    fun saveUserProfile(profile : Uri, fileName : String) = firebaseStorage.getReferenceFromUrl(FirebaseStorageUrl).child("images/userProfile/$fileName").putFile(profile)
 
     fun callUserInfo() = firebaseRtdb.reference.child("userAccountInfo")
 
@@ -28,5 +28,5 @@ class RemoteFirebaseDataSource @Inject constructor(
 
     fun getToyCategory() = firebaseRtdb.reference.child("toyCategory")
 
-    fun toyUpload(uid : String, postName : String, data : ToyUpload) = fireStore.collection("post").document(uid).collection(postName).document().set(data)
+    fun toyUpload(uid : String, postName : String, data : ToyUpload, postID :String) = fireStore.collection("post").document(uid).collection(postName).document(postID).set(data)
 }

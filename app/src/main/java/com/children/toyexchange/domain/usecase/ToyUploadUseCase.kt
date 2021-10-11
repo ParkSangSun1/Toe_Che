@@ -8,5 +8,5 @@ import javax.inject.Inject
 class ToyUploadUseCase @Inject constructor(
     private val fireBaseRepository: FirebaseRepository
 ) {
-    fun execute(uid : String, postName : String, data : ToyUpload)  = fireBaseRepository.toyUpload(uid, postName, data)
+    fun execute(uid : String, postName : String, data : ToyUpload, postID : String)  = fireBaseRepository.toyUpload(uid, postName, data, postID)
 }

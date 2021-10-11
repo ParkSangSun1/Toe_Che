@@ -9,19 +9,24 @@ import androidx.lifecycle.viewModelScope
 import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.data.models.searchaddress.SearchAddress
 import com.children.toyexchange.domain.usecase.GetToyCategoryUseCase
+import com.children.toyexchange.domain.usecase.SavePostPhotoUseCase
 import com.children.toyexchange.domain.usecase.SearchAddressUseCase
 import com.children.toyexchange.domain.usecase.ToyUploadUseCase
+import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class ToyUploadViewModel @Inject constructor(
     private val getToyCategoryUseCase: GetToyCategoryUseCase,
     private val toyUploadUseCase: ToyUploadUseCase,
-    private val searchAddressUseCase: SearchAddressUseCase
+    private val searchAddressUseCase: SearchAddressUseCase,
+    private val savePostPhotoUseCase: SavePostPhotoUseCase
 ) : ViewModel() {
 
 
@@ -57,6 +62,10 @@ class ToyUploadViewModel @Inject constructor(
     val postAddress: LiveData<String?> get() = _postAddress
     private val _postAddress = MutableLiveData<String?>()
 
+    //게시물을 올릴때의 시간(postID에 이용)
+    val postUploadTime: LiveData<String> get() = _postUploadTime
+    private val _postUploadTime = MutableLiveData<String>()
+
     init {
         _saveChoicePhoto.value = mutableListOf()
         _photoIndex.value = 0
@@ -84,9 +93,10 @@ class ToyUploadViewModel @Inject constructor(
         _postTitle.value = postTitle
     }
 
-    fun setSearchAddressNull(){
+    fun setSearchAddressNull() {
         _searchAddressResponse.value = null
     }
+
     fun setPostAddress(postAddress: String?) {
         _postAddress.value = postAddress
     }
@@ -105,8 +115,10 @@ class ToyUploadViewModel @Inject constructor(
     }
 
     //게시물 올리기
-    fun toyUpload(uid: String, postName: String, data: ToyUpload) =
-        toyUploadUseCase.execute(uid, postName, data)
+    fun toyUpload(uid: String, postName: String, data: ToyUpload) : Task<Void> {
+        _postUploadTime.value = nowDate()
+        return toyUploadUseCase.execute(uid, postName, data, uid + _postUploadTime.value.toString())
+    }
 
 
     fun searchAddress(
@@ -132,4 +144,19 @@ class ToyUploadViewModel @Inject constructor(
 
         }
     }
+
+    fun uploadPhotoStorage(uid: String) {
+        viewModelScope.launch {
+            for (num in 0 until _photoIndex.value!!.toInt()) {
+                saveToyPostImage(uid, num)
+            }
+        }
+    }
+
+    private suspend fun saveToyPostImage(uid: String, num : Int) {
+        savePostPhotoUseCase.execute(_saveChoicePhoto.value!![num], uid + _postUploadTime.value)
+    }
+
+
+    private fun nowDate() = SimpleDateFormat("yyyyMMddhhmmss").format(Date(System.currentTimeMillis()))
 }
