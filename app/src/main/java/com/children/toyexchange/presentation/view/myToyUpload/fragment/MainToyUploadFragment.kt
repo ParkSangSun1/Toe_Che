@@ -115,7 +115,7 @@ class MainToyUploadFragment : Fragment() {
 
 
     private fun saveFirebaseFireStore(){
-        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.searchAddressResponse.value.toString(),null)
+        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.searchAddressResponse.value.toString(),toyUploadViewModel.photoIndex.value.toString())
         toyUploadViewModel.toyUpload(auth.uid.toString(),binding.postTitle.text.toString(), toyUploadDataClass)
             .addOnSuccessListener {
                 Log.d("로그","요기")
