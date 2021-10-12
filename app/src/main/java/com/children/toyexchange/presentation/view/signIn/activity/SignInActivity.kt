@@ -23,7 +23,7 @@ class SignInActivity : BaseActivity() {
     private fun loginSuccess() {
         val intent = Intent(this, PhoneAuthActivity::class.java)
         startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_left)
+        //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_in_left)
         finish()
     }
 }

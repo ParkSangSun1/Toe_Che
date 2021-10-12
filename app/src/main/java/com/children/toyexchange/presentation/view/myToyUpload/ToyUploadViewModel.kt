@@ -66,6 +66,10 @@ class ToyUploadViewModel @Inject constructor(
     val postUploadTime: LiveData<String> get() = _postUploadTime
     private val _postUploadTime = MutableLiveData<String>()
 
+    //게시물 제목
+    val successPostUpload: LiveData<Boolean> get() = _successPostUpload
+    private val _successPostUpload = MutableLiveData<Boolean>()
+
     init {
         _saveChoicePhoto.value = mutableListOf()
         _photoIndex.value = 0
@@ -73,6 +77,10 @@ class ToyUploadViewModel @Inject constructor(
 
     fun setSaveChoicePhoto(uri: Uri) {
         _saveChoicePhoto.value?.add(uri)
+    }
+
+    fun setSuccessPostUpload(set : Boolean){
+        _successPostUpload.value = set
     }
 
     //사진 추가 +1
