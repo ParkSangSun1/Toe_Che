@@ -1,6 +1,7 @@
 package com.children.toyexchange.presentation.view.signIn
 
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -129,7 +130,7 @@ class SignInViewModel @Inject constructor(
             UserInfo.apply {
                 userNickName = userSignInModel.userNickName
                 userPhoneNumber = userSignInModel.userPhoneNumber.toString()
-                UserInfo.userPhoto = userSignInModel.userPhoto
+                UserInfo.userPhoto = userSignInModel.userPhoto.toString().toUri()
             }
 
             //불러온 정보를 viewmodel에 저장

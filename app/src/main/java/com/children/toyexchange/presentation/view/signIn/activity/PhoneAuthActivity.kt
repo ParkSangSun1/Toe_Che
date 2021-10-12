@@ -81,7 +81,7 @@ class PhoneAuthActivity : SignInBaseActivity() {
                     UserInfo.apply {
                         userNickName = userSignIn.userNickName
                         userPhoneNumber = userSignIn.userPhoneNumber.toString()
-                        userPhoto = userSignIn.userPhoto
+                        userPhoto = userSignIn.userPhoto.toString().toUri()
                     }
                     this@PhoneAuthActivity.startActivityWithFinish(this, MainActivity::class.java)
                 }
