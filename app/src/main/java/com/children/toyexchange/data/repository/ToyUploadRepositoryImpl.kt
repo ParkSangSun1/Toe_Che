@@ -21,7 +21,7 @@ class ToyUploadRepositoryImpl @Inject constructor(
           return toyUploadDataSource.searchAddress(Authorization = Authorization, analyze_type = analyze_type, page = page, size = size,query= query)
       }
 
-      override fun toyPostImageUpload(image: Uri, postID: String): UploadTask {
-            return toyUploadDataSource.toyPostImageUpload(image, postID)
+      override fun toyPostImageUpload(image: Uri, postTitle : String, uid : String, index : Int): UploadTask {
+            return toyUploadDataSource.toyPostImageUpload(image, postTitle, uid, index)
       }
 }

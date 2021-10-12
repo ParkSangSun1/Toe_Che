@@ -16,6 +16,6 @@ class RemoteToyUploadDataSource @Inject constructor(
 ) {
     suspend fun searchAddress(Authorization : String, analyze_type: String, page: Int, size:Int, query : String) = searchAddressApi.searchAddress(Authorization = Authorization,analyze_type = analyze_type, page = page, size = size,query = query)
 
-    fun toyPostImageUpload(image: Uri, postID : String) = firebaseStorage.getReferenceFromUrl(FirebaseUrl.FirebaseStorageUrl).child("images/toyPostImage/$postID/$image").putFile(image)
+    fun toyPostImageUpload(image: Uri, postTitle : String, uid : String, index : Int) = firebaseStorage.getReferenceFromUrl(FirebaseUrl.FirebaseStorageUrl).child("toyPostImage/$uid/$postTitle/$index.png").putFile(image)
 
 }

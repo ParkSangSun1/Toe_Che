@@ -109,7 +109,7 @@ class MainToyUploadFragment : Fragment() {
     }
 
     fun uploadBtnClick(view: View){
-            toyUploadViewModel.uploadPhotoStorage(auth.uid.toString())
+            toyUploadViewModel.uploadPhotoStorage(auth.uid.toString(), binding.postTitle.text.toString())
             saveFirebaseFireStore()
     }
 

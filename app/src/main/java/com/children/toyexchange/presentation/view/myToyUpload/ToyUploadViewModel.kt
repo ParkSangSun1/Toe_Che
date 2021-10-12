@@ -145,16 +145,16 @@ class ToyUploadViewModel @Inject constructor(
         }
     }
 
-    fun uploadPhotoStorage(uid: String) {
+    fun uploadPhotoStorage(uid: String, title: String) {
         viewModelScope.launch {
             for (num in 0 until _photoIndex.value!!.toInt()) {
-                saveToyPostImage(uid, num)
+                saveToyPostImage(uid, num, title)
             }
         }
     }
 
-    private suspend fun saveToyPostImage(uid: String, num : Int) {
-        savePostPhotoUseCase.execute(_saveChoicePhoto.value!![num], uid + _postUploadTime.value)
+    private suspend fun saveToyPostImage(uid: String, num : Int, title : String) {
+        savePostPhotoUseCase.execute(_saveChoicePhoto.value!![num], title,uid , num)
     }
 
 
