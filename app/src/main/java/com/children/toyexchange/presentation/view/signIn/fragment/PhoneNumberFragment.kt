@@ -77,7 +77,7 @@ class PhoneNumberFragment : Fragment() {
         return binding.root
     }
 
-    private fun verifyVerificationcode(code: String) {
+    private fun verifyVerificationCode(code: String) {
         val credential = PhoneAuthProvider.getCredential(storedVerificationId, code)
         signInWithPhoneAuthCredential(credential)
     }
@@ -137,7 +137,7 @@ class PhoneNumberFragment : Fragment() {
                 Toast.makeText(requireContext(), "잠시만 기다려 주세요", Toast.LENGTH_SHORT).show()
                 var otp = binding.phoneNumberCode.text.toString().trim()
                 if (otp.isNotEmpty()) {
-                    verifyVerificationcode(otp)
+                    verifyVerificationCode(otp)
                 }
             }
 

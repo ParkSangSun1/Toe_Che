@@ -145,8 +145,6 @@ class PhoneAuthActivity : SignInBaseActivity() {
 
                 //계정이 있을경우
                 3 -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
                     saveUidInDataStore()
                     this@PhoneAuthActivity.startActivityWithFinish(this, MainActivity::class.java)
                 }

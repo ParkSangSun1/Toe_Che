@@ -18,7 +18,7 @@ class RemoteFirebaseDataSource @Inject constructor(
     ) {
     fun checkUserNickName(nickName : String) = firebaseRtdb.reference.child("userNickName").child(nickName)
 
-    fun saveUserProfile(profile : Uri, fileName : String) = firebaseStorage.getReferenceFromUrl(FirebaseStorageUrl).child("images/userProfile/$fileName").putFile(profile)
+    fun saveUserProfile(profile : Uri, fileName : String) = firebaseStorage.getReferenceFromUrl(FirebaseStorageUrl).child("userProfile/$fileName").putFile(profile)
 
     fun callUserInfo() = firebaseRtdb.reference.child("userAccountInfo")
 
