@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_gragh"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/exchangeFragment"
+        android:name="com.children.toyexchange.presentation.view.main.mainfragment.exchange.ExchangeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_exchange"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.children.toyexchange.presentation.view.main.mainfragment.search.SearchFragment"
+        android:label=""
+        tools:layout="@layout/fragment_search"/>
+    <fragment
+        android:id="@+id/chattingFragment"
+        android:name="com.children.toyexchange.presentation.view.main.mainfragment.chatting.ChattingFragment"
+        android:label=""
+        tools:layout="@layout/fragment_chatting"/>
+    <fragment
+        android:id="@+id/mypageFragment"
+        android:name="com.children.toyexchange.presentation.view.main.mainfragment.mypage.MypageFragment"
+        android:label=""
+        tools:layout="@layout/fragment_mypage" />
+</navigation>

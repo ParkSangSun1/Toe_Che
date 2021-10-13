@@ -23,7 +23,7 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFirestore() = FirebaseDatabase.getInstance()
+    fun provideFirebaseRTDB() = FirebaseDatabase.getInstance()
 
     @Provides
     @Singleton

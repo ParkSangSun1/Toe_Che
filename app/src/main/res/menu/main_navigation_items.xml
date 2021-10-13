@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/search"
+    <item android:id="@+id/searchFragment"
         android:title="@string/navigation_item_search"
         android:icon="@drawable/search"
         />
-    <item android:id="@+id/exchange"
+    <item android:id="@+id/exchangeFragment"
         android:title="@string/navigation_item_exchange"
         android:icon="@drawable/exchange"
         />
@@ -12,11 +12,11 @@
 <!--        android:title="@string/navigation_item_shopping_basket"-->
 <!--        android:icon="@drawable/shopping_basket"-->
 <!--        />-->
-    <item android:id="@+id/chatting"
+    <item android:id="@+id/chattingFragment"
         android:title="@string/navigation_item_chatting"
         android:icon="@drawable/chatting"
         />
-    <item android:id="@+id/mypage"
+    <item android:id="@+id/mypageFragment"
         android:title="@string/navigation_item_mypage"
         android:icon="@drawable/mypage"
         />
