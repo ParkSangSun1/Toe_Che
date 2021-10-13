@@ -14,4 +14,6 @@ class RemotePostDataSource @Inject constructor(
     private val fireStore: FirebaseFirestore
 ) {
     fun getStorePost() =  fireStore.collection("post").orderBy("orderBy", Query.Direction.DESCENDING).get()
+
+    fun getStoragePost(uid : String, title : String, num: Int) = firebaseStorage.reference.child("toyPostImage/$uid/$title/$num").downloadUrl
 }

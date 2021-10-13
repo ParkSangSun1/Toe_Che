@@ -1,5 +1,6 @@
 package com.children.toyexchange.data.repository
 
+import android.net.Uri
 import com.children.toyexchange.data.repository.datasource.RemotePostDataSource
 import com.children.toyexchange.domain.repository.PostRepository
 import com.google.android.gms.tasks.Task
@@ -13,5 +14,9 @@ class PostRepositoryImpl @Inject constructor(
 ): PostRepository {
     override fun getStorePost():  Task<QuerySnapshot> {
         return postDataSource.getStorePost()
+    }
+
+    override fun getStoragePost(uid: String, title: String, num: Int): Task<Uri> {
+        return postDataSource.getStoragePost(uid, title, num)
     }
 }
