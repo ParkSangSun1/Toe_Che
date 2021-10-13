@@ -121,8 +121,8 @@ class MainToyUploadFragment : Fragment() {
 
     private fun saveFirebaseFireStore(){
         val date = nowDate()
-        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString(), date)
-        toyUploadViewModel.toyUpload(auth.uid.toString(),binding.postTitle.text.toString(), toyUploadDataClass)
+        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString(), date, auth.uid.toString())
+        toyUploadViewModel.toyUpload(toyUploadDataClass,auth.uid.toString()+nowDate())
             .addOnSuccessListener {
                toyUploadViewModel.setSuccessPostUpload(true)
             }

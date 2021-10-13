@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_exchange"/>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.children.toyexchange.presentation.view.main.mainfragment.search.SearchFragment"
+        android:name="com.children.toyexchange.presentation.view.main.mainfragment.search.main.SearchFragment"
         android:label=""
         tools:layout="@layout/fragment_search"/>
     <fragment

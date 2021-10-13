@@ -14,5 +14,5 @@ interface FirebaseRepository {
     fun saveUserInfo(userSignIn: UserSignIn) : Task<Void>
     fun saveUserNickName(userNickName : String) : Task<Void>
     fun getToyCategory() : DatabaseReference
-    fun toyUpload(uid : String, postName : String, data : ToyUpload,postID :String) :Task<Void>
+    fun toyUpload(data : ToyUpload,postID :String) :Task<Void>
 }

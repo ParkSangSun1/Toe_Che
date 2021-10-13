@@ -28,5 +28,5 @@ class RemoteFirebaseDataSource @Inject constructor(
 
     fun getToyCategory() = firebaseRtdb.reference.child("toyCategory")
 
-    fun toyUpload(uid : String, postName : String, data : ToyUpload, postID :String) = fireStore.collection("post").document(uid).collection(postName).document(postID).set(data)
+    fun toyUpload( data : ToyUpload, postID :String) = fireStore.collection("post").document(postID).set(data)
 }

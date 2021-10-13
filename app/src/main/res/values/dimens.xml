@@ -4,9 +4,9 @@
     <dimen name="toy_upload_page_title_txt_size">17sp</dimen>
     <dimen name="main_page_icon_marginEnd">2dp</dimen>
     <dimen name="search_page_setting_bar_btn">40dp</dimen>
-    <dimen name="product_recycler_item_title">17sp</dimen>
+    <dimen name="product_recycler_item_title">19sp</dimen>
     <dimen name="product_recycler_item_location_and_time">13sp</dimen>
-    <dimen name="product_recycler_item_price">18sp</dimen>
+    <dimen name="product_recycler_item_category">15sp</dimen>
     <dimen name="mypage_btn_line">2dp</dimen>
     <dimen name="toy_upload_category_choice_item_in_margin">15dp</dimen>
     <dimen name="toy_upload_category_choice_item_bottom_margin">5dp</dimen>

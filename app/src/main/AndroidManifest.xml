@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchange">
-        <activity android:name=".presentation.view.main.mainfragment.search.SearchRecordActivity"></activity>
+        <activity android:name=".presentation.view.main.mainfragment.search.searchbar.SearchRecordActivity"></activity>
         <activity android:name=".presentation.view.main.MainActivity">
 
         </activity>

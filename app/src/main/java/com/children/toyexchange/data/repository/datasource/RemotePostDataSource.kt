@@ -12,5 +12,5 @@ class RemotePostDataSource @Inject constructor(
     private val firebaseStorage: FirebaseStorage,
     private val fireStore: FirebaseFirestore
 ) {
-    fun getStorePost() =  fireStore.collection("post")
+    fun getStorePost() =  fireStore.collection("post").get()
 }

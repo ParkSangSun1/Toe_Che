@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="activity"
-            type="com.children.toyexchange.presentation.view.main.mainfragment.search.SearchFragment" />
+            name="fragment"
+            type="com.children.toyexchange.presentation.view.main.mainfragment.search.main.SearchFragment"/>
     </data>
 
     <RelativeLayout
@@ -52,7 +52,7 @@
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
-                android:onClick="@{activity::searchBtnClick}"
+                android:onClick="@{fragment::searchBtnClick}"
                 android:padding="10dp"
                 android:textSize="15sp" />
 

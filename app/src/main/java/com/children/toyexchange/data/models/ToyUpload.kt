@@ -8,5 +8,6 @@ data class ToyUpload(
     val category : String,
     val location : String,
     val photo : String?,
-    val date : String
+    val date : String,
+    val uid : String
 )

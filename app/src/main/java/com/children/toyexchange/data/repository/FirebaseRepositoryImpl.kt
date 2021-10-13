@@ -24,5 +24,5 @@ class FirebaseRepositoryImpl @Inject constructor(
 
     override fun getToyCategory(): DatabaseReference = fireBaseSource.getToyCategory()
 
-    override fun toyUpload(uid : String, postName : String, data : ToyUpload,postID : String): Task<Void> = fireBaseSource.toyUpload(uid, postName, data,postID)
+    override fun toyUpload(data : ToyUpload,postID : String): Task<Void> = fireBaseSource.toyUpload(data,postID)
 }

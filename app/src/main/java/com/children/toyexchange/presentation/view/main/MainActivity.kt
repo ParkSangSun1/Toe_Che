@@ -2,30 +2,25 @@ package com.children.toyexchange.presentation.view.main
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.children.toyexchange.R
-import com.children.toyexchange.databinding.ActivityMainBinding
-import com.children.toyexchange.presentation.view.main.mainfragment.chatting.ChattingFragment
-import com.children.toyexchange.presentation.view.main.mainfragment.mypage.MypageFragment
 import com.children.toyexchange.presentation.base.BaseActivity
-import com.children.toyexchange.presentation.view.main.mainfragment.exchange.ExchangeFragment
-import com.children.toyexchange.presentation.view.main.mainfragment.search.SearchFragment
 import com.children.toyexchange.presentation.widget.utils.UserInfo
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.view.View
+import androidx.activity.viewModels
+import com.children.toyexchange.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
     private val binding by binding<ActivityMainBinding>(R.layout.activity_main)
     lateinit var navi: BottomNavigationView
     private lateinit var navController: NavController
-
+    private val mainViewModel by viewModels<MainViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

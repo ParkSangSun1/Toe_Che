@@ -123,8 +123,8 @@ class ToyUploadViewModel @Inject constructor(
     }
 
     //게시물 올리기
-    fun toyUpload(uid: String, postName: String, data: ToyUpload) : Task<Void> {
-        return toyUploadUseCase.execute(uid, postName, data, uid)
+    fun toyUpload(data : ToyUpload, postID : String) : Task<Void> {
+        return toyUploadUseCase.execute(data, postID)
     }
 
 
