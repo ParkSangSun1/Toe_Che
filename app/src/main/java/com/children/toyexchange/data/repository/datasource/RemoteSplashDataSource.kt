@@ -12,5 +12,5 @@ class RemoteSplashDataSource @Inject constructor(
     private val firebaseStorage: FirebaseStorage,
     private val fireStore: FirebaseFirestore
 ){
-    fun checkAppVersion(myVersion : String) = firebaseRtdb.reference.child("appVersion").get()
+    fun checkAppVersion() = firebaseRtdb.reference.child("appVersion").get()
 }

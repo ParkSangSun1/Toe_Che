@@ -9,7 +9,7 @@ import javax.inject.Inject
 class SplashRepositoryImpl @Inject constructor(
     private val splashDataSource: RemoteSplashDataSource
 ) : SplashRepository {
-    override fun checkAppVersion(myVersion: String): Task<DataSnapshot> {
-        return splashDataSource.checkAppVersion(myVersion)
+    override fun checkAppVersion(): Task<DataSnapshot> {
+        return splashDataSource.checkAppVersion()
     }
 }

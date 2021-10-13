@@ -4,5 +4,5 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 
 interface SplashRepository {
-    fun checkAppVersion(myVersion : String) : Task<DataSnapshot>
+    fun checkAppVersion() : Task<DataSnapshot>
 }
