@@ -1,6 +1,7 @@
 package com.children.toyexchange.presentation.di
 
 import com.children.toyexchange.domain.repository.FirebaseRepository
+import com.children.toyexchange.domain.repository.PostRepository
 import com.children.toyexchange.domain.repository.SplashRepository
 import com.children.toyexchange.domain.repository.ToyUploadRepository
 import com.children.toyexchange.domain.usecase.*
@@ -24,6 +25,10 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun provideCheckUserNickNameUseCase(repository: FirebaseRepository) = CheckUserNickNameUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetStorePostUseCase(repository: PostRepository) = GetStorePostUseCase(repository)
 
     @Provides
     @Singleton

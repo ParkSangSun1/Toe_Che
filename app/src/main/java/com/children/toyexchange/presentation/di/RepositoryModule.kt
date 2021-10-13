@@ -1,12 +1,15 @@
 package com.children.toyexchange.presentation.di
 
 import com.children.toyexchange.data.repository.FirebaseRepositoryImpl
+import com.children.toyexchange.data.repository.PostRepositoryImpl
 import com.children.toyexchange.data.repository.SplashRepositoryImpl
 import com.children.toyexchange.data.repository.ToyUploadRepositoryImpl
 import com.children.toyexchange.data.repository.datasource.RemoteFirebaseDataSource
+import com.children.toyexchange.data.repository.datasource.RemotePostDataSource
 import com.children.toyexchange.data.repository.datasource.RemoteSplashDataSource
 import com.children.toyexchange.data.repository.datasource.RemoteToyUploadDataSource
 import com.children.toyexchange.domain.repository.FirebaseRepository
+import com.children.toyexchange.domain.repository.PostRepository
 import com.children.toyexchange.domain.repository.SplashRepository
 import com.children.toyexchange.domain.repository.ToyUploadRepository
 import dagger.Module
@@ -26,6 +29,16 @@ class RepositoryModule {
     ): FirebaseRepository {
         return FirebaseRepositoryImpl(
             remoteFirebaseDataSource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providePostRepository(
+        remotePostDataSource: RemotePostDataSource
+    ): PostRepository {
+        return PostRepositoryImpl(
+            remotePostDataSource
         )
     }
 
