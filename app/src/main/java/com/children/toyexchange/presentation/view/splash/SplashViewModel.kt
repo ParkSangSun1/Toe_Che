@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.children.toyexchange.data.models.UserSignIn
 import com.children.toyexchange.domain.usecase.CallUserInfoUseCase
+import com.children.toyexchange.domain.usecase.CheckAppVersionUseCase
 import com.children.toyexchange.presentation.di.DataStoreModule
 import com.children.toyexchange.presentation.view.main.MainActivity
 import com.children.toyexchange.presentation.view.signIn.activity.SignInActivity
@@ -24,7 +25,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val dataStore: DataStoreModule,
-    private val callUserInfoUseCase: CallUserInfoUseCase
+    private val callUserInfoUseCase: CallUserInfoUseCase,
+    private val checkAppVersionUseCase: CheckAppVersionUseCase
     ): ViewModel() {
 
     val firstStart : LiveData<Boolean> get() = _firstStart
@@ -34,10 +36,10 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             Log.d("로그","dataStore uid : ${dataStore.readUid.first()}")
             if (dataStore.readUid.first() == DataStore.DEFAULT_UID) {
-                delay(1000)
+               // delay(1000)
                 firstStartApp()
             } else {
-                delay(1000)
+               // delay(1000)
                 againStartApp()
             }
         }
@@ -66,4 +68,6 @@ class SplashViewModel @Inject constructor(
              userPhoto = userSignInModel?.userPhoto.toString().toUri()
          }
     }
+
+    fun checkMyAppVersion() = checkAppVersionUseCase.execute()
 }

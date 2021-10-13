@@ -30,11 +30,22 @@ class SplashActivity  : AppCompatActivity() {
     private val viewModel by viewModels<SplashViewModel>()
     private val uid = FirebaseAuth.getInstance().uid
 
+    // TODO 앱의 현재 버전을 표시 - 업데이트 할때마다 해당하는 버전으로 값을 변경 (Firebase RTDB도 함께)
+    private val myVersion = "1.0.0"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         observeViewModel()
-        viewModel.checkUserInfo()
+        checkVersion()
+    }
+
+    private fun checkVersion(){
+        viewModel.checkMyAppVersion()
+            .addOnSuccessListener {
+                if(it.value == myVersion) viewModel.checkUserInfo()
+                else Toast.makeText(this@SplashActivity,"앱의 버전이 다릅니다! 업데이트 하세요",Toast.LENGTH_LONG).show()
+            }
     }
 
     private fun observeViewModel(){
