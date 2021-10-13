@@ -1,6 +1,8 @@
 package com.children.toyexchange.presentation.di
 
 import com.children.toyexchange.domain.repository.FirebaseRepository
+import com.children.toyexchange.domain.repository.SplashRepository
+import com.children.toyexchange.domain.repository.ToyUploadRepository
 import com.children.toyexchange.domain.usecase.*
 import dagger.Module
 import dagger.Provides
@@ -17,7 +19,19 @@ class UseCaseModule {
 
     @Provides
     @Singleton
+    fun provideCheckAppVersionUseCase(repository: SplashRepository) = CheckAppVersionUseCase(repository)
+
+    @Provides
+    @Singleton
     fun provideCheckUserNickNameUseCase(repository: FirebaseRepository) = CheckUserNickNameUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetToyCategoryUseCase(repository: FirebaseRepository) = GetToyCategoryUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideSavePostPhotoUseCase(repository: ToyUploadRepository) = SavePostPhotoUseCase(repository)
 
     @Provides
     @Singleton
@@ -30,4 +44,13 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun provideSaveUserProfileUseCase(repository: FirebaseRepository) = SaveUserProfileUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideSearchAddressUseCase(repository: ToyUploadRepository) = SearchAddressUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideToyUploadUseCase(repository: FirebaseRepository) = ToyUploadUseCase(repository)
+
 }
