@@ -116,7 +116,7 @@ class MainToyUploadFragment : Fragment() {
     }
 
     //현재 시간
-    private fun nowDate() = SimpleDateFormat("yyyyMMddhhmmss").format(Date(System.currentTimeMillis()))
+    private fun nowDate() = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분").format(Date(System.currentTimeMillis()))
 
 
     private fun saveFirebaseFireStore(){
