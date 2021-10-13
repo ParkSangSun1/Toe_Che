@@ -28,6 +28,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class MainToyUploadFragment : Fragment() {
@@ -113,9 +115,13 @@ class MainToyUploadFragment : Fragment() {
             saveFirebaseFireStore()
     }
 
+    //현재 시간
+    private fun nowDate() = SimpleDateFormat("yyyyMMddhhmmss").format(Date(System.currentTimeMillis()))
+
 
     private fun saveFirebaseFireStore(){
-        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString())
+        val date = nowDate()
+        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString(), date)
         toyUploadViewModel.toyUpload(auth.uid.toString(),binding.postTitle.text.toString(), toyUploadDataClass)
             .addOnSuccessListener {
                toyUploadViewModel.setSuccessPostUpload(true)

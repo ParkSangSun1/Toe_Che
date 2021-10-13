@@ -43,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:onClick="@{activity::searchBtnClick}"
                 android:layout_toStartOf="@id/search_btn"
                 android:layout_toEndOf="@id/view_more"
                 android:background="@null"
@@ -53,6 +52,7 @@
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
+                android:onClick="@{activity::searchBtnClick}"
                 android:padding="10dp"
                 android:textSize="15sp" />
 
@@ -101,14 +101,14 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="16dp"
             android:backgroundTint="@color/login_main_color"
+            android:contentDescription="내 장난감 추가"
             android:elevation="3dp"
             android:src="@drawable/ic_baseline_add_24"
             app:borderWidth="0dp"
+
+
             app:fabSize="normal"
-
-
-            app:tint="@color/white"
-            android:contentDescription="내 장난감 추가" />
+            app:tint="@color/white" />
 
     </RelativeLayout>
 </layout>

@@ -124,8 +124,7 @@ class ToyUploadViewModel @Inject constructor(
 
     //게시물 올리기
     fun toyUpload(uid: String, postName: String, data: ToyUpload) : Task<Void> {
-        _postUploadTime.value = nowDate()
-        return toyUploadUseCase.execute(uid, postName, data, uid + _postUploadTime.value.toString())
+        return toyUploadUseCase.execute(uid, postName, data, uid)
     }
 
 
@@ -166,5 +165,4 @@ class ToyUploadViewModel @Inject constructor(
     }
 
 
-    private fun nowDate() = SimpleDateFormat("yyyyMMddhhmmss").format(Date(System.currentTimeMillis()))
 }
