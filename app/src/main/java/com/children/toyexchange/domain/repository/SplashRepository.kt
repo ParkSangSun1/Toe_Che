@@ -1,0 +1,8 @@
+package com.children.toyexchange.domain.repository
+
+import com.google.android.gms.tasks.Task
+import com.google.firebase.database.DataSnapshot
+
+interface SplashRepository {
+    fun checkAppVersion(myVersion : String) : Task<DataSnapshot>
+}
