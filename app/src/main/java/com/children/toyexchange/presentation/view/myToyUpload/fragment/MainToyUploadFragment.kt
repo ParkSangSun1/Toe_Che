@@ -127,7 +127,7 @@ class MainToyUploadFragment : Fragment() {
         val toyUploadSaveDate = SimpleDateFormat("yyyyMMddhhmmss").format(time)
 
         toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString(), toyUploadDataClassSaveDate, auth.uid.toString(), toyUploadSaveDate)
-        toyUploadViewModel.toyUpload(toyUploadDataClass,auth.uid.toString()+toyUploadSaveDate)
+        toyUploadViewModel.toyUpload(toyUploadDataClass,auth.uid.toString()+toyUploadDataClass.title)
             .addOnSuccessListener {
                toyUploadViewModel.setSuccessPostUpload(true)
             }
