@@ -26,10 +26,10 @@ class UseCaseModule {
     @Singleton
     fun provideCheckUserNickNameUseCase(repository: FirebaseRepository) = CheckUserNickNameUseCase(repository)
 
-    @Provides
+ /*   @Provides
     @Singleton
     fun provideGetStoragePostUseCase(repository: PostRepository) = GetStoragePostUseCase(repository)
-
+*/
     @Provides
     @Singleton
     fun provideGetStorePostUseCase(repository: PostRepository) = GetStorePostUseCase(repository)

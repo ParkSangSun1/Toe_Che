@@ -16,7 +16,7 @@ class PostRepositoryImpl @Inject constructor(
         return postDataSource.getStorePost()
     }
 
-    override fun getStoragePost(uid: String, title: String, num: Int): Task<Uri> {
+    override fun getStoragePost(uid: String?, title: String?, num: Int): Task<Uri> {
         return postDataSource.getStoragePost(uid, title, num)
     }
 }

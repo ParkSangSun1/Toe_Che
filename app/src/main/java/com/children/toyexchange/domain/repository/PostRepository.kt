@@ -8,5 +8,5 @@ import com.google.firebase.firestore.DocumentSnapshot
 interface PostRepository {
     fun getStorePost(): Task<QuerySnapshot>
 
-    fun getStoragePost(uid : String, title : String, num: Int) : Task<Uri>
+    fun getStoragePost(uid : String?, title : String?, num: Int) : Task<Uri>
 }

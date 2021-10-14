@@ -18,12 +18,14 @@ import com.children.toyexchange.presentation.view.main.mainfragment.search.searc
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadActivity
 import com.children.toyexchange.presentation.widget.extension.shadowDelete
 import com.children.toyexchange.presentation.widget.extension.showVertical
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     lateinit var binding: FragmentSearchBinding
     private val mainViewModel by activityViewModels<MainViewModel>()
+    private val uid = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +60,7 @@ class SearchFragment : Fragment() {
             Log.d("로그","이곳 $it")
             //mainViewModel.inputArray()
             binding.recentPostsRecyclerView.showVertical(requireContext())
-            binding.recentPostsRecyclerView.adapter = RecentPostsAdapter(mainViewModel.getPostResponse)
+            binding.recentPostsRecyclerView.adapter = RecentPostsAdapter(mainViewModel.getPostResponse,mainViewModel,uid,requireContext())
 
             binding.recentPostsRecyclerView.shadowDelete()
         })

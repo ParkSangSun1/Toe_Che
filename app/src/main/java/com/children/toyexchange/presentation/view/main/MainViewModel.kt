@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.children.toyexchange.data.models.GetStorePost
 import com.children.toyexchange.data.models.ToyUpload
+import com.children.toyexchange.domain.usecase.GetStoragePostUseCase
 import com.children.toyexchange.domain.usecase.GetStorePostUseCase
 import com.google.firebase.firestore.QuerySnapshot
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getStorePostUseCase: GetStorePostUseCase
+    private val getStorePostUseCase: GetStorePostUseCase,
+    private val getStoragePostUseCase: GetStoragePostUseCase
 ): ViewModel() {
     //게시물 불러온 값
     val getPostResponse: LiveData<QuerySnapshot> get() = _getPostResponse
@@ -28,6 +30,8 @@ class MainViewModel @Inject constructor(
     fun setGetPostResponse(set : QuerySnapshot){
         _getPostResponse.value = set
     }
+
+    fun getStoragePost(uid: String?, title: String?, num: Int) = getStoragePostUseCase.execute(uid, title, num)
 
    /* fun inputArray(){
         val querySnapshot = _getPostResponse.value
