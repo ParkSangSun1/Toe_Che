@@ -12,6 +12,7 @@ import com.children.toyexchange.domain.usecase.GetToyCategoryUseCase
 import com.children.toyexchange.domain.usecase.SavePostPhotoUseCase
 import com.children.toyexchange.domain.usecase.SearchAddressUseCase
 import com.children.toyexchange.domain.usecase.ToyUploadUseCase
+import com.children.toyexchange.presentation.widget.utils.SingleLiveEvent
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -69,6 +70,10 @@ class ToyUploadViewModel @Inject constructor(
     //게시물 제목
     val successPostUpload: LiveData<Boolean> get() = _successPostUpload
     private val _successPostUpload = MutableLiveData<Boolean>()
+
+    //뒤로가기 버튼 클릭
+    val backBtnEvent: LiveData<Int> get() = _backBtnEvent
+    private val _backBtnEvent = SingleLiveEvent<Int>()
 
     init {
         _saveChoicePhoto.value = mutableListOf()
@@ -164,5 +169,6 @@ class ToyUploadViewModel @Inject constructor(
         savePostPhotoUseCase.execute(_saveChoicePhoto.value!![num], title,uid , num)
     }
 
-
+    //뒤로가기 버튼 클릭
+    fun setBackBtnEvent() = _backBtnEvent.call()
 }

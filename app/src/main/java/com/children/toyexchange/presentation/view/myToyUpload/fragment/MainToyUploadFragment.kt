@@ -96,7 +96,7 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
     }
 
     fun backBtnClick(view: View){
-
+        toyUploadViewModel.setBackBtnEvent()
     }
 
     fun uploadBtnClick(view: View){

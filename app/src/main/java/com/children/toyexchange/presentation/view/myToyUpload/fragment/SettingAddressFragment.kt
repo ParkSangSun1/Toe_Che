@@ -55,6 +55,10 @@ class SettingAddressFragment : BaseFragment<FragmentSettingAddressBinding>(R.lay
         toyUploadViewModel.searchAddress(KEY, "similar", 1, 10, binding.query.text.toString())
     }
 
+    fun backBtnClick(view: View){
+        this.findNavController().popBackStack()
+    }
+
     private fun initRecyclerView() {
         binding.addressRecyclerView.showVertical(requireContext())
         binding.addressRecyclerView.adapter = SettingAddressRecyclerAdapter(toyUploadViewModel)

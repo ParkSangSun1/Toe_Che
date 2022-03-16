@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentCategoryChoiceBinding
 import com.children.toyexchange.presentation.base.BaseFragment
@@ -20,6 +21,10 @@ class CategoryChoiceFragment : BaseFragment<FragmentCategoryChoiceBinding>(R.lay
 
     override fun init() {
         binding.fragment = this
+    }
+
+    fun backBtnClick(view: View){
+        this.findNavController().popBackStack()
     }
 
     fun categoryItemClick(view: View) {
