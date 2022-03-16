@@ -21,8 +21,4 @@ class FirebaseRepositoryImpl @Inject constructor(
     override fun saveUserInfo(userSignIn: UserSignIn) = fireBaseSource.saveUserInfo(userSignIn)
 
     override fun saveUserNickName(userNickName: String) = fireBaseSource.saveUserNickName(userNickName)
-
-    override fun getToyCategory(): DatabaseReference = fireBaseSource.getToyCategory()
-
-    override fun toyUpload(data : ToyUpload,postID : String): Task<Void> = fireBaseSource.toyUpload(data,postID)
 }

@@ -36,7 +36,7 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideGetToyCategoryUseCase(repository: FirebaseRepository) = GetToyCategoryUseCase(repository)
+    fun provideGetToyCategoryUseCase(repository: ToyUploadRepository) = GetToyCategoryUseCase(repository)
 
     @Provides
     @Singleton
@@ -60,6 +60,6 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideToyUploadUseCase(repository: FirebaseRepository) = ToyUploadUseCase(repository)
+    fun provideToyUploadUseCase(repository: ToyUploadRepository) = ToyUploadUseCase(repository)
 
 }

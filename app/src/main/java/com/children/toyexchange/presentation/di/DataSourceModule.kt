@@ -49,6 +49,8 @@ class DataSourceModule {
     @Singleton
     fun provideRemoteToyUploadDataSource(
         addressApi : KakaoAddressApi,
-        firebaseStorage: FirebaseStorage
-    ) = RemoteToyUploadDataSource(addressApi,firebaseStorage)
+        firebaseStorage: FirebaseStorage,
+        firebaseRtdb: FirebaseDatabase,
+        fireStore: FirebaseFirestore
+    ) = RemoteToyUploadDataSource(addressApi,firebaseStorage, firebaseRtdb, fireStore)
 }

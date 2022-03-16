@@ -23,6 +23,7 @@ import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.myToyUpload.adapter.ChoicePhotoRecyclerAdapter
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
+import com.children.toyexchange.presentation.widget.extension.showShotSnackbar
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -120,7 +121,7 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
                toyUploadViewModel.setSuccessPostUpload(true)
             }
             .addOnFailureListener {
-                Log.d("로그","요기2 $it")
+                binding.backBtn.showShotSnackbar("장난감을 업로드하는데 실패했습니다")
             }
     }
 
