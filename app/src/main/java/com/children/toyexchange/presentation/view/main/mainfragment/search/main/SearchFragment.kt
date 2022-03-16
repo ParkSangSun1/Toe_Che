@@ -44,7 +44,7 @@ class SearchFragment : Fragment() {
         mainViewModel.getStorePost()
             .addOnSuccessListener {
                 mainViewModel.setGetPostResponse(it)
-                Log.d("로그","getStorePost : ${it.documents}")
+                //Log.d("로그","getStorePost : ${it.documents}")
         }
 
         observeViewModel()
@@ -57,12 +57,18 @@ class SearchFragment : Fragment() {
 
     private fun observeViewModel(){
         mainViewModel.getPostResponse.observe(requireActivity(), Observer {
-            Log.d("로그","이곳 $it")
-            //mainViewModel.inputArray()
-            binding.recentPostsRecyclerView.showVertical(requireContext())
-            binding.recentPostsRecyclerView.adapter = RecentPostsAdapter(mainViewModel.getPostResponse,mainViewModel,uid,requireContext())
+            Log.d("로그","시작됨1")
 
-            binding.recentPostsRecyclerView.shadowDelete()
+            mainViewModel.getPostDataProcessing()
+/*            binding.recentPostsRecyclerView.showVertical(requireContext())
+            binding.recentPostsRecyclerView.adapter = RecentPostsAdapter(mainViewModel.getPostResponse,mainViewModel,uid,requireContext())
+            binding.recentPostsRecyclerView.shadowDelete()*/
+        })
+
+        mainViewModel.getImage.observe(requireActivity(), Observer {
+            Log.d("로그","시작됨2")
+            Log.d("로그","mainViewModel.post : $it")
+            if(it != null) mainViewModel.getPostImage(uid.uid)
         })
     }
 

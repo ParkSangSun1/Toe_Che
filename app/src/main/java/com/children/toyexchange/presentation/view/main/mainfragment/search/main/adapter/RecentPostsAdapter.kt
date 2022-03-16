@@ -66,9 +66,17 @@ class RecentPostsAdapter(
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         postImage.add(it.result)
-                        if (imageIndex == 0) Glide.with(context).load(it.result).into(holder.binding.image)
+                        if (imageIndex == 0) Glide.with(context).load(it.result)
+                            .into(holder.binding.image)
                         Log.d("로그", "이곳1 : ${postImage.size}, ${postImage[imageIndex]}")
-                        ++imageIndex
+
+                        if (imageIndex == post[position]?.photo.toString().toInt() - 1) {
+                            postImageArray.add(postImage)
+                            postImage.clear()
+                            imageIndex = 0
+                            Log.d("로그", "이곳2 : ${postImageArray}")
+
+                        } else ++imageIndex
                     }
                 }
 
@@ -76,7 +84,6 @@ class RecentPostsAdapter(
 
 
         Log.d("로그", "photo사이즈 : , ${postImage.size}")
-        postImageArray.add(postImage)
     }
 
     override fun getItemCount(): Int {
