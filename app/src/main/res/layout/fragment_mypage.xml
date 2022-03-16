@@ -1,264 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FAFAFA"
-    tools:context=".presentation.view.main.mainfragment.mypage.MypageFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/setting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="2dp"
-        android:orientation="vertical">
+    <data>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosanskr_black"
-            android:includeFontPadding="false"
-            android:padding="15dp"
-            android:text="내 정보"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+    </data>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#DADADA" />
-
-    </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/setting">
+        android:background="#FAFAFA"
+        tools:context=".presentation.view.main.mainfragment.mypage.MypageFragment">
 
         <LinearLayout
+            android:id="@+id/setting"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="2dp"
             android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/test_toy_image" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/notosanskr_bold"
-                android:gravity="center_horizontal"
+                android:fontFamily="@font/notosanskr_black"
                 android:includeFontPadding="false"
-                android:text="USER"
+                android:padding="15dp"
+                android:text="내 정보"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <LinearLayout
-                android:id="@+id/score"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/mypage_big_box"
-                android:orientation="horizontal"
-                android:padding="20dp">
+                android:layout_height="1dp"
+                android:background="#DADADA" />
 
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/apply"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="0"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="상품"
-
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/yes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:fontFamily="@font/notosanskr_bold"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="0"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold"
-
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="하트"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/no"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold"
-
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-                        android:text="0"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/notosanskr_bold"
-                        android:gravity="center"
-                        android:includeFontPadding="false"
-
-                        android:text="거절 횟수"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/white"
-                android:backgroundTint="@null"
-                android:fontFamily="@font/notosanskr_bold"
-                android:gravity="left|center_vertical"
-                android:includeFontPadding="false"
-                android:paddingStart="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="계정 정보 확인하기"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/mypage_btn_line"
-                android:background="@drawable/mypage_btn"
-                android:textColor="@color/black"
-
-                android:fontFamily="@font/notosanskr_bold"
-                android:gravity="left|center_vertical"
-                android:includeFontPadding="false"
-                android:paddingStart="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="교환 신청한 횟수 15회"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/mypage_btn_line"
-                android:background="@drawable/mypage_btn"
-                android:fontFamily="@font/notosanskr_bold"
-                android:gravity="left|center_vertical"
-                android:includeFontPadding="false"
-                android:textColor="@color/black"
-
-                android:paddingStart="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="교환 신청받은 횟수 5회"
-                android:textSize="15sp" />
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/mypage_btn_line"
-                android:background="@drawable/mypage_btn"
-                android:textColor="@color/black"
-
-                android:fontFamily="@font/notosanskr_bold"
-                android:gravity="left|center_vertical"
-                android:includeFontPadding="false"
-                android:paddingStart="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="앱 가이드 확인하기"
-                android:textSize="15sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/mypage_btn_line"
-                android:background="@drawable/mypage_btn"
-                android:textColor="@color/black"
-
-                android:fontFamily="@font/notosanskr_bold"
-                android:gravity="left|center_vertical"
-                android:includeFontPadding="false"
-                android:paddingStart="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="문의하기"
-                android:textSize="15sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/mypage_btn_line"
-                android:background="@drawable/mypage_btn"
-                android:textColor="@color/black"
-
-                android:fontFamily="@font/notosanskr_bold"
-                android:gravity="left|center_vertical"
-                android:includeFontPadding="false"
-                android:paddingStart="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:text="오픈소스 및 라이브러리"
-                android:textSize="15sp" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
-</RelativeLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/setting">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/test_toy_image" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:text="USER"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:id="@+id/score"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/mypage_big_box"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/apply"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosanskr_bold"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosanskr_bold"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="상품"
+
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/notosanskr_bold"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosanskr_bold"
+
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="하트"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosanskr_bold"
+
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosanskr_bold"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+
+                            android:text="거절 횟수"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    android:backgroundTint="@null"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="계정 정보 확인하기"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mypage_btn_line"
+                    android:background="@drawable/mypage_btn"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="교환 신청한 횟수 15회"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mypage_btn_line"
+                    android:background="@drawable/mypage_btn"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/black"
+
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="교환 신청받은 횟수 5회"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mypage_btn_line"
+                    android:background="@drawable/mypage_btn"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="앱 가이드 확인하기"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mypage_btn_line"
+                    android:background="@drawable/mypage_btn"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="문의하기"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/mypage_btn_line"
+                    android:background="@drawable/mypage_btn"
+                    android:textColor="@color/black"
+
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="오픈소스 및 라이브러리"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </RelativeLayout>
+</layout>

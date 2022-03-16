@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentSearchBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.main.MainViewModel
 import com.children.toyexchange.presentation.view.main.mainfragment.search.main.adapter.RecentPostsAdapter
 import com.children.toyexchange.presentation.view.main.mainfragment.search.searchbar.SearchRecordActivity
@@ -22,37 +23,25 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
-    lateinit var binding: FragmentSearchBinding
+class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val mainViewModel by activityViewModels<MainViewModel>()
     private val uid = FirebaseAuth.getInstance()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
+    override fun init() {
         binding.fragment = this
-
-
 
         mainViewModel.getStorePost()
             .addOnSuccessListener {
                 mainViewModel.setGetPostResponse(it)
                 //Log.d("로그","getStorePost : ${it.documents}")
-        }
+            }
 
         observeViewModel()
 
         binding.addBtn.setOnClickListener {
             clickAddBtn()
         }
-        return binding.root
     }
 
     private fun observeViewModel(){

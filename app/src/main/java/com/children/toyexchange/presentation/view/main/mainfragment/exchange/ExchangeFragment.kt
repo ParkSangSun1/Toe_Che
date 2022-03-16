@@ -8,29 +8,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentExchangeBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
-class ExchangeFragment : Fragment() {
-
-    lateinit var binding : FragmentExchangeBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-//        val intent = Intent(requireContext(), ToyUploadActivity::class.java)
-//
-//        startActivity(intent)
-//        requireActivity().overridePendingTransition(0, 0)
-
-    }
+class ExchangeFragment : BaseFragment<FragmentExchangeBinding>(R.layout.fragment_exchange) {
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_exchange,container,false)
-
+    override fun init() {
         val adapter = ExchangeListAdapter(childFragmentManager, lifecycle)
         binding.exchangeViewPager.adapter = adapter
 
@@ -44,8 +28,5 @@ class ExchangeFragment : Fragment() {
                 }
             }
         }.attach()
-
-        return binding.root
     }
-
 }

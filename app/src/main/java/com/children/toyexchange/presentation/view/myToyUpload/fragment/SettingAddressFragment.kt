@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentSettingAddressBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.view.myToyUpload.adapter.ChoicePhotoRecyclerAdapter
 import com.children.toyexchange.presentation.view.myToyUpload.adapter.SettingAddressRecyclerAdapter
@@ -21,25 +22,14 @@ import com.children.toyexchange.presentation.widget.utils.ApiUrl.KEY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingAddressFragment : Fragment() {
-    private lateinit var binding: FragmentSettingAddressBinding
+class SettingAddressFragment : BaseFragment<FragmentSettingAddressBinding>(R.layout.fragment_setting_address) {
     private val toyUploadViewModel by activityViewModels<ToyUploadViewModel>()
     private var checkBack = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_setting_address, container, false)
+    override fun init() {
         binding.fragment = this
         observeViewModel()
-        return binding.root
     }
 
     private fun observeViewModel() {

@@ -18,15 +18,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentNickNameBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.signIn.SignInViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class NickNameFragment : Fragment() {
+class NickNameFragment : BaseFragment<FragmentNickNameBinding>(R.layout.fragment_nick_name) {
 
-    lateinit var binding: FragmentNickNameBinding
     private var proFileUri: Uri? = null
     private val signInViewModel by activityViewModels<SignInViewModel>()
 
@@ -35,26 +35,10 @@ class NickNameFragment : Fragment() {
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nick_name, container, false)
+    override fun init() {
         binding.activity = this
-
-
         progressDialog = ProgressDialog(requireContext())
-
-
-        return binding.root
     }
-
 
     //이미지 선택 클릭
     fun clickChoseProfileImage(view: View) {
@@ -64,7 +48,6 @@ class NickNameFragment : Fragment() {
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "이미지를 선택하세요."), 0)
     }
-
 
     //이미지 선택후 정보저장후 선택한 이미지 보여주기
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -89,7 +72,6 @@ class NickNameFragment : Fragment() {
         }
     }
 
-
     //닉네임 edittext 체크
     fun clickCheckNickName(view: View) {
         Log.d("로그", "눌림")
@@ -108,6 +90,7 @@ class NickNameFragment : Fragment() {
         }
 
     }
+
 
 /*    private fun observeViewModel() {
 

@@ -6,23 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.children.toyexchange.R
+import com.children.toyexchange.databinding.FragmentMypageBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 
 
-class MypageFragment : Fragment() {
+class MypageFragment : BaseFragment<FragmentMypageBinding>(R.layout.fragment_mypage) {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun init() {
 
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mypage, container, false)
-    }
-
-
 }

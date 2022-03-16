@@ -19,6 +19,7 @@ import androidx.navigation.findNavController
 import com.children.toyexchange.R
 import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.databinding.FragmentMainToyUploadBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.myToyUpload.adapter.ChoicePhotoRecyclerAdapter
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
@@ -32,9 +33,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class MainToyUploadFragment : Fragment() {
-
-    private lateinit var binding : FragmentMainToyUploadBinding
+class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layout.fragment_main_toy_upload) {
     private val toyUploadViewModel by activityViewModels<ToyUploadViewModel>()
     private var choicePhotoUri: Uri? = null
     lateinit var toyUploadDataClass : ToyUpload
@@ -43,6 +42,13 @@ class MainToyUploadFragment : Fragment() {
 
     companion object{
         var photoIndex : Int = 0
+    }
+
+
+    override fun init() {
+        binding.fragment = this
+        initChoicePhotoRecyclerView()
+        observeViewModel()
     }
 
     override fun onStart() {
@@ -66,28 +72,10 @@ class MainToyUploadFragment : Fragment() {
         view.findNavController().navigate(R.id.action_mainToyUploadFragment_to_categoryChoiceFragment)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_main_toy_upload,container,false)
-        binding.fragment = this
-        initChoicePhotoRecyclerView()
-        observeViewModel()
-        return binding.root
-    }
-
     private fun initChoicePhotoRecyclerView(){
         binding.choicePhotoRecyclerView.showHorizontal(requireContext())
         binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
     }
-
 
     override fun onStop() {
         super.onStop()
@@ -149,7 +137,6 @@ class MainToyUploadFragment : Fragment() {
         }
 
     }
-
 
     //이미지 선택후 정보저장후 선택한 이미지 보여주기
     @RequiresApi(Build.VERSION_CODES.Q)

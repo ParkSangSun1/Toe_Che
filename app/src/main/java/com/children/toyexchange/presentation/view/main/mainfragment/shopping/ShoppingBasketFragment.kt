@@ -6,22 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.children.toyexchange.R
+import com.children.toyexchange.databinding.FragmentShoppingBasketBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 
 
-class ShoppingBasketFragment : Fragment() {
+class ShoppingBasketFragment : BaseFragment<FragmentShoppingBasketBinding>(R.layout.fragment_shopping_basket) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun init() {
 
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shopping_basket, container, false)
-    }
-
-
 }

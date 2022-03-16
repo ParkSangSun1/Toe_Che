@@ -11,26 +11,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentCategoryChoiceBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
 
-class CategoryChoiceFragment : Fragment() {
-    private lateinit var binding: FragmentCategoryChoiceBinding
+class CategoryChoiceFragment : BaseFragment<FragmentCategoryChoiceBinding>(R.layout.fragment_category_choice) {
     private val toyUploadViewModel by activityViewModels<ToyUploadViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_category_choice, container, false)
+    override fun init() {
         binding.fragment = this
-
-        return binding.root
     }
 
     fun categoryItemClick(view: View) {

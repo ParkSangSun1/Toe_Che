@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentPhoneNumberBinding
+import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.signIn.SignInViewModel
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
@@ -23,9 +24,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class PhoneNumberFragment : Fragment() {
+class PhoneNumberFragment : BaseFragment<FragmentPhoneNumberBinding>(R.layout.fragment_phone_number) {
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-    lateinit var binding: FragmentPhoneNumberBinding
     lateinit var storedVerificationId: String
     lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private var checkFirstPhoneNumberAuth = false
@@ -34,22 +34,9 @@ class PhoneNumberFragment : Fragment() {
     private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_phone_number, container, false)
+    override fun init() {
         binding.activity = this
-
-
         callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
             }
@@ -57,7 +44,6 @@ class PhoneNumberFragment : Fragment() {
             override fun onVerificationFailed(e: FirebaseException) {
                 Toast.makeText(requireContext(), "잘못된 전화번호 또는 이미 인증코드가 전송되었습니다", Toast.LENGTH_SHORT)
                     .show()
-
             }
 
             override fun onCodeSent(
@@ -71,10 +57,6 @@ class PhoneNumberFragment : Fragment() {
                 checkFirstPhoneNumberAuth = true
             }
         }
-
-
-
-        return binding.root
     }
 
     private fun verifyVerificationCode(code: String) {
