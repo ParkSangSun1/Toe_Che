@@ -7,13 +7,11 @@ import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivitySignInBinding
 import com.children.toyexchange.presentation.base.BaseActivity
 
-class SignInActivity : BaseActivity() {
-    val binding by binding<ActivitySignInBinding>(R.layout.activity_sign_in)
+class SignInActivity : BaseActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun init() {
         binding.activity = this
-
     }
 
     fun loginBtn(view: View) {

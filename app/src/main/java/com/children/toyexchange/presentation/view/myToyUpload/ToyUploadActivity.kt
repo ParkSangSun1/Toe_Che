@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.children.toyexchange.R
 import com.children.toyexchange.data.models.ToyUpload
+import com.children.toyexchange.databinding.ActivityToyUploadBinding
 import com.children.toyexchange.presentation.base.BaseActivity
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -21,12 +22,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class ToyUploadActivity : AppCompatActivity() {
+class ToyUploadActivity : BaseActivity<ActivityToyUploadBinding>(R.layout.activity_toy_upload) {
     private val toyUploadViewModel by viewModels<ToyUploadViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_toy_upload)
+
+    override fun init() {
         initViewModel()
         observeViewModel()
     }
@@ -40,5 +40,4 @@ class ToyUploadActivity : AppCompatActivity() {
             if (it) finish()
         })
     }
-
 }

@@ -1,17 +1,19 @@
 package com.children.toyexchange.presentation.view.main.mainfragment.search.searchbar
 
 import android.os.Bundle
+import android.view.View
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivitySearchRecordBinding
 import com.children.toyexchange.presentation.base.BaseActivity
 
-class SearchRecordActivity : BaseActivity() {
-    private val binding by binding<ActivitySearchRecordBinding>(R.layout.activity_search_record)
+class SearchRecordActivity : BaseActivity<ActivitySearchRecordBinding>(R.layout.activity_search_record) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search_record)
+
+    override fun init() {
+        binding.activity = this
     }
 
-
+    fun backBtnClick(view:View){
+        finish()
+    }
 }
