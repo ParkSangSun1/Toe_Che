@@ -40,10 +40,6 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideSavePostPhotoUseCase(repository: ToyUploadRepository) = SavePostPhotoUseCase(repository)
-
-    @Provides
-    @Singleton
     fun provideSaveUserInfoUseCase(repository: FirebaseRepository) = SaveUserInfoUseCase(repository)
 
     @Provides

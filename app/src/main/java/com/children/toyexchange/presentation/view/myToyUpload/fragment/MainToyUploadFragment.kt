@@ -4,15 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -27,9 +22,6 @@ import com.children.toyexchange.presentation.widget.extension.showShotSnackbar
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -94,6 +86,19 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
         toyUploadViewModel.postAddress.observe(requireActivity(), Observer {
             binding.settingAddress.text = it
         })
+
+        toyUploadViewModel.toyUploadEvent.observe(this){
+            when(it){
+                1 -> {
+                    requireView().showShotSnackbar("업로드에 성공했습니다")
+                    toyUploadViewModel.setSuccessPostUpload(true)
+                }
+                2 -> requireView().showShotSnackbar("업로드에 실패했습니다")
+                3 -> requireView().showShotSnackbar("사진을 선택해 주세요")
+            }
+            binding.uploadBtn.isEnabled = true
+
+        }
     }
 
     fun backBtnClick(view: View){
@@ -101,8 +106,8 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
     }
 
     fun uploadBtnClick(view: View){
-            toyUploadViewModel.uploadPhotoStorage(auth.uid.toString(), binding.postTitle.text.toString())
-            saveFirebaseFireStore()
+        binding.uploadBtn.isEnabled = false
+        saveFirebase()
     }
 
     //현재 시간
@@ -110,19 +115,13 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
      private fun nowDateSave(){ time = Date(System.currentTimeMillis())}
 
 
-    private fun saveFirebaseFireStore(){
+    private fun saveFirebase(){
         nowDateSave()
         val toyUploadDataClassSaveDate = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분").format(time)
         val toyUploadSaveDate = SimpleDateFormat("yyyyMMddhhmmss").format(time)
 
-        toyUploadDataClass= ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString(), toyUploadDataClassSaveDate, auth.uid.toString(), toyUploadSaveDate)
+        toyUploadDataClass = ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString(), toyUploadDataClassSaveDate, auth.uid.toString(), toyUploadSaveDate)
         toyUploadViewModel.toyUpload(toyUploadDataClass,auth.uid.toString()+toyUploadDataClass.title)
-            .addOnSuccessListener {
-               toyUploadViewModel.setSuccessPostUpload(true)
-            }
-            .addOnFailureListener {
-                binding.backBtn.showShotSnackbar("장난감을 업로드하는데 실패했습니다")
-            }
     }
 
     //이미지 선택 클릭

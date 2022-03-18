@@ -15,5 +15,5 @@ interface ToyUploadRepository {
 
     fun getToyCategory() : DatabaseReference
 
-    fun toyUpload(data : ToyUpload, postID :String) : Task<Void>
+    suspend fun toyUpload(data : ToyUpload, postID :String, photosList : MutableList<Uri>) : Boolean
 }

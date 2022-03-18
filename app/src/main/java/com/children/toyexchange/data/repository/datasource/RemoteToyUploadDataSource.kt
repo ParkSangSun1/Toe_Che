@@ -8,6 +8,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.tasks.await
+import java.lang.Exception
 import javax.inject.Inject
 
 class RemoteToyUploadDataSource @Inject constructor(
@@ -22,5 +24,15 @@ class RemoteToyUploadDataSource @Inject constructor(
 
     fun getToyCategory() = firebaseRtdb.reference.child("toyCategory")
 
-    fun toyUpload(data : ToyUpload, postID :String) = fireStore.collection("post").document(postID).set(data)
+    suspend fun toyUpload(data : ToyUpload, postID :String, photosList : MutableList<Uri>) : Boolean {
+        return try {
+            for (photoNum in 0 until photosList.size){
+                firebaseStorage.getReferenceFromUrl(FirebaseUrl.FirebaseStorageUrl).child("toyPostImage/${data.uid}/${data.title}/$photoNum.png").putFile(photosList[photoNum]).await()
+            }
+            fireStore.collection("post").document(postID).set(data).await()
+            true
+        }catch (e: Exception){
+            false
+        }
+    }
 }

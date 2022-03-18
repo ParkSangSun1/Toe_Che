@@ -1,7 +1,6 @@
 package com.children.toyexchange.presentation.view.myToyUpload
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,16 +8,13 @@ import androidx.lifecycle.viewModelScope
 import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.data.models.searchaddress.SearchAddress
 import com.children.toyexchange.domain.usecase.GetToyCategoryUseCase
-import com.children.toyexchange.domain.usecase.SavePostPhotoUseCase
 import com.children.toyexchange.domain.usecase.SearchAddressUseCase
 import com.children.toyexchange.domain.usecase.ToyUploadUseCase
 import com.children.toyexchange.presentation.widget.utils.SingleLiveEvent
-import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -27,9 +23,7 @@ class ToyUploadViewModel @Inject constructor(
     private val getToyCategoryUseCase: GetToyCategoryUseCase,
     private val toyUploadUseCase: ToyUploadUseCase,
     private val searchAddressUseCase: SearchAddressUseCase,
-    private val savePostPhotoUseCase: SavePostPhotoUseCase
 ) : ViewModel() {
-
 
     //선택한 사진들
     val saveChoicePhoto: LiveData<MutableList<Uri>> get() = _saveChoicePhoto
@@ -67,22 +61,25 @@ class ToyUploadViewModel @Inject constructor(
     val postUploadTime: LiveData<String> get() = _postUploadTime
     private val _postUploadTime = MutableLiveData<String>()
 
-    //게시물 제목
-    val successPostUpload: LiveData<Boolean> get() = _successPostUpload
-    private val _successPostUpload = MutableLiveData<Boolean>()
-
     //뒤로가기 버튼 클릭
     val backBtnEvent: LiveData<Int> get() = _backBtnEvent
     private val _backBtnEvent = SingleLiveEvent<Int>()
+
+    //게시물 올리고 나서 액티비티 종료 이벤트
+    val successPostUpload: LiveData<Boolean> get() = _successPostUpload
+    private val _successPostUpload = MutableLiveData<Boolean>()
+
+
+    //게시물 업로드 성공 이벤트
+    // 0 = 초기 초기화, 1 = 성공, 2 = 실패, 3 = 사진이 없음
+    val toyUploadEvent: LiveData<Int> get() = _toyUploadEvent
+    private val _toyUploadEvent = SingleLiveEvent<Int>()
 
     init {
         _saveChoicePhoto.value = mutableListOf()
         _photoIndex.value = 0
     }
 
-    fun setSaveChoicePhoto(uri: Uri) {
-        _saveChoicePhoto.value?.add(uri)
-    }
 
     fun setSuccessPostUpload(set : Boolean){
         _successPostUpload.value = set
@@ -96,6 +93,10 @@ class ToyUploadViewModel @Inject constructor(
     //사진 삭제 -1
     fun minusPhotoIndex() {
         _photoIndex.value = _photoIndex.value?.minus(1)
+    }
+
+    fun setSaveChoicePhoto(uri: Uri) {
+        _saveChoicePhoto.value?.add(uri)
     }
 
     fun deleteSaveChoicePhoto(index: Int) {
@@ -128,10 +129,14 @@ class ToyUploadViewModel @Inject constructor(
     }
 
     //게시물 올리기
-    fun toyUpload(data : ToyUpload, postID : String) : Task<Void> {
-        return toyUploadUseCase.execute(data, postID)
+    fun toyUpload(data : ToyUpload, postID : String) = viewModelScope.launch {
+        //올리는 사진이 0개인지 체크
+        if (_saveChoicePhoto.value == null) _toyUploadEvent.postValue(3)
+        else{
+            if (toyUploadUseCase.execute(data, postID, _saveChoicePhoto.value!!))_toyUploadEvent.postValue(1)
+            else _toyUploadEvent.postValue(2)
+        }
     }
-
 
     fun searchAddress(
         Authorization: String,
@@ -155,18 +160,6 @@ class ToyUploadViewModel @Inject constructor(
         } catch (e: Exception) {
 
         }
-    }
-
-    fun uploadPhotoStorage(uid: String, title: String) {
-        viewModelScope.launch {
-            for (num in 0 until _photoIndex.value!!.toInt()) {
-                saveToyPostImage(uid, num, title)
-            }
-        }
-    }
-
-    private suspend fun saveToyPostImage(uid: String, num : Int, title : String) {
-        savePostPhotoUseCase.execute(_saveChoicePhoto.value!![num], title,uid , num)
     }
 
     //뒤로가기 버튼 클릭

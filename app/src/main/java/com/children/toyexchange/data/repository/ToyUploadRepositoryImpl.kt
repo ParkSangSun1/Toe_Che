@@ -30,6 +30,6 @@ class ToyUploadRepositoryImpl @Inject constructor(
 
       override fun getToyCategory(): DatabaseReference = toyUploadDataSource.getToyCategory()
 
-      override fun toyUpload(data : ToyUpload, postID : String): Task<Void> = toyUploadDataSource.toyUpload(data,postID)
+      override suspend fun toyUpload(data : ToyUpload, postID :String, photosList : MutableList<Uri>) = toyUploadDataSource.toyUpload(data,postID, photosList)
 
 }

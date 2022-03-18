@@ -9,5 +9,5 @@ import javax.inject.Inject
 class ToyUploadUseCase @Inject constructor(
     private val toyUploadRepository: ToyUploadRepository
 ) {
-    fun execute(data : ToyUpload, postID : String)  = toyUploadRepository.toyUpload(data, postID)
+    suspend fun execute(data : ToyUpload, postID : String, photosList : MutableList<Uri>)  = toyUploadRepository.toyUpload(data, postID, photosList)
 }
