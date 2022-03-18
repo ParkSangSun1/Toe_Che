@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -17,6 +18,8 @@ import com.children.toyexchange.databinding.FragmentMainToyUploadBinding
 import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.myToyUpload.adapter.ChoicePhotoRecyclerAdapter
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadViewModel
+import com.children.toyexchange.presentation.widget.extension.hide
+import com.children.toyexchange.presentation.widget.extension.show
 import com.children.toyexchange.presentation.widget.extension.showHorizontal
 import com.children.toyexchange.presentation.widget.extension.showShotSnackbar
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -98,6 +101,7 @@ class MainToyUploadFragment :
                 2 -> requireView().showShotSnackbar("업로드에 실패했습니다")
                 3 -> requireView().showShotSnackbar("사진을 선택해 주세요")
             }
+            binding.loadingBar.hide()
             binding.uploadBtn.isEnabled = true
 
         }
@@ -108,8 +112,31 @@ class MainToyUploadFragment :
     }
 
     fun uploadBtnClick(view: View) {
-        binding.uploadBtn.isEnabled = false
-        saveFirebase()
+        //Log.d(null)
+        if (TextUtils.isEmpty(binding.postTitle.text))
+            requireView().showShotSnackbar("제목을 입력해 주세요")
+        else {
+            if (TextUtils.isEmpty(binding.postContents.text))
+                requireView().showShotSnackbar("설명을 입력해 주세요")
+            else {
+                if (toyUploadViewModel.userChoiceCategory.value == null)
+                    requireView().showShotSnackbar("카테고리를 선택해 주세요")
+                else {
+                    if (toyUploadViewModel.postAddress.value == null)
+                        requireView().showShotSnackbar("위치를 설정해 주세요")
+                    else {
+                        if (toyUploadViewModel.photoIndex.value?.toInt()!! <= 0)
+                            requireView().showShotSnackbar("사진을 선택해 주세요")
+                        else {
+                            requireView().showShotSnackbar("약간의 시간이 걸릴 수 있습니다")
+                            binding.uploadBtn.isEnabled = false
+                            binding.loadingBar.show()
+                            saveFirebase()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     //현재 시간

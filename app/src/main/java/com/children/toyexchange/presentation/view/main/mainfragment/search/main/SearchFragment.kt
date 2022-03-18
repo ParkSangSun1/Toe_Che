@@ -48,17 +48,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         mainViewModel.getPostResponse.observe(requireActivity(), Observer {
             Log.d("로그","시작됨1")
 
-            mainViewModel.getPostDataProcessing()
+           // mainViewModel.getPostDataProcessing()
 /*            binding.recentPostsRecyclerView.showVertical(requireContext())
             binding.recentPostsRecyclerView.adapter = RecentPostsAdapter(mainViewModel.getPostResponse,mainViewModel,uid,requireContext())
             binding.recentPostsRecyclerView.shadowDelete()*/
         })
 
-        mainViewModel.getImage.observe(requireActivity(), Observer {
+    /*    mainViewModel.getImage.observe(requireActivity(), Observer {
             Log.d("로그","시작됨2")
             Log.d("로그","mainViewModel.post : $it")
             if(it != null) mainViewModel.getPostImage(uid.uid)
-        })
+        })*/
     }
 
     private fun clickAddBtn() {

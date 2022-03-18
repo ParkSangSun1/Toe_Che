@@ -27,3 +27,15 @@ fun RecyclerView.shadowDelete(){
 fun NestedScrollView.shadowDelete(){
     this.overScrollMode = View.OVER_SCROLL_NEVER
 }
+
+fun View.show(){
+    this.visibility = View.VISIBLE
+}
+
+fun View.hide() {
+    this.visibility = View.INVISIBLE
+}
+
+fun View.makeGone() {
+    this.visibility = View.GONE
+}
