@@ -26,15 +26,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layout.fragment_main_toy_upload) {
+class MainToyUploadFragment :
+    BaseFragment<FragmentMainToyUploadBinding>(R.layout.fragment_main_toy_upload) {
     private val toyUploadViewModel by activityViewModels<ToyUploadViewModel>()
     private var choicePhotoUri: Uri? = null
-    lateinit var toyUploadDataClass : ToyUpload
     private val auth = FirebaseAuth.getInstance()
-    private var time : Date? = null
+    private var time: Date? = null
 
-    companion object{
-        var photoIndex : Int = 0
+    companion object {
+        var photoIndex: Int = 0
     }
 
 
@@ -56,16 +56,18 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
         })
     }
 
-    fun settingAddressBtnClick(view: View){
+    fun settingAddressBtnClick(view: View) {
         toyUploadViewModel.setPostAddress(null)
-        view.findNavController().navigate(R.id.action_mainToyUploadFragment_to_settingAddressFragment)
+        view.findNavController()
+            .navigate(R.id.action_mainToyUploadFragment_to_settingAddressFragment)
     }
 
-    fun categoryChoiceBtnClick(view: View){
-        view.findNavController().navigate(R.id.action_mainToyUploadFragment_to_categoryChoiceFragment)
+    fun categoryChoiceBtnClick(view: View) {
+        view.findNavController()
+            .navigate(R.id.action_mainToyUploadFragment_to_categoryChoiceFragment)
     }
 
-    private fun initChoicePhotoRecyclerView(){
+    private fun initChoicePhotoRecyclerView() {
         binding.choicePhotoRecyclerView.showHorizontal(requireContext())
         binding.choicePhotoRecyclerView.adapter = ChoicePhotoRecyclerAdapter(toyUploadViewModel)
     }
@@ -78,7 +80,7 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
 
     }
 
-    private fun observeViewModel(){
+    private fun observeViewModel() {
         toyUploadViewModel.userChoiceCategory.observe(requireActivity(), Observer {
             binding.userChoiceCategory.text = it
         })
@@ -87,8 +89,8 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
             binding.settingAddress.text = it
         })
 
-        toyUploadViewModel.toyUploadEvent.observe(this){
-            when(it){
+        toyUploadViewModel.toyUploadEvent.observe(this) {
+            when (it) {
                 1 -> {
                     requireView().showShotSnackbar("업로드에 성공했습니다")
                     toyUploadViewModel.setSuccessPostUpload(true)
@@ -101,34 +103,48 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
         }
     }
 
-    fun backBtnClick(view: View){
+    fun backBtnClick(view: View) {
         toyUploadViewModel.setBackBtnEvent()
     }
 
-    fun uploadBtnClick(view: View){
+    fun uploadBtnClick(view: View) {
         binding.uploadBtn.isEnabled = false
         saveFirebase()
     }
 
     //현재 시간
-  //  private fun nowDate() = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분").format(Date(System.currentTimeMillis()))
-     private fun nowDateSave(){ time = Date(System.currentTimeMillis())}
+    //  private fun nowDate() = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분").format(Date(System.currentTimeMillis()))
+    private fun nowDateSave() {
+        time = Date(System.currentTimeMillis())
+    }
 
 
-    private fun saveFirebase(){
+    private fun saveFirebase() {
         nowDateSave()
         val toyUploadDataClassSaveDate = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분").format(time)
         val toyUploadSaveDate = SimpleDateFormat("yyyyMMddhhmmss").format(time)
-
-        toyUploadDataClass = ToyUpload(binding.postTitle.text.toString(),binding.postContents.text.toString(),toyUploadViewModel.userChoiceCategory.value.toString(),toyUploadViewModel.postAddress.value.toString(),toyUploadViewModel.photoIndex.value.toString(), toyUploadDataClassSaveDate, auth.uid.toString(), toyUploadSaveDate)
-        toyUploadViewModel.toyUpload(toyUploadDataClass,auth.uid.toString()+toyUploadDataClass.title)
+        val toyUploadDataClass = ToyUpload(
+            binding.postTitle.text.toString(),
+            binding.postContents.text.toString(),
+            toyUploadViewModel.userChoiceCategory.value.toString(),
+            toyUploadViewModel.postAddress.value.toString(),
+            toyUploadViewModel.photoIndex.value.toString(),
+            toyUploadDataClassSaveDate,
+            auth.uid.toString(),
+            toyUploadSaveDate,
+            auth.uid.toString() + binding.postTitle.text.toString() + toyUploadSaveDate
+        )
+        toyUploadViewModel.toyUpload(
+            toyUploadDataClass,
+            auth.uid.toString() + binding.postTitle.text.toString() + toyUploadSaveDate
+        )
     }
 
     //이미지 선택 클릭
     fun clickChoseProfileImage(view: View) {
-        if (photoIndex >= 5){
-            Toast.makeText(requireContext(),"사진을 더 이상 추가 할수 없습니다",Toast.LENGTH_SHORT).show()
-        }else{
+        if (photoIndex >= 5) {
+            Toast.makeText(requireContext(), "사진을 더 이상 추가 할수 없습니다", Toast.LENGTH_SHORT).show()
+        } else {
             //이미지를 선택
             val intent = Intent()
             intent.type = "image/*"
@@ -145,7 +161,7 @@ class MainToyUploadFragment : BaseFragment<FragmentMainToyUploadBinding>(R.layou
 
         when (resultCode) {
             Activity.RESULT_OK -> {
-                Log.d("로그","사진 추가 성공 로그")
+                Log.d("로그", "사진 추가 성공 로그")
                 //선택된 사진 Uri
                 choicePhotoUri = data?.data!!
 

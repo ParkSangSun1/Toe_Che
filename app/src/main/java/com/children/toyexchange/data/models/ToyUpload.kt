@@ -10,5 +10,6 @@ data class ToyUpload(
     val photo: String?,
     val date: String,
     val uid: String,
-    val orderBy: String
+    val orderBy: String,
+    val saveName : String
 )

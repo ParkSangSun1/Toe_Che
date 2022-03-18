@@ -27,7 +27,7 @@ class RemoteToyUploadDataSource @Inject constructor(
     suspend fun toyUpload(data : ToyUpload, postID :String, photosList : MutableList<Uri>) : Boolean {
         return try {
             for (photoNum in 0 until photosList.size){
-                firebaseStorage.getReferenceFromUrl(FirebaseUrl.FirebaseStorageUrl).child("toyPostImage/${data.uid}/${data.title}/$photoNum.png").putFile(photosList[photoNum]).await()
+                firebaseStorage.getReferenceFromUrl(FirebaseUrl.FirebaseStorageUrl).child("toyPostImage/${data.saveName}/$photoNum.png").putFile(photosList[photoNum]).await()
             }
             fireStore.collection("post").document(postID).set(data).await()
             true
