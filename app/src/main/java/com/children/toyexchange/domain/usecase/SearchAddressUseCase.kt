@@ -1,7 +1,5 @@
 package com.children.toyexchange.domain.usecase
 
-import com.children.toyexchange.data.models.ToyUpload
-import com.children.toyexchange.domain.repository.FirebaseRepository
 import com.children.toyexchange.domain.repository.ToyUploadRepository
 import javax.inject.Inject
 

@@ -105,8 +105,7 @@
             android:elevation="3dp"
             android:src="@drawable/ic_baseline_add_24"
             app:borderWidth="0dp"
-
-
+            android:onClick="@{fragment::clickAddBtn}"
             app:fabSize="normal"
             app:tint="@color/white" />
 

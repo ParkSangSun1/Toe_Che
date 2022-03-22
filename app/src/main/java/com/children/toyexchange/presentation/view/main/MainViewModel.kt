@@ -3,100 +3,72 @@ package com.children.toyexchange.presentation.view.main
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.children.toyexchange.data.models.GetStorePost
-import com.children.toyexchange.domain.usecase.GetStoragePostUseCase
+import com.children.toyexchange.data.models.GetPostFirstImgResponse
+import com.children.toyexchange.data.models.Post
+import com.children.toyexchange.domain.usecase.GetPostFirstImgUseCase
 import com.children.toyexchange.domain.usecase.GetStorePostUseCase
-import com.google.firebase.firestore.QuerySnapshot
+import com.children.toyexchange.presentation.widget.utils.SingleLiveEvent
+import com.children.toyexchange.presentation.widget.utils.Utils.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getStorePostUseCase: GetStorePostUseCase,
-    private val getStoragePostUseCase: GetStoragePostUseCase
+    private val getPostFirstImgUseCase: GetPostFirstImgUseCase
 ) : ViewModel() {
     //게시물 불러온 값
-    val getPostResponse: LiveData<QuerySnapshot> get() = _getPostResponse
-    private val _getPostResponse = MutableLiveData<QuerySnapshot>()
+    val getImage: LiveData<ArrayList<Post>> get() = _getImage
+    private val _getImage = SingleLiveEvent<ArrayList<Post>>()
 
-    val getImage: LiveData<ArrayList<GetStorePost?>> get() = _getImage
-    private val _getImage = MutableLiveData<ArrayList<GetStorePost?>>()
-    var post: ArrayList<GetStorePost?> = arrayListOf()
-    private var getAndSaveImage: Array<Uri?> = Array(5, { item->null})
-    var imageIndex = 0
-    lateinit var saveGetImageArray: Array<Array<Uri?>?>
+    var postList: ArrayList<Post> = arrayListOf()
+    var firstImgList: ArrayList<Uri> = arrayListOf()
+
+    //화면에 보이는 메시지 이벤트
+    val messageEvent: LiveData<Int> get() = _messageEvent
+    private val _messageEvent = SingleLiveEvent<Int>()
+
+    //다음 행동을 뭐 할지 보내는 이벤트
+    val nextActionEvent: LiveData<Int> get() = _nextActionEvent
+    private val _nextActionEvent = SingleLiveEvent<Int>()
 
 
-    //MainActivity에서 보여줄 게시물 가져오기
+    //SearchFragment 에서 보여줄 게시물 가져오기
     fun getStorePost() = getStorePostUseCase.execute()
-
-    fun setGetPostResponse(set: QuerySnapshot) {
-        _getPostResponse.value = set
-    }
-
-    fun getStoragePost(uid: String?, title: String?, num: Int) =
-        getStoragePostUseCase.execute(uid, title, num)
-
-    fun getPostDataProcessing() {
-        for (snapshot in _getPostResponse.value!!.documents) {
-            val item = snapshot.toObject(GetStorePost::class.java)
-            this.post.add(item)
-        }
-        _getImage.value = this.post
-    }
-
-    private fun setAllIndexNull() {
-        for (index in 0 until getAndSaveImage.size) {
-            getAndSaveImage[index] = null
-        }
-    }
-
-    private suspend fun callGetStoragePost(uid: String?, outIndex: Int, inIndex: Int) {
-            getStoragePost(uid, _getImage.value!![outIndex]?.title, inIndex)
-                .addOnCompleteListener {
-                    Log.d("로그", "it.result : ${it.result}, outIndex-inIndex : $outIndex-$inIndex")
-                    if (it.isSuccessful) {
-                        getAndSaveImage[inIndex] = it.result
-                        Log.d("로그", "out saveGetImageArray : $saveGetImageArray")
-                        Log.d("로그", "out getAndSaveImage : ${getAndSaveImage[inIndex]}")
-
-                        if(!getAndSaveImage.contains(null)) {
-                            Log.d("로그", "여기 실행하는데?")
-                            saveGetImageArray[outIndex] = getAndSaveImage
-                            Log.d("로그", "saveGetImageArray : $saveGetImageArray")
-                            setAllIndexNull()
-                            Log.d("로그", "getAndSaveImage : $getAndSaveImage")
-                        }
-                    }
+        .addOnSuccessListener {
+            postList = arrayListOf()
+            for (snapshot in it.documents) {
+                try {
+                    val item = snapshot.toObject(Post::class.java)
+                    this.postList.add(item!!)
+                } catch (e: Exception) {
+                    Log.d(TAG, "에러 : $e")
+                    _messageEvent.postValue(1)
                 }
-    }
+            }
+            getPostFirstImg()
+        }
+        .addOnFailureListener {
+            Log.d(TAG, "에러 : $it")
+            _messageEvent.postValue(1)
+        }
 
-    fun getPostImage(uid: String?) {
-        saveGetImageArray = Array(_getImage.value!!.size, {item -> null})
-        viewModelScope.launch {
-            for (outIndex in 0 until _getImage.value!!.size) {
-                for (inIndex in 0 until _getImage.value!![outIndex]?.photo.toString().toInt()) {
-                        callGetStoragePost(uid, outIndex, inIndex)
-                }
+    private fun getPostFirstImg() = viewModelScope.launch {
+        if (postList.isNullOrEmpty()) _messageEvent.postValue(1)
+        else {
+            with(getPostFirstImgUseCase.execute(list = postList)) {
+                if (this.success) {
+                    firstImgList = arrayListOf()
+                    firstImgList = list!!
+                    _nextActionEvent.postValue(1)
+                } else _messageEvent.postValue(1)
             }
         }
     }
-    /* fun inputArray(){
-         val querySnapshot = _getPostResponse.value
-         Log.d("로그","어뎁터2 ${querySnapshot?.documents}, ${querySnapshot?.size()}")
-         for (snapshot in querySnapshot!!.documents) {
-             val item = snapshot.toObject(GetStorePost::class.java)
-             post.add(item)
-         }
-
-         Log.d("로그","어뎁터 $post")
-     }*/
-
 }

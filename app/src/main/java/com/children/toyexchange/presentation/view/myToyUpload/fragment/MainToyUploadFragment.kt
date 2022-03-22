@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.children.toyexchange.R
-import com.children.toyexchange.data.models.ToyUpload
+import com.children.toyexchange.data.models.Post
 import com.children.toyexchange.databinding.FragmentMainToyUploadBinding
 import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.myToyUpload.adapter.ChoicePhotoRecyclerAdapter
@@ -150,7 +150,7 @@ class MainToyUploadFragment :
         nowDateSave()
         val toyUploadDataClassSaveDate = SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분").format(time)
         val toyUploadSaveDate = SimpleDateFormat("yyyyMMddhhmmss").format(time)
-        val toyUploadDataClass = ToyUpload(
+        val toyUploadDataClass = Post(
             binding.postTitle.text.toString(),
             binding.postContents.text.toString(),
             toyUploadViewModel.userChoiceCategory.value.toString(),

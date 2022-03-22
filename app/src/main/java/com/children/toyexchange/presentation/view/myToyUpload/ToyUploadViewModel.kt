@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.children.toyexchange.data.models.ToyUpload
+import com.children.toyexchange.data.models.Post
 import com.children.toyexchange.data.models.searchaddress.SearchAddress
 import com.children.toyexchange.domain.usecase.GetToyCategoryUseCase
 import com.children.toyexchange.domain.usecase.SearchAddressUseCase
@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseReference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -129,7 +128,7 @@ class ToyUploadViewModel @Inject constructor(
     }
 
     //게시물 올리기
-    fun toyUpload(data : ToyUpload, postID : String) = viewModelScope.launch {
+    fun toyUpload(data : Post, postID : String) = viewModelScope.launch {
         //올리는 사진이 0개인지 체크
         if (_saveChoicePhoto.value == null) _toyUploadEvent.postValue(3)
         else{

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
 // Show alert dialog
@@ -34,6 +35,10 @@ fun Context.showLongToast(message : String){
 // Snackbar Extensions
 fun View.showShotSnackbar(message : String){
     Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+}
+
+fun Fragment.showShotSnackbar(message : String){
+    Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
 }
 
 fun View.showLongSnackbar(message : String){

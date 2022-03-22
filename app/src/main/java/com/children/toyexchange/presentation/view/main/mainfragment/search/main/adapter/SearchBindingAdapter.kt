@@ -3,7 +3,7 @@ package com.children.toyexchange.presentation.view.main.mainfragment.search.main
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 
-object MainSearchBindingAdapter {
+object SearchBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("title")

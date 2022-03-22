@@ -4,7 +4,7 @@
     <data>
         <variable
             name="data"
-            type="com.children.toyexchange.data.models.GetStorePost" />
+            type="com.children.toyexchange.data.models.Post" />
     </data>
 
     <RelativeLayout

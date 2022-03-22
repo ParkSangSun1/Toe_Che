@@ -1,12 +1,9 @@
 package com.children.toyexchange.data.repository
 
 import android.net.Uri
-import com.children.toyexchange.data.models.ToyUpload
 import com.children.toyexchange.data.models.UserSignIn
 import com.children.toyexchange.data.repository.datasource.RemoteFirebaseDataSource
 import com.children.toyexchange.domain.repository.FirebaseRepository
-import com.google.android.gms.tasks.Task
-import com.google.firebase.database.DatabaseReference
 import javax.inject.Inject
 
 class FirebaseRepositoryImpl @Inject constructor(
