@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.search.searchbar
+package com.children.toyexchange.presentation.view.main.search.searchbar
 
 import android.view.LayoutInflater
 import android.view.View

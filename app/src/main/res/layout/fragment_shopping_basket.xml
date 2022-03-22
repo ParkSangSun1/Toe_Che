@@ -9,7 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.main.mainfragment.shopping.ShoppingBasketFragment">
+        tools:context=".presentation.view.main.shopping.ShoppingBasketFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView

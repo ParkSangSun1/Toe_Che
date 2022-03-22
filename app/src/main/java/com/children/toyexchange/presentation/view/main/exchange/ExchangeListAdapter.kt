@@ -1,11 +1,11 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.exchange
+package com.children.toyexchange.presentation.view.main.exchange
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.children.toyexchange.presentation.view.main.mainfragment.exchange.getexchange.GetExchangeListFragment
-import com.children.toyexchange.presentation.view.main.mainfragment.exchange.setexchange.SetExchangeListFragment
+import com.children.toyexchange.presentation.view.main.exchange.getexchange.GetExchangeListFragment
+import com.children.toyexchange.presentation.view.main.exchange.setexchange.SetExchangeListFragment
 
 class ExchangeListAdapter (fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

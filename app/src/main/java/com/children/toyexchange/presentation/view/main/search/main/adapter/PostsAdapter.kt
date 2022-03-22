@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.search.main.adapter
+package com.children.toyexchange.presentation.view.main.search.main.adapter
 
 import android.content.Context
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.exchange.getexchange
+package com.children.toyexchange.presentation.view.main.exchange.getexchange
 
 import android.view.LayoutInflater
 import android.view.View

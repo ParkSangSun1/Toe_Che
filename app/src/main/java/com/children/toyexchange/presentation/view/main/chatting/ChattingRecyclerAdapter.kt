@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.chatting
+package com.children.toyexchange.presentation.view.main.chatting
 
 import android.view.LayoutInflater
 import android.view.View

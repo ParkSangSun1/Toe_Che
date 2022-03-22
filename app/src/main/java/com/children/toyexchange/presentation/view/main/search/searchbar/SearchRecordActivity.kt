@@ -1,6 +1,5 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.search.searchbar
+package com.children.toyexchange.presentation.view.main.search.searchbar
 
-import android.os.Bundle
 import android.view.View
 import com.children.toyexchange.R
 import com.children.toyexchange.databinding.ActivitySearchRecordBinding

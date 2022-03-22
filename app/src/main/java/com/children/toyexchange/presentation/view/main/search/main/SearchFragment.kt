@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.search.main
+package com.children.toyexchange.presentation.view.main.search.main
 
 import android.content.Intent
 import android.view.View
@@ -7,8 +7,8 @@ import com.children.toyexchange.R
 import com.children.toyexchange.databinding.FragmentSearchBinding
 import com.children.toyexchange.presentation.base.BaseFragment
 import com.children.toyexchange.presentation.view.main.MainViewModel
-import com.children.toyexchange.presentation.view.main.mainfragment.search.main.adapter.PostsAdapter
-import com.children.toyexchange.presentation.view.main.mainfragment.search.searchbar.SearchRecordActivity
+import com.children.toyexchange.presentation.view.main.search.main.adapter.PostsAdapter
+import com.children.toyexchange.presentation.view.main.search.searchbar.SearchRecordActivity
 import com.children.toyexchange.presentation.view.myToyUpload.ToyUploadActivity
 import com.children.toyexchange.presentation.widget.extension.shadowDelete
 import com.children.toyexchange.presentation.widget.extension.showShotSnackbar

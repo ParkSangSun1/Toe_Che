@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/exchangeFragment"
-        android:name="com.children.toyexchange.presentation.view.main.mainfragment.exchange.ExchangeFragment"
+        android:name="com.children.toyexchange.presentation.view.main.exchange.ExchangeFragment"
         android:label=""
         tools:layout="@layout/fragment_exchange"/>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.children.toyexchange.presentation.view.main.mainfragment.search.main.SearchFragment"
+        android:name="com.children.toyexchange.presentation.view.main.search.main.SearchFragment"
         android:label=""
         tools:layout="@layout/fragment_search"/>
     <fragment
         android:id="@+id/chattingFragment"
-        android:name="com.children.toyexchange.presentation.view.main.mainfragment.chatting.ChattingFragment"
+        android:name="com.children.toyexchange.presentation.view.main.chatting.ChattingFragment"
         android:label=""
         tools:layout="@layout/fragment_chatting"/>
     <fragment
         android:id="@+id/mypageFragment"
-        android:name="com.children.toyexchange.presentation.view.main.mainfragment.mypage.MypageFragment"
+        android:name="com.children.toyexchange.presentation.view.main.mypage.MypageFragment"
         android:label=""
         tools:layout="@layout/fragment_mypage" />
 </navigation>

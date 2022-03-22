@@ -12,17 +12,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToyExchange">
-        <activity android:name=".presentation.view.main.mainfragment.search.searchbar.SearchRecordActivity"></activity>
-        <activity android:name=".presentation.view.main.MainActivity">
+        <activity
+            android:name="com.children.toyexchange.presentation.view.main.search.searchbar.SearchRecordActivity"
+            android:exported="true" />
+        <activity android:name=".presentation.view.main.MainActivity"
+            android:exported="true">
 
         </activity>
-        <activity android:name=".presentation.view.signIn.activity.PhoneAuthActivity"></activity>
-        <activity android:name=".presentation.view.signIn.activity.SignInActivity"></activity>
-        <activity android:name=".presentation.view.myToyUpload.ToyUploadActivity" >
+        <activity
+            android:name=".presentation.view.signIn.activity.PhoneAuthActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.view.signIn.activity.SignInActivity"
+            android:exported="true" />
+        <activity android:name=".presentation.view.myToyUpload.ToyUploadActivity"
+            android:exported="true">
 
         </activity>
 
-        <activity android:name=".presentation.view.splash.SplashActivity">
+        <activity android:name=".presentation.view.splash.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

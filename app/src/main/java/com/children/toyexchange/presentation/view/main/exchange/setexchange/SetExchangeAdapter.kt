@@ -1,4 +1,4 @@
-package com.children.toyexchange.presentation.view.main.mainfragment.exchange.setexchange
+package com.children.toyexchange.presentation.view.main.exchange.setexchange
 
 import android.view.LayoutInflater
 import android.view.View
