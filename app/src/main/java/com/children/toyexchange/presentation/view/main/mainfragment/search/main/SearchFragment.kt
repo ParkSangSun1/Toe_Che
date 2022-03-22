@@ -33,8 +33,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
         mainViewModel.getStorePost()
             .addOnSuccessListener {
+                Log.d("로그","Post 정상 가져오기")
                 mainViewModel.setGetPostResponse(it)
                 //Log.d("로그","getStorePost : ${it.documents}")
+            }
+            .addOnFailureListener {
+                Log.d("로그","Post 정상 가져오기 X $it")
             }
 
         observeViewModel()
@@ -49,9 +53,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             Log.d("로그","시작됨1")
 
            // mainViewModel.getPostDataProcessing()
-/*            binding.recentPostsRecyclerView.showVertical(requireContext())
+            binding.recentPostsRecyclerView.showVertical(requireContext())
             binding.recentPostsRecyclerView.adapter = RecentPostsAdapter(mainViewModel.getPostResponse,mainViewModel,uid,requireContext())
-            binding.recentPostsRecyclerView.shadowDelete()*/
+            binding.recentPostsRecyclerView.shadowDelete()
         })
 
     /*    mainViewModel.getImage.observe(requireActivity(), Observer {
