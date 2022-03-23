@@ -1,16 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.view.main.search.PostItemFragment">
 
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:src="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/img_view_pager"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/appCompatButton2"
+            app:layout_constraintEnd_toEndOf="@+id/img_view_pager"
+            app:layout_constraintStart_toStartOf="@+id/img_view_pager"
+            app:layout_constraintTop_toBottomOf="@+id/img_view_pager"
+        >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:gravity="start"
+                    android:includeFontPadding="false"
+                    android:text="게시물 제목"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:gravity="start"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="2dp"
+                    android:includeFontPadding="false"
+                    android:text="위치 정보"
+                    android:textColor="#5E5D5D"
+                    android:textSize="17sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:gravity="end"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="2dp"
+                    android:includeFontPadding="false"
+                    android:text="시간 정보"
+                    android:textColor="#5E5D5D"
+                    android:textSize="17sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:gravity="start"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="2dp"
+                    android:includeFontPadding="false"
+                    android:text="게시물 정보와 구체적인 내용을 담고 있습니다. 한마디로 내용이라고 볼수있죠!"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/login_main_color"
+            android:fontFamily="@font/notosanskr_bold"
+            android:includeFontPadding="false"
+            android:padding="20dp"
+            android:text="교환 신청"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
